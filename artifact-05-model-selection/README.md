@@ -1,6 +1,6 @@
 # Artifact 05 — Model selection under constraints
 
-> Pairs with [Unit 07 — Model selection](https://www.carlosarivero.com/units/unit-07-model-selection.html).
+> Pairs with [Unit 07 — Defining "good"](https://www.carlosarivero.com/units/unit-07-defining-good.html).
 > Status: **planned — ships on cadence.**
 > Evidence base: [`HerdingAI/document-ai-bench`](https://github.com/HerdingAI/document-ai-bench) — the benchmark this artifact reasons from.
 

@@ -1,6 +1,6 @@
 # Artifact 01 — Eval harness: how I decide an agent is good enough to ship
 
-> Pairs with [Unit 13 — Capstone](https://www.carlosarivero.com/units/unit-13-capstone.html) and Essay 12.
+> Pairs with [Unit 13 — Capstone](https://www.carlosarivero.com/units/unit-13-capstone.html) and ["How I decide an agent is good enough to ship"](https://www.carlosarivero.com/thoughts/how-i-decide-an-agent-is-good-enough-to-ship.html).
 > System under test: [`HerdingAI/agentic-copilot`](https://github.com/HerdingAI/agentic-copilot) — a stateful, tool-using LangGraph agent.
 
 ## The problem

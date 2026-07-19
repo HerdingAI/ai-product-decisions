@@ -1,6 +1,6 @@
 # Artifact 04 — RAG failure modes, ranked by fix effort
 
-> Pairs with [Unit 17 — RAG](https://www.carlosarivero.com/units/unit-17-rag.html) and a knowledge-assistant build (anonymized).
+> Pairs with [Unit 17 — RAG internals](https://www.carlosarivero.com/units/unit-17-rag-internals.html) and a knowledge-assistant build (anonymized).
 > Status: **planned — ships on cadence.**
 
 ## The problem
