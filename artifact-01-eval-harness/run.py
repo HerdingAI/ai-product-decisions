@@ -34,7 +34,7 @@ def main() -> int:
     args = ap.parse_args()
 
     print(f"Running {len(GOLDEN_SET)} cases against {args.target} …")
-    raw = run_all(args.target, GOLDEN_SET)
+    raw = run_all(args.target, GOLDEN_SET, pace_seconds=3.5)
 
     errored = [r for r in raw if not r.ok]
     if errored:
@@ -44,7 +44,7 @@ def main() -> int:
         return 1
 
     verdicts = [evaluate(c, r.response, r.tool_calls) for c, r in zip(GOLDEN_SET, raw)]
-    results, summary, decision = build(raw, verdicts, args.target)
+    results, summary, decisions_by_tier = build(raw, verdicts, args.target)
 
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
@@ -52,9 +52,12 @@ def main() -> int:
     (out / "SUMMARY.md").write_text(summary)
 
     print()
-    print(decision.render())
-    print(f"\nWrote {out/'results.json'} and {out/'SUMMARY.md'}")
-    return 0 if decision.ship else 2
+    for tier, decision in decisions_by_tier.items():
+        print(decision.render())
+        print()
+    overall_ship = all(d.ship for d in decisions_by_tier.values())
+    print(f"Wrote {out/'results.json'} and {out/'SUMMARY.md'}")
+    return 0 if overall_ship else 2
 
 
 if __name__ == "__main__":

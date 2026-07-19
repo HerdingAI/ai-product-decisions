@@ -56,6 +56,7 @@ class CaseVerdict:
     case_id: str
     query: str
     group: str
+    blast_radius: str = "autonomous"
     tool_calls: list[dict] = field(default_factory=list)
     response: str = ""
     results: list[CriterionResult] = field(default_factory=list)
@@ -171,6 +172,7 @@ CRITERIA: dict[str, Callable[[GoldenCase, str, list[dict]], CriterionResult]] = 
 def evaluate(case: GoldenCase, response: str, tool_calls: list[dict]) -> CaseVerdict:
     verdict = CaseVerdict(
         case_id=case.id, query=case.query, group=case.group,
+        blast_radius=case.blast_radius,
         tool_calls=tool_calls, response=response,
     )
     for cid in case.criteria:

@@ -3,45 +3,60 @@ Report — renders eval output for a PM audience.
 
 Two artifacts:
   - results.json : the machine-readable record (cases, criteria, metrics,
-    ship decision) for diffing across runs.
+    ship decision per blast-radius tier) for diffing across runs.
   - SUMMARY.md   : the human-readable brief a PM would actually read — what
     passed, what failed, the failure taxonomy, and the ship decision with the
-    blocker rationale.
+    blocker rationale, reported separately for the autonomous and reviewed
+    tiers so a shaky-on-ambiguous-input result doesn't get conflated with a
+    shaky-on-canonical-paths result.
 """
 from __future__ import annotations
 
-import json
-from dataclasses import asdict
-from datetime import datetime
+from datetime import datetime, timezone
 
 from .criteria import CaseVerdict
 from .runner import RawResult
-from .taxonomy import MetricSummary, ShipDecision, classify, ship_gate, summarize
+from .taxonomy import (
+    MetricSummary,
+    ShipDecision,
+    classify,
+    ship_gate_by_tier,
+    summarize_by_tier,
+)
 
 
 def results_json(verdicts: list[CaseVerdict], raw: list[RawResult],
-                 summaries: list[MetricSummary], decision: ShipDecision,
+                 summaries_by_tier: dict[str, list[MetricSummary]],
+                 decisions_by_tier: dict[str, ShipDecision],
                  target: str) -> dict:
     return {
         "target": target,
-        "run_at": datetime.utcnow().isoformat(timespec="seconds") + "Z",
+        "run_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "system_under_test": "HerdingAI/agentic-copilot (mock LLM, temperature 0)",
-        "ship": decision.ship,
-        "metrics": [
-            {
-                "criterion": m.criterion,
-                "pass_rate": round(m.pass_rate, 4),
-                "passed": m.passed,
-                "total": m.total,
-                "threshold": m.against_threshold.minimum if m.against_threshold else None,
-                "blocker": m.blocker,
+        "ship": all(d.ship for d in decisions_by_tier.values()),
+        "tiers": {
+            tier: {
+                "ship": decisions_by_tier[tier].ship,
+                "case_count": sum(1 for v in verdicts if v.blast_radius == tier),
+                "metrics": [
+                    {
+                        "criterion": m.criterion,
+                        "pass_rate": round(m.pass_rate, 4),
+                        "passed": m.passed,
+                        "total": m.total,
+                        "threshold": m.against_threshold.minimum if m.against_threshold else None,
+                        "blocker": m.blocker,
+                    }
+                    for m in summaries
+                ],
             }
-            for m in summaries
-        ],
+            for tier, summaries in summaries_by_tier.items()
+        },
         "cases": [
             {
                 "id": v.case_id,
                 "group": v.group,
+                "blast_radius": v.blast_radius,
                 "query": v.query,
                 "tools_called": sorted({tc.get("tool", "") for tc in v.tool_calls if tc.get("tool")}),
                 "passed": v.passed,
@@ -58,21 +73,14 @@ def results_json(verdicts: list[CaseVerdict], raw: list[RawResult],
     }
 
 
-def summary_md(verdicts: list[CaseVerdict], raw: list[RawResult],
-               summaries: list[MetricSummary], decision: ShipDecision,
-               target: str) -> str:
+def _tier_section(tier: str, verdicts: list[CaseVerdict],
+                  summaries: list[MetricSummary], decision: ShipDecision) -> list[str]:
     lines: list[str] = []
-    lines.append(f"# Eval harness — results summary\n")
-    lines.append(f"**System under test:** `HerdingAI/agentic-copilot` (mock LLM, temperature 0)  ")
-    lines.append(f"**Target:** `{target}`  ")
-    lines.append(f"**Cases:** {len(verdicts)}\n")
-
-    lines.append("## Ship decision\n")
+    lines.append(f"## {tier.capitalize()} tier ({len(verdicts)} cases)\n")
     lines.append("```")
     lines.append(decision.render())
     lines.append("```\n")
 
-    lines.append("## Metrics vs. blast-radius thresholds\n")
     lines.append("| Criterion | Pass rate | Threshold | Gate |")
     lines.append("|---|---|---|---|")
     for m in summaries:
@@ -86,21 +94,43 @@ def summary_md(verdicts: list[CaseVerdict], raw: list[RawResult],
             lines.append(f"| {m.criterion} | {m.pass_rate:.0%} ({m.passed}/{m.total}) | — | — |")
     lines.append("")
 
-    lines.append("## Failures by class (taxonomy)\n")
     failures = [(v, classify(v)) for v in verdicts if not v.passed]
-    if not failures:
-        lines.append("_No failures._\n")
-    else:
+    if failures:
+        lines.append(f"### {tier.capitalize()} tier — failures\n")
         for v, tags in failures:
             tools = sorted({tc.get("tool", "") for tc in v.tool_calls if tc.get("tool")})
-            lines.append(f"### {v.case_id} — {', '.join(tags) or 'uncategorized'}")
-            lines.append(f"- **Query:** {v.query}")
-            lines.append(f"- **Tools called:** {tools or 'none'}")
+            lines.append(f"**{v.case_id}** — {', '.join(tags) or 'uncategorized'}")
+            lines.append(f"- Query: {v.query!r}")
+            lines.append(f"- Tools called: {tools or 'none'}")
             for r in v.results:
                 if not r.passed:
-                    lines.append(f"- **{r.name}:** {r.reason}")
-            lines.append(f"- **Response excerpt:** _{v.response[:140]}…_")
+                    lines.append(f"- {r.name}: {r.reason}")
+            lines.append(f"- Response excerpt: _{v.response[:140]}…_")
             lines.append("")
+    return lines
+
+
+def summary_md(verdicts: list[CaseVerdict], raw: list[RawResult],
+               summaries_by_tier: dict[str, list[MetricSummary]],
+               decisions_by_tier: dict[str, ShipDecision],
+               target: str) -> str:
+    lines: list[str] = []
+    lines.append("# Eval harness — results summary\n")
+    lines.append("**System under test:** `HerdingAI/agentic-copilot` (mock LLM, temperature 0)  ")
+    lines.append(f"**Target:** `{target}`  ")
+    lines.append(f"**Cases:** {len(verdicts)} "
+                 f"({sum(1 for v in verdicts if v.blast_radius == 'autonomous')} autonomous, "
+                 f"{sum(1 for v in verdicts if v.blast_radius == 'reviewed')} reviewed)\n")
+
+    overall_ship = all(d.ship for d in decisions_by_tier.values())
+    lines.append("## Overall verdict\n")
+    lines.append(f"**{'SHIP' if overall_ship else 'DO NOT SHIP'}** — both tiers must clear "
+                 "their gate; blast radius is a lens on the same failures, not a way to "
+                 "average them away.\n")
+
+    for tier in ("autonomous", "reviewed"):
+        verdicts_t = [v for v in verdicts if v.blast_radius == tier]
+        lines.extend(_tier_section(tier, verdicts_t, summaries_by_tier[tier], decisions_by_tier[tier]))
 
     lines.append("## What this is, and what it isn't\n")
     lines.append(
@@ -108,8 +138,8 @@ def summary_md(verdicts: list[CaseVerdict], raw: list[RawResult],
         "live `agentic-copilot` backend using its deterministic mock LLM. They "
         "describe **the mock LLM's tool-selection heuristics**, not a "
         "production model. The point of the artifact is the harness and the "
-        "decision criteria — the ship gate, the failure taxonomy, the "
-        "blast-radius thresholds — not the specific pass rates, which move "
+        "decision criteria — the two ship gates, the failure taxonomy, the "
+        "blast-radius tiering — not the specific pass rates, which move "
         "the moment a real LLM is swapped in. Regenerate with "
         "`python run.py --target http://127.0.0.1:8011`.\n"
     )
@@ -117,10 +147,10 @@ def summary_md(verdicts: list[CaseVerdict], raw: list[RawResult],
 
 
 def build(raw: list[RawResult], verdicts: list[CaseVerdict], target: str):
-    summaries = summarize(verdicts)
-    decision = ship_gate(summaries)
+    summaries_by_tier = summarize_by_tier(verdicts)
+    decisions_by_tier = ship_gate_by_tier(summaries_by_tier)
     return (
-        results_json(verdicts, raw, summaries, decision, target),
-        summary_md(verdicts, raw, summaries, decision, target),
-        decision,
+        results_json(verdicts, raw, summaries_by_tier, decisions_by_tier, target),
+        summary_md(verdicts, raw, summaries_by_tier, decisions_by_tier, target),
+        decisions_by_tier,
     )
