@@ -1,0 +1,1 @@
+"""Eval harness for agentic-copilot — criteria-first ship decision."""

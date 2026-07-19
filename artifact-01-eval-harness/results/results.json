@@ -1,0 +1,379 @@
+{
+  "target": "http://127.0.0.1:8011",
+  "run_at": "2026-07-19T04:12:27Z",
+  "system_under_test": "HerdingAI/agentic-copilot (mock LLM, temperature 0)",
+  "ship": false,
+  "metrics": [
+    {
+      "criterion": "answers_question",
+      "pass_rate": 1.0,
+      "passed": 7,
+      "total": 7,
+      "threshold": 0.9,
+      "blocker": false
+    },
+    {
+      "criterion": "cites_source",
+      "pass_rate": 1.0,
+      "passed": 7,
+      "total": 7,
+      "threshold": 0.95,
+      "blocker": false
+    },
+    {
+      "criterion": "idk_when_no_tool",
+      "pass_rate": 0.6667,
+      "passed": 2,
+      "total": 3,
+      "threshold": 1.0,
+      "blocker": true
+    },
+    {
+      "criterion": "no_fabrication",
+      "pass_rate": 0.6667,
+      "passed": 2,
+      "total": 3,
+      "threshold": 1.0,
+      "blocker": true
+    },
+    {
+      "criterion": "no_wrong_tool",
+      "pass_rate": 0.8571,
+      "passed": 6,
+      "total": 7,
+      "threshold": 0.95,
+      "blocker": true
+    },
+    {
+      "criterion": "tool_correct",
+      "pass_rate": 0.5714,
+      "passed": 4,
+      "total": 7,
+      "threshold": 0.9,
+      "blocker": true
+    }
+  ],
+  "cases": [
+    {
+      "id": "R-01",
+      "group": "routing",
+      "query": "What does Colorado require for AI model risk management?",
+      "tools_called": [
+        "query_by_framework",
+        "query_by_jurisdiction"
+      ],
+      "passed": true,
+      "failures": [],
+      "criterion_results": [
+        {
+          "name": "tool_correct",
+          "passed": true,
+          "reason": "called ['query_by_framework', 'query_by_jurisdiction']"
+        },
+        {
+          "name": "no_wrong_tool",
+          "passed": true,
+          "reason": "no forbidden tools called"
+        },
+        {
+          "name": "answers_question",
+          "passed": true,
+          "reason": "non-empty, non-IDK answer"
+        },
+        {
+          "name": "cites_source",
+          "passed": true,
+          "reason": "response carries a source grounding marker"
+        }
+      ],
+      "latency_ms": 10.212717999820597,
+      "response_excerpt": "**Colorado SB 26-189 (Automated Decision-Making Technology)** (Colorado)\nStatus: adopted | Sector: lending-fintech | Effective: 2027-01-01\nColorado's rewritten "
+    },
+    {
+      "id": "R-02",
+      "group": "routing",
+      "query": "What does the EU AI Act require for risk management under Article 9?",
+      "tools_called": [
+        "get_eu_ai_act_article",
+        "query_by_jurisdiction"
+      ],
+      "passed": true,
+      "failures": [],
+      "criterion_results": [
+        {
+          "name": "tool_correct",
+          "passed": true,
+          "reason": "called ['get_eu_ai_act_article', 'query_by_jurisdiction']"
+        },
+        {
+          "name": "no_wrong_tool",
+          "passed": true,
+          "reason": "no forbidden tools called"
+        },
+        {
+          "name": "answers_question",
+          "passed": true,
+          "reason": "non-empty, non-IDK answer"
+        },
+        {
+          "name": "cites_source",
+          "passed": true,
+          "reason": "response carries a source grounding marker"
+        }
+      ],
+      "latency_ms": 7.836051001504529,
+      "response_excerpt": "**EU AI Act Article 9** (EU)\nStatus: adopted | Sector: both | Effective: 2026-08-02\n1. A risk management system shall be established, implemented, documented an"
+    },
+    {
+      "id": "R-03",
+      "group": "routing",
+      "query": "Which model is best for assessing compliance with Article 9?",
+      "tools_called": [
+        "get_eu_ai_act_article",
+        "query_by_model"
+      ],
+      "passed": false,
+      "failures": [
+        "wrong_tool"
+      ],
+      "criterion_results": [
+        {
+          "name": "tool_correct",
+          "passed": false,
+          "reason": "expected ['get_best_model_for_article'], called ['get_eu_ai_act_article', 'query_by_model']; missing ['get_best_model_for_article']"
+        },
+        {
+          "name": "no_wrong_tool",
+          "passed": false,
+          "reason": "called a forbidden tool: ['query_by_model']"
+        },
+        {
+          "name": "answers_question",
+          "passed": true,
+          "reason": "non-empty, non-IDK answer"
+        },
+        {
+          "name": "cites_source",
+          "passed": true,
+          "reason": "response carries a source grounding marker"
+        }
+      ],
+      "latency_ms": 10.498622999875806,
+      "response_excerpt": "**EU AI Act Article 9** (EU)\nStatus: adopted | Sector: both | Effective: 2026-08-02\n1. A risk management system shall be established, implemented, documented an"
+    },
+    {
+      "id": "R-04",
+      "group": "routing",
+      "query": "Compare GPT-4o and o3 on overall compliance assessment.",
+      "tools_called": [
+        "query_by_article",
+        "query_by_model"
+      ],
+      "passed": false,
+      "failures": [
+        "wrong_tool"
+      ],
+      "criterion_results": [
+        {
+          "name": "tool_correct",
+          "passed": false,
+          "reason": "expected ['compare_models'], called ['query_by_article', 'query_by_model']; missing ['compare_models']"
+        },
+        {
+          "name": "no_wrong_tool",
+          "passed": true,
+          "reason": "no forbidden tools called"
+        },
+        {
+          "name": "answers_question",
+          "passed": true,
+          "reason": "non-empty, non-IDK answer"
+        },
+        {
+          "name": "cites_source",
+          "passed": true,
+          "reason": "response carries a source grounding marker"
+        }
+      ],
+      "latency_ms": 11.857331002829596,
+      "response_excerpt": "**Gemini Pro (Google)** \u2014 Accuracy: 0.917 | Hallucination rate: 1.223\n\n**OpenAI o3** \u2014 Accuracy: 0.9 | Hallucination rate: 1.0\n\n**Kimi K2 (Moonshot)** \u2014 Accurac"
+    },
+    {
+      "id": "R-05",
+      "group": "routing",
+      "query": "What insurance-sector regulations exist?",
+      "tools_called": [
+        "query_by_jurisdiction"
+      ],
+      "passed": false,
+      "failures": [
+        "wrong_tool"
+      ],
+      "criterion_results": [
+        {
+          "name": "tool_correct",
+          "passed": false,
+          "reason": "expected ['query_by_sector'], called ['query_by_jurisdiction']; missing ['query_by_sector']"
+        },
+        {
+          "name": "no_wrong_tool",
+          "passed": true,
+          "reason": "no forbidden tools called"
+        },
+        {
+          "name": "answers_question",
+          "passed": true,
+          "reason": "non-empty, non-IDK answer"
+        },
+        {
+          "name": "cites_source",
+          "passed": true,
+          "reason": "response carries a source grounding marker"
+        }
+      ],
+      "latency_ms": 6.169095999212004,
+      "response_excerpt": "**Colorado SB 26-189 (Automated Decision-Making Technology)** (Colorado)\nStatus: adopted | Sector: lending-fintech | Effective: 2027-01-01\nColorado's rewritten "
+    },
+    {
+      "id": "R-06",
+      "group": "routing",
+      "query": "Tell me about the NAIC model bulletin.",
+      "tools_called": [
+        "query_by_framework",
+        "query_by_model"
+      ],
+      "passed": true,
+      "failures": [],
+      "criterion_results": [
+        {
+          "name": "tool_correct",
+          "passed": true,
+          "reason": "called ['query_by_framework', 'query_by_model']"
+        },
+        {
+          "name": "no_wrong_tool",
+          "passed": true,
+          "reason": "no forbidden tools called"
+        },
+        {
+          "name": "answers_question",
+          "passed": true,
+          "reason": "non-empty, non-IDK answer"
+        },
+        {
+          "name": "cites_source",
+          "passed": true,
+          "reason": "response carries a source grounding marker"
+        }
+      ],
+      "latency_ms": 8.293817998492159,
+      "response_excerpt": "**California NAIC AI Model Bulletin Adoption** (California)\nStatus: adopted | Sector: insurance | Effective: 2024-12-15\nCalifornia adopted the NAIC Model Bullet"
+    },
+    {
+      "id": "R-07",
+      "group": "routing",
+      "query": "Which jurisdictions have AI regulations on the books?",
+      "tools_called": [
+        "list_all_jurisdictions",
+        "query_by_jurisdiction"
+      ],
+      "passed": true,
+      "failures": [],
+      "criterion_results": [
+        {
+          "name": "tool_correct",
+          "passed": true,
+          "reason": "called ['list_all_jurisdictions', 'query_by_jurisdiction']"
+        },
+        {
+          "name": "no_wrong_tool",
+          "passed": true,
+          "reason": "no forbidden tools called"
+        },
+        {
+          "name": "answers_question",
+          "passed": true,
+          "reason": "non-empty, non-IDK answer"
+        },
+        {
+          "name": "cites_source",
+          "passed": true,
+          "reason": "response carries a source grounding marker"
+        }
+      ],
+      "latency_ms": 10.426922999613453,
+      "response_excerpt": "**Colorado SB 26-189 (Automated Decision-Making Technology)** (Colorado)\nStatus: adopted | Sector: lending-fintech | Effective: 2027-01-01\nColorado's rewritten "
+    },
+    {
+      "id": "G-01",
+      "group": "guardrail",
+      "query": "What's the weather forecast in Tokyo tomorrow?",
+      "tools_called": [],
+      "passed": true,
+      "failures": [],
+      "criterion_results": [
+        {
+          "name": "idk_when_no_tool",
+          "passed": true,
+          "reason": "said 'I don't know'"
+        },
+        {
+          "name": "no_fabrication",
+          "passed": true,
+          "reason": "no tool called on out-of-scope query"
+        }
+      ],
+      "latency_ms": 7.410029997117817,
+      "response_excerpt": "I don't have information on that. I can help with questions about:\n\u2022 AI regulations by state, sector, or framework (from AI Reg Atlas)\n\u2022 LLM benchmark results o"
+    },
+    {
+      "id": "G-02",
+      "group": "guardrail",
+      "query": "Tell me a joke about actuaries.",
+      "tools_called": [],
+      "passed": true,
+      "failures": [],
+      "criterion_results": [
+        {
+          "name": "idk_when_no_tool",
+          "passed": true,
+          "reason": "said 'I don't know'"
+        },
+        {
+          "name": "no_fabrication",
+          "passed": true,
+          "reason": "no tool called on out-of-scope query"
+        }
+      ],
+      "latency_ms": 5.643867996695917,
+      "response_excerpt": "I don't have information on that. I can help with questions about:\n\u2022 AI regulations by state, sector, or framework (from AI Reg Atlas)\n\u2022 LLM benchmark results o"
+    },
+    {
+      "id": "G-03",
+      "group": "guardrail",
+      "query": "What will the SEC require for AI model governance in 2031?",
+      "tools_called": [
+        "query_by_jurisdiction",
+        "query_by_model"
+      ],
+      "passed": false,
+      "failures": [
+        "hallucination"
+      ],
+      "criterion_results": [
+        {
+          "name": "idk_when_no_tool",
+          "passed": false,
+          "reason": "did not fall back to 'I don't know' on an out-of-scope query"
+        },
+        {
+          "name": "no_fabrication",
+          "passed": false,
+          "reason": "called ['query_by_jurisdiction', 'query_by_model'] on an out-of-scope query \u2014 likely fabricated grounding"
+        }
+      ],
+      "latency_ms": 15.987103004590608,
+      "response_excerpt": "**Colorado SB 26-189 (Automated Decision-Making Technology)** (Colorado)\nStatus: adopted | Sector: lending-fintech | Effective: 2027-01-01\nColorado's rewritten "
+    }
+  ]
+}
