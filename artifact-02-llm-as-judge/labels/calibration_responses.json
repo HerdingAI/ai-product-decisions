@@ -1,0 +1,572 @@
+[
+  {
+    "id": "C-01",
+    "group": "grounding",
+    "query": "What does Colorado require for AI model risk management?",
+    "note": "Canonical single-jurisdiction lookup \u2014 baseline for whether the response stays inside what query_by_jurisdiction returned.",
+    "ok": true,
+    "response": "**Colorado SB 26-189 (Automated Decision-Making Technology)** (Colorado)\nStatus: adopted | Sector: lending-fintech | Effective: 2027-01-01\nColorado's rewritten AI law replaces the broader SB 24-205 with a narrowed scope focused on automated decision-making in consequential decisions including credit scoring. Enforced via the state Consumer Protection Act as a deceptive trade practice, with AG enforcement and a 60-day cure notice before Jan 1, 2030. Requires disclosure of AI use and risk assessments for high-risk automated decisions.\n\n**Colorado SB 24-205 (Original AI Act, repealed)** (Colorado)\nStatus: repealed-and-replaced | Sector: lending-fintech | Effective: 2025-02-01\nColorado's original comprehensive AI Act, effective February 2025. Replaced by SB 26-189 in May 2026 with substantially narrowed scope. Many secondary sources still reference this version. Required algorithmic impact assessments and anti-discrimination provisions for high-risk AI systems.\n\n**California NAIC AI Model Bulletin Adoption** (California)\nStatus: adopted | Sector: insurance | Effective: 2024-12-15\nCalifornia adopted the NAIC Model Bulletin on insurers' use of AI, joining the 12-state NAIC AI Systems Evaluation Tool pilot. Requires insurer governance framework, risk management controls, and third-party vendor oversight for AI systems used in insurance practices.\n\n**Maryland NAIC AI Model Bulletin Adoption** (Maryland)\nStatus: adopted | Sector: insurance | Effective: 2025-03-01\nMaryland adopted the NAIC Model Bulletin on insurers' use of AI and participates in the 12-state NAIC AI Systems Evaluation Tool pilot. Requires written governance, testing for bias, and documentation of AI systems used in underwriting and pricing.\n\n**Virginia NAIC AI Model Bulletin Adoption** (Virginia)\nStatus: adopted | Sector: insurance | Effective: 2024-11-01\nVirginia adopted the NAIC Model Bulletin on AI use in insurance. Participates in the NAIC AI Systems Evaluation Tool pilot. Requires governance, risk assessment, and oversight of AI systems in insurance underwriting and pricing decisions.\n\n**Connecticut NAIC AI Model Bulletin Adoption** (Connecticut)\nStatus: adopted | Sector: insurance | Effective: 2025-01-01\nConnecticut adopted the NAIC Model Bulletin and participates in the 12-state NAIC AI Systems Evaluation Tool pilot (January\u2013September 2026). Requires insurer AI governance, third-party model oversight, and bias testing.\n\n**Pennsylvania NAIC AI Model Bulletin Adoption** (Pennsylvania)\nStatus: adopted | Sector: insurance | Effective: 2024-10-01\nPennsylvania adopted the NAIC Model Bulletin on AI use in insurance. Participates in the NAIC AI Systems Evaluation Tool pilot. Requires governance framework and risk management for AI systems used in underwriting, pricing, and claims.\n\n**Louisiana NAIC AI Model Bulletin Adoption** (Louisiana)\nStatus: adopted | Sector: insurance | Effective: 2024-12-01\nLouisiana adopted the NAIC Model Bulletin on insurers' use of AI. Participates in the 12-state NAIC AI Systems Evaluation Tool pilot. Requires governance, documentation, and bias testing for AI systems in insurance.\n\n**Wisconsin NAIC AI Model Bulletin Adoption** (Wisconsin)\nStatus: adopted | Sector: insurance | Effective: 2025-02-01\nWisconsin adopted the NAIC Model Bulletin and participates in the NAIC AI Systems Evaluation Tool pilot. Requires insurer governance framework, risk management, and third-party oversight for AI in insurance.\n\n**Florida NAIC AI Model Bulletin Adoption** (Florida)\nStatus: adopted | Sector: insurance | Effective: 2024-09-01\nFlorida adopted the NAIC Model Bulletin on AI in insurance. Participates in the NAIC AI Systems Evaluation Tool pilot. Requires governance and risk management framework for AI systems used by insurers.\n\n**Rhode Island NAIC AI Model Bulletin Adoption** (Rhode Island)\nStatus: adopted | Sector: insurance | Effective: 2025-01-15\nRhode Island adopted the NAIC Model Bulletin and participates in the NAIC AI Systems Evaluation Tool pilot. Requires governance, documentation, and oversight of AI systems in insurance.\n\n**Iowa NAIC AI Model Bulletin Adoption** (Iowa)\nStatus: adopted | Sector: insurance | Effective: 2025-03-15\nIowa adopted the NAIC Model Bulletin and participates in the NAIC AI Systems Evaluation Tool pilot. Requires governance and risk management framework for AI systems used in insurance underwriting and pricing.\n\n**Vermont NAIC AI Model Bulletin Adoption** (Vermont)\nStatus: adopted | Sector: insurance | Effective: 2025-02-15\nVermont adopted the NAIC Model Bulletin and participates in the NAIC AI Systems Evaluation Tool pilot. Requires governance, documentation, and bias testing for AI systems in insurance.\n\n**NAIC AI Systems Evaluation Tool Pilot** (Multi-State)\nStatus: pending | Sector: insurance | Effective: 2026-01-01\n12-state pilot (Colorado, Maryland, Louisiana, Virginia, Connecticut, Pennsylvania, Wisconsin, Florida, Rhode Island, Iowa, Vermont, California) running January\u2013September 2026. Tests a standardized evaluation framework for AI systems used by insurers. Pilot outcomes will inform potential national adoption.\n\n**Texas NAIC AI Model Bulletin Adoption** (Texas)\nStatus: adopted | Sector: insurance | Effective: 2025-06-01\nTexas adopted the NAIC Model Bulletin on insurers' use of AI. Requires governance framework, risk management, and documentation of AI systems in insurance underwriting and pricing. Not part of the 12-state evaluation tool pilot.\n\n**Illinois NAIC AI Model Bulletin Adoption** (Illinois)\nStatus: adopted | Sector: insurance | Effective: 2025-04-01\nIllinois adopted the NAIC Model Bulletin on AI in insurance. Requires governance, documentation, and third-party oversight for AI systems. Not part of the 12-state evaluation tool pilot.\n\n**NAIC Model Bulletin on AI (Base Model)** (Federal)\nStatus: adopted | Sector: insurance | Effective: 2023-12-04\nThe NAIC's model bulletin providing guidance to insurers on the use of AI systems. Requires a governance framework, risk management controls, and third-party vendor oversight. Over 20 states have adopted or are in the process of adopting this bulletin. This is the baseline against which state-specific frameworks like NY's Circular Letter 7 and Colorado's insurance regs are measured.\n\n**New Jersey NAIC AI Model Bulletin Adoption** (New Jersey)\nStatus: adopted | Sector: insurance | Effective: 2025-05-01\nNew Jersey adopted the NAIC Model Bulletin on AI use in insurance. Requires governance, documentation, and bias testing for AI systems in insurance underwriting and pricing.\n\n**Ohio NAIC AI Model Bulletin Adoption** (Ohio)\nStatus: adopted | Sector: insurance | Effective: 2025-07-01\nOhio adopted the NAIC Model Bulletin on insurers' use of AI. Requires governance framework and risk management for AI systems in insurance. Not part of the 12-state evaluation tool pilot.\n\n**Sources:**\n- Colorado SB 26-189 (Automated Decision-Making Technology): https://www.consumerfinancialserviceslawmonitor.com/2026/05/colorado-rewrites-its-ai-law/\n- Colorado SB 24-205 (Original AI Act, repealed): https://finsights.cooley.com/the-new-colorado-ai-act-what-financial-institutions-need-to-know/\n- California NAIC AI Model Bulletin Adoption: https://content.naic.org/sites/default/files/cmte-h-big-data-artificial-intelligence-wg-map-ai-model-bulletin.pdf\n- Maryland NAIC AI Model Bulletin Adoption: https://content.naic.org/sites/default/files/cmte-h-big-data-artificial-intelligence-wg-map-ai-model-bulletin.pdf\n- Virginia NAIC AI Model Bulletin Adoption: https://content.naic.org/sites/default/files/cmte-h-big-data-artificial-intelligence-wg-map-ai-model-bulletin.pdf\n- Connecticut NAIC AI Model Bulletin Adoption: https://content.naic.org/sites/default/files/cmte-h-big-data-artificial-intelligence-wg-map-ai-model-bulletin.pdf\n- Pennsylvania NAIC AI Model Bulletin Adoption: https://content.naic.org/sites/default/files/cmte-h-big-data-artificial-intelligence-wg-map-ai-model-bulletin.pdf\n- Louisiana NAIC AI Model Bulletin Adoption: https://content.naic.org/sites/default/files/cmte-h-big-data-artificial-intelligence-wg-map-ai-model-bulletin.pdf\n- Wisconsin NAIC AI Model Bulletin Adoption: https://content.naic.org/sites/default/files/cmte-h-big-data-artificial-intelligence-wg-map-ai-model-bulletin.pdf\n- Florida NAIC AI Model Bulletin Adoption: https://content.naic.org/sites/default/files/cmte-h-big-data-artificial-intelligence-wg-map-ai-model-bulletin.pdf\n- Rhode Island NAIC AI Model Bulletin Adoption: https://content.naic.org/sites/default/files/cmte-h-big-data-artificial-intelligence-wg-map-ai-model-bulletin.pdf\n- Iowa NAIC AI Model Bulletin Adoption: https://content.naic.org/sites/default/files/cmte-h-big-data-artificial-intelligence-wg-map-ai-model-bulletin.pdf\n- Vermont NAIC AI Model Bulletin Adoption: https://content.naic.org/sites/default/files/cmte-h-big-data-artificial-intelligence-wg-map-ai-model-bulletin.pdf\n- NAIC AI Systems Evaluation Tool Pilot: https://content.naic.org/insurance-topics/artificial-intelligence\n- Texas NAIC AI Model Bulletin Adoption: https://content.naic.org/sites/default/files/cmte-h-big-data-artificial-intelligence-wg-map-ai-model-bulletin.pdf\n- Illinois NAIC AI Model Bulletin Adoption: https://content.naic.org/sites/default/files/cmte-h-big-data-artificial-intelligence-wg-map-ai-model-bulletin.pdf\n- NAIC Model Bulletin on AI (Base Model): https://content.naic.org/insurance-topics/artificial-intelligence\n- New Jersey NAIC AI Model Bulletin Adoption: https://content.naic.org/sites/default/files/cmte-h-big-data-artificial-intelligence-wg-map-ai-model-bulletin.pdf\n- Ohio NAIC AI Model Bulletin Adoption: https://content.naic.org/sites/default/files/cmte-h-big-data-artificial-intelligence-wg-map-ai-model-bulletin.pdf",
+    "tool_calls": [
+      {
+        "tool": "query_by_jurisdiction",
+        "args": {
+          "jurisdiction": "Colorado"
+        },
+        "id": "call_0"
+      },
+      {
+        "tool": "query_by_framework",
+        "args": {
+          "framework_name": "NAIC"
+        },
+        "id": "call_1"
+      }
+    ],
+    "latency_ms": 12.83479799167253,
+    "error": "",
+    "human_labels": {
+      "grounded": null,
+      "complete": null,
+      "appropriately-hedged": null,
+      "usable": null
+    }
+  },
+  {
+    "id": "C-02",
+    "group": "grounding",
+    "query": "What does the EU AI Act require for risk management under Article 9?",
+    "note": "Article-specific fetch; checks the response doesn't pad the article text with outside EU AI Act knowledge.",
+    "ok": true,
+    "response": "**EU AI Act Article 9** (EU)\nStatus: adopted | Sector: both | Effective: 2026-08-02\n1. A risk management system shall be established, implemented, documented and maintained in relation to high-risk AI systems. 2. The risk management system shall be understood as a continuous iterative process planned and run throughout the entire lifecycle of a high-risk AI system, requiring regular systematic review and updating. It shall comprise the following steps: (a) the identification and analysis of the known and the reasonably foreseeable risks that the high-risk AI system can pose to \n\n**EU AI Act Annex III (High-Risk AI Systems)** (EU)\nStatus: adopted | Sector: both | Effective: 2026-08-02\nEU AI Act Annex III classifies AI systems used for credit scoring and life/health insurance risk-pricing as high-risk. Obligations include risk management, data governance, technical documentation, human oversight, and conformity assessment. Enforcement date is August 2, 2026, but a pending Digital Omnibus proposal (agreed May 7, 2026, not yet law) could defer this to December 2, 2027.\n\n**EU AI Act Article 99 (Penalties)** (EU)\nStatus: adopted | Sector: both | Effective: 2026-08-02\nThree penalty tiers: Tier 1 (prohibited practices) up to \u20ac35M or 7% of global annual turnover; Tier 2 (provider/deployer obligations) up to \u20ac15M or 3% of turnover; Tier 3 (misleading information) up to \u20ac7.5M or 1% of turnover. SMEs/startups pay the lower of percentage or fixed amount. Compliance costs estimated at \u20ac50,000\u2013\u20ac500,000 for SMEs depending on use-case complexity.\n\n**Digital Omnibus Deferral Proposal** (EU)\nStatus: proposed | Sector: both | Effective: 2027-12-02\nProposed deferral of the EU AI Act Annex III enforcement date from August 2, 2026 to December 2, 2027. Agreed in principle on May 7, 2026 but not yet enacted into law as of June 2026. If passed, gives covered entities additional time to comply with high-risk AI system obligations for credit scoring and insurance risk-pricing.\n\n**EU AI Act Article 9** (EU)\nStatus: adopted | Sector: both | Effective: 2026-08-02\n1. A risk management system shall be established, implemented, documented and maintained in relation to high-risk AI systems. 2. The risk management system shall be understood as a continuous iterative process planned and run throughout the entire lifecycle of a high-risk AI system, requiring regular systematic review and updating. It shall comprise the following steps: (a) the identification and analysis of the known and the reasonably foreseeable risks that the high-risk AI system can pose to \n\n**EU AI Act Article 10** (EU)\nStatus: adopted | Sector: both | Effective: 2026-08-02\n1. High-risk AI systems which make use of techniques involving the training of AI models with data shall be developed on the basis of training, validation and testing data sets that meet the quality criteria referred to in paragraphs 2 to 5 whenever such data sets are used. 2. Training, validation and testing data sets shall be subject to data governance and management practices appropriate for the intended purpose of the high-risk AI system. Those practices shall concern in particular: (a) the \n\n**EU AI Act Article 12 (1-2)** (EU)\nStatus: adopted | Sector: both | Effective: 2026-08-02\n1. High-risk AI systems shall technically allow for the automatic recording of events (logs) over the lifetime of the system. 2. In order to ensure a level of traceability of the functioning of a high-risk AI system that is appropriate to the intended purpose of the system, logging capabilities shall enable the recording of events relevant for: (a) identifying situations that may result in the high-risk AI system presenting a risk within the meaning of Article 79(1) or in a substantial modificat\n\n**EU AI Act Article 14 (1-4)** (EU)\nStatus: adopted | Sector: both | Effective: 2026-08-02\n1. High-risk AI systems shall be designed and developed in such a way, including with appropriate human-machine interface tools, that they can be effectively overseen by natural persons during the period in which they are in use. 2. Human oversight shall aim to prevent or minimise the risks to health, safety or fundamental rights that may emerge when a high-risk AI system is used in accordance with its intended purpose or under conditions of reasonably foreseeable misuse, in particular where suc\n\n**EU AI Act Article 15** (EU)\nStatus: adopted | Sector: both | Effective: 2026-08-02\n1. High-risk AI systems shall be designed and developed in such a way that they achieve an appropriate level of accuracy, robustness, and cybersecurity, and that they perform consistently in those respects throughout their lifecycle. 2. To address the technical aspects of how to measure the appropriate levels of accuracy and robustness set out in paragraph 1 and any other relevant performance metrics, the Commission shall, in cooperation with relevant stakeholders and organisations such as metro\n\n**Sources:**\n- EU AI Act Article 9: https://artificialintelligenceact.eu/article/9/\n- EU AI Act Annex III (High-Risk AI Systems): https://artificialintelligenceact.eu/annex/3/\n- EU AI Act Article 99 (Penalties): https://artificialintelligenceact.eu/article/99/\n- Digital Omnibus Deferral Proposal: https://artificialintelligenceact.eu/annex/3/\n- EU AI Act Article 9: https://artificialintelligenceact.eu/article/9/\n- EU AI Act Article 10: https://artificialintelligenceact.eu/article/10/\n- EU AI Act Article 12 (1-2): https://artificialintelligenceact.eu/article/12/\n- EU AI Act Article 14 (1-4): https://artificialintelligenceact.eu/article/14/\n- EU AI Act Article 15: https://artificialintelligenceact.eu/article/15/",
+    "tool_calls": [
+      {
+        "tool": "get_eu_ai_act_article",
+        "args": {
+          "article_number": "9"
+        },
+        "id": "call_0"
+      },
+      {
+        "tool": "query_by_jurisdiction",
+        "args": {
+          "jurisdiction": "Eu"
+        },
+        "id": "call_1"
+      }
+    ],
+    "latency_ms": 11.559235994354822,
+    "error": "",
+    "human_labels": {
+      "grounded": null,
+      "complete": null,
+      "appropriately-hedged": null,
+      "usable": null
+    }
+  },
+  {
+    "id": "C-03",
+    "group": "grounding",
+    "query": "Tell me about the NAIC model bulletin and how it compares to similar state-level guidance.",
+    "note": "The 'compares to similar guidance' half invites the model to generalize past what one framework lookup actually returned.",
+    "ok": true,
+    "response": "**Colorado SB 26-189 (Automated Decision-Making Technology)** (Colorado)\nStatus: adopted | Sector: lending-fintech | Effective: 2027-01-01\nColorado's rewritten AI law replaces the broader SB 24-205 with a narrowed scope focused on automated decision-making in consequential decisions including credit scoring. Enforced via the state Consumer Protection Act as a deceptive trade practice, with AG enforcement and a 60-day cure notice before Jan 1, 2030. Requires disclosure of AI use and risk assessments for high-risk automated decisions.\n\n**Colorado SB 24-205 (Original AI Act, repealed)** (Colorado)\nStatus: repealed-and-replaced | Sector: lending-fintech | Effective: 2025-02-01\nColorado's original comprehensive AI Act, effective February 2025. Replaced by SB 26-189 in May 2026 with substantially narrowed scope. Many secondary sources still reference this version. Required algorithmic impact assessments and anti-discrimination provisions for high-risk AI systems.\n\n**California NAIC AI Model Bulletin Adoption** (California)\nStatus: adopted | Sector: insurance | Effective: 2024-12-15\nCalifornia adopted the NAIC Model Bulletin on insurers' use of AI, joining the 12-state NAIC AI Systems Evaluation Tool pilot. Requires insurer governance framework, risk management controls, and third-party vendor oversight for AI systems used in insurance practices.\n\n**Maryland NAIC AI Model Bulletin Adoption** (Maryland)\nStatus: adopted | Sector: insurance | Effective: 2025-03-01\nMaryland adopted the NAIC Model Bulletin on insurers' use of AI and participates in the 12-state NAIC AI Systems Evaluation Tool pilot. Requires written governance, testing for bias, and documentation of AI systems used in underwriting and pricing.\n\n**Virginia NAIC AI Model Bulletin Adoption** (Virginia)\nStatus: adopted | Sector: insurance | Effective: 2024-11-01\nVirginia adopted the NAIC Model Bulletin on AI use in insurance. Participates in the NAIC AI Systems Evaluation Tool pilot. Requires governance, risk assessment, and oversight of AI systems in insurance underwriting and pricing decisions.\n\n**Connecticut NAIC AI Model Bulletin Adoption** (Connecticut)\nStatus: adopted | Sector: insurance | Effective: 2025-01-01\nConnecticut adopted the NAIC Model Bulletin and participates in the 12-state NAIC AI Systems Evaluation Tool pilot (January\u2013September 2026). Requires insurer AI governance, third-party model oversight, and bias testing.\n\n**Pennsylvania NAIC AI Model Bulletin Adoption** (Pennsylvania)\nStatus: adopted | Sector: insurance | Effective: 2024-10-01\nPennsylvania adopted the NAIC Model Bulletin on AI use in insurance. Participates in the NAIC AI Systems Evaluation Tool pilot. Requires governance framework and risk management for AI systems used in underwriting, pricing, and claims.\n\n**Louisiana NAIC AI Model Bulletin Adoption** (Louisiana)\nStatus: adopted | Sector: insurance | Effective: 2024-12-01\nLouisiana adopted the NAIC Model Bulletin on insurers' use of AI. Participates in the 12-state NAIC AI Systems Evaluation Tool pilot. Requires governance, documentation, and bias testing for AI systems in insurance.\n\n**Wisconsin NAIC AI Model Bulletin Adoption** (Wisconsin)\nStatus: adopted | Sector: insurance | Effective: 2025-02-01\nWisconsin adopted the NAIC Model Bulletin and participates in the NAIC AI Systems Evaluation Tool pilot. Requires insurer governance framework, risk management, and third-party oversight for AI in insurance.\n\n**Florida NAIC AI Model Bulletin Adoption** (Florida)\nStatus: adopted | Sector: insurance | Effective: 2024-09-01\nFlorida adopted the NAIC Model Bulletin on AI in insurance. Participates in the NAIC AI Systems Evaluation Tool pilot. Requires governance and risk management framework for AI systems used by insurers.\n\n**Rhode Island NAIC AI Model Bulletin Adoption** (Rhode Island)\nStatus: adopted | Sector: insurance | Effective: 2025-01-15\nRhode Island adopted the NAIC Model Bulletin and participates in the NAIC AI Systems Evaluation Tool pilot. Requires governance, documentation, and oversight of AI systems in insurance.\n\n**Iowa NAIC AI Model Bulletin Adoption** (Iowa)\nStatus: adopted | Sector: insurance | Effective: 2025-03-15\nIowa adopted the NAIC Model Bulletin and participates in the NAIC AI Systems Evaluation Tool pilot. Requires governance and risk management framework for AI systems used in insurance underwriting and pricing.\n\n**Vermont NAIC AI Model Bulletin Adoption** (Vermont)\nStatus: adopted | Sector: insurance | Effective: 2025-02-15\nVermont adopted the NAIC Model Bulletin and participates in the NAIC AI Systems Evaluation Tool pilot. Requires governance, documentation, and bias testing for AI systems in insurance.\n\n**NAIC AI Systems Evaluation Tool Pilot** (Multi-State)\nStatus: pending | Sector: insurance | Effective: 2026-01-01\n12-state pilot (Colorado, Maryland, Louisiana, Virginia, Connecticut, Pennsylvania, Wisconsin, Florida, Rhode Island, Iowa, Vermont, California) running January\u2013September 2026. Tests a standardized evaluation framework for AI systems used by insurers. Pilot outcomes will inform potential national adoption.\n\n**Texas NAIC AI Model Bulletin Adoption** (Texas)\nStatus: adopted | Sector: insurance | Effective: 2025-06-01\nTexas adopted the NAIC Model Bulletin on insurers' use of AI. Requires governance framework, risk management, and documentation of AI systems in insurance underwriting and pricing. Not part of the 12-state evaluation tool pilot.\n\n**Illinois NAIC AI Model Bulletin Adoption** (Illinois)\nStatus: adopted | Sector: insurance | Effective: 2025-04-01\nIllinois adopted the NAIC Model Bulletin on AI in insurance. Requires governance, documentation, and third-party oversight for AI systems. Not part of the 12-state evaluation tool pilot.\n\n**NAIC Model Bulletin on AI (Base Model)** (Federal)\nStatus: adopted | Sector: insurance | Effective: 2023-12-04\nThe NAIC's model bulletin providing guidance to insurers on the use of AI systems. Requires a governance framework, risk management controls, and third-party vendor oversight. Over 20 states have adopted or are in the process of adopting this bulletin. This is the baseline against which state-specific frameworks like NY's Circular Letter 7 and Colorado's insurance regs are measured.\n\n**New Jersey NAIC AI Model Bulletin Adoption** (New Jersey)\nStatus: adopted | Sector: insurance | Effective: 2025-05-01\nNew Jersey adopted the NAIC Model Bulletin on AI use in insurance. Requires governance, documentation, and bias testing for AI systems in insurance underwriting and pricing.\n\n**Ohio NAIC AI Model Bulletin Adoption** (Ohio)\nStatus: adopted | Sector: insurance | Effective: 2025-07-01\nOhio adopted the NAIC Model Bulletin on insurers' use of AI. Requires governance framework and risk management for AI systems in insurance. Not part of the 12-state evaluation tool pilot.\n\n**Sources:**\n- Colorado SB 26-189 (Automated Decision-Making Technology): https://www.consumerfinancialserviceslawmonitor.com/2026/05/colorado-rewrites-its-ai-law/\n- Colorado SB 24-205 (Original AI Act, repealed): https://finsights.cooley.com/the-new-colorado-ai-act-what-financial-institutions-need-to-know/\n- California NAIC AI Model Bulletin Adoption: https://content.naic.org/sites/default/files/cmte-h-big-data-artificial-intelligence-wg-map-ai-model-bulletin.pdf\n- Maryland NAIC AI Model Bulletin Adoption: https://content.naic.org/sites/default/files/cmte-h-big-data-artificial-intelligence-wg-map-ai-model-bulletin.pdf\n- Virginia NAIC AI Model Bulletin Adoption: https://content.naic.org/sites/default/files/cmte-h-big-data-artificial-intelligence-wg-map-ai-model-bulletin.pdf\n- Connecticut NAIC AI Model Bulletin Adoption: https://content.naic.org/sites/default/files/cmte-h-big-data-artificial-intelligence-wg-map-ai-model-bulletin.pdf\n- Pennsylvania NAIC AI Model Bulletin Adoption: https://content.naic.org/sites/default/files/cmte-h-big-data-artificial-intelligence-wg-map-ai-model-bulletin.pdf\n- Louisiana NAIC AI Model Bulletin Adoption: https://content.naic.org/sites/default/files/cmte-h-big-data-artificial-intelligence-wg-map-ai-model-bulletin.pdf\n- Wisconsin NAIC AI Model Bulletin Adoption: https://content.naic.org/sites/default/files/cmte-h-big-data-artificial-intelligence-wg-map-ai-model-bulletin.pdf\n- Florida NAIC AI Model Bulletin Adoption: https://content.naic.org/sites/default/files/cmte-h-big-data-artificial-intelligence-wg-map-ai-model-bulletin.pdf\n- Rhode Island NAIC AI Model Bulletin Adoption: https://content.naic.org/sites/default/files/cmte-h-big-data-artificial-intelligence-wg-map-ai-model-bulletin.pdf\n- Iowa NAIC AI Model Bulletin Adoption: https://content.naic.org/sites/default/files/cmte-h-big-data-artificial-intelligence-wg-map-ai-model-bulletin.pdf\n- Vermont NAIC AI Model Bulletin Adoption: https://content.naic.org/sites/default/files/cmte-h-big-data-artificial-intelligence-wg-map-ai-model-bulletin.pdf\n- NAIC AI Systems Evaluation Tool Pilot: https://content.naic.org/insurance-topics/artificial-intelligence\n- Texas NAIC AI Model Bulletin Adoption: https://content.naic.org/sites/default/files/cmte-h-big-data-artificial-intelligence-wg-map-ai-model-bulletin.pdf\n- Illinois NAIC AI Model Bulletin Adoption: https://content.naic.org/sites/default/files/cmte-h-big-data-artificial-intelligence-wg-map-ai-model-bulletin.pdf\n- NAIC Model Bulletin on AI (Base Model): https://content.naic.org/insurance-topics/artificial-intelligence\n- New Jersey NAIC AI Model Bulletin Adoption: https://content.naic.org/sites/default/files/cmte-h-big-data-artificial-intelligence-wg-map-ai-model-bulletin.pdf\n- Ohio NAIC AI Model Bulletin Adoption: https://content.naic.org/sites/default/files/cmte-h-big-data-artificial-intelligence-wg-map-ai-model-bulletin.pdf",
+    "tool_calls": [
+      {
+        "tool": "query_by_jurisdiction",
+        "args": {
+          "jurisdiction": "Colorado"
+        },
+        "id": "call_0"
+      },
+      {
+        "tool": "query_by_framework",
+        "args": {
+          "framework_name": "naic"
+        },
+        "id": "call_1"
+      }
+    ],
+    "latency_ms": 11.552833995665424,
+    "error": "",
+    "human_labels": {
+      "grounded": null,
+      "complete": null,
+      "appropriately-hedged": null,
+      "usable": null
+    }
+  },
+  {
+    "id": "C-04",
+    "group": "grounding",
+    "query": "What insurance-sector AI regulations exist, and which ones are the strictest?",
+    "note": "'Strictest' requires a judgment call the sector-query tool doesn't make for the model \u2014 does the response invent a ranking or stay descriptive?",
+    "ok": true,
+    "response": "**Colorado SB 26-189 (Automated Decision-Making Technology)** (Colorado)\nStatus: adopted | Sector: lending-fintech | Effective: 2027-01-01\nColorado's rewritten AI law replaces the broader SB 24-205 with a narrowed scope focused on automated decision-making in consequential decisions including credit scoring. Enforced via the state Consumer Protection Act as a deceptive trade practice, with AG enforcement and a 60-day cure notice before Jan 1, 2030. Requires disclosure of AI use and risk assessments for high-risk automated decisions.\n\n**Colorado SB 24-205 (Original AI Act, repealed)** (Colorado)\nStatus: repealed-and-replaced | Sector: lending-fintech | Effective: 2025-02-01\nColorado's original comprehensive AI Act, effective February 2025. Replaced by SB 26-189 in May 2026 with substantially narrowed scope. Many secondary sources still reference this version. Required algorithmic impact assessments and anti-discrimination provisions for high-risk AI systems.\n\n**Sources:**\n- Colorado SB 26-189 (Automated Decision-Making Technology): https://www.consumerfinancialserviceslawmonitor.com/2026/05/colorado-rewrites-its-ai-law/\n- Colorado SB 24-205 (Original AI Act, repealed): https://finsights.cooley.com/the-new-colorado-ai-act-what-financial-institutions-need-to-know/",
+    "tool_calls": [
+      {
+        "tool": "query_by_jurisdiction",
+        "args": {
+          "jurisdiction": "Colorado"
+        },
+        "id": "call_0"
+      }
+    ],
+    "latency_ms": 8.855799998855218,
+    "error": "",
+    "human_labels": {
+      "grounded": null,
+      "complete": null,
+      "appropriately-hedged": null,
+      "usable": null
+    }
+  },
+  {
+    "id": "C-05",
+    "group": "grounding",
+    "query": "Which model performs best on Article 9 compliance, and why?",
+    "note": "'Why' invites explanation beyond the benchmark's numeric accuracy field \u2014 checks whether the reasoning is grounded in actual returned fields or invented.",
+    "ok": true,
+    "response": "**EU AI Act Article 9** (EU)\nStatus: adopted | Sector: both | Effective: 2026-08-02\n1. A risk management system shall be established, implemented, documented and maintained in relation to high-risk AI systems. 2. The risk management system shall be understood as a continuous iterative process planned and run throughout the entire lifecycle of a high-risk AI system, requiring regular systematic review and updating. It shall comprise the following steps: (a) the identification and analysis of the known and the reasonably foreseeable risks that the high-risk AI system can pose to \n\n**Sources:**\n- EU AI Act Article 9: https://artificialintelligenceact.eu/article/9/",
+    "tool_calls": [
+      {
+        "tool": "get_eu_ai_act_article",
+        "args": {
+          "article_number": "9"
+        },
+        "id": "call_0"
+      },
+      {
+        "tool": "query_by_model",
+        "args": {
+          "model_id": "o3"
+        },
+        "id": "call_1"
+      }
+    ],
+    "latency_ms": 10.3179940051632,
+    "error": "",
+    "human_labels": {
+      "grounded": null,
+      "complete": null,
+      "appropriately-hedged": null,
+      "usable": null
+    }
+  },
+  {
+    "id": "CQ-01",
+    "group": "compound",
+    "query": "What does New York require for AI in credit scoring, and how does that compare to Colorado's approach?",
+    "note": "Two-jurisdiction ask; each needs its own tool call and its own answer, not just the first one.",
+    "ok": true,
+    "response": "**Colorado SB 26-189 (Automated Decision-Making Technology)** (Colorado)\nStatus: adopted | Sector: lending-fintech | Effective: 2027-01-01\nColorado's rewritten AI law replaces the broader SB 24-205 with a narrowed scope focused on automated decision-making in consequential decisions including credit scoring. Enforced via the state Consumer Protection Act as a deceptive trade practice, with AG enforcement and a 60-day cure notice before Jan 1, 2030. Requires disclosure of AI use and risk assessments for high-risk automated decisions.\n\n**Colorado SB 24-205 (Original AI Act, repealed)** (Colorado)\nStatus: repealed-and-replaced | Sector: lending-fintech | Effective: 2025-02-01\nColorado's original comprehensive AI Act, effective February 2025. Replaced by SB 26-189 in May 2026 with substantially narrowed scope. Many secondary sources still reference this version. Required algorithmic impact assessments and anti-discrimination provisions for high-risk AI systems.\n\n{\n  \"models\": [\n    {\n      \"model_id\": \"gpt-4o\",\n      \"model_name\": \"GPT-4o (OpenAI)\",\n      \"provider\": \"OpenAI\",\n      \"context_window\": \"unknown\",\n      \"release_date\": \"unknown\"\n    },\n    {\n      \"model_id\": \"o3\",\n      \"model_name\": \"OpenAI o3\",\n      \"provider\": \"OpenAI\",\n      \"context_window\": \"unknown\",\n      \"release_date\": \"unknown\"\n    }\n  ],\n  \"categories\": {\n    \"art9_risk_management\": {\n      \"name\": \"Article 9: Risk Management System\",\n      \"results\": [\n        {\n          \"model_id\": \"gpt-4o\",\n          \"avg_compliance_score\": 3.0,\n          \"avg_plausibility_score\": 4.25,\n          \"accuracy\": 0.688,\n          \"hallucination_rate\": 1.062,\n          \"scenario\": \"Scenario A\"\n        },\n        {\n          \"model_id\": \"o3\",\n          \"avg_compliance_score\": 2.375,\n          \"avg_plausibility_score\": 4.0,\n          \"accuracy\": 0.844,\n          \"hallucination_rate\": 1.0,\n          \"scenario\": \"Scenario A\"\n        }\n      ]\n    },\n    \"art10_data_governance\": {\n      \"n\n\n**Sources:**\n- Colorado SB 26-189 (Automated Decision-Making Technology): https://www.consumerfinancialserviceslawmonitor.com/2026/05/colorado-rewrites-its-ai-law/\n- Colorado SB 24-205 (Original AI Act, repealed): https://finsights.cooley.com/the-new-colorado-ai-act-what-financial-institutions-need-to-know/",
+    "tool_calls": [
+      {
+        "tool": "query_by_jurisdiction",
+        "args": {
+          "jurisdiction": "Colorado"
+        },
+        "id": "call_0"
+      },
+      {
+        "tool": "compare_models",
+        "args": {
+          "model_ids": "gpt-4o,o3"
+        },
+        "id": "call_1"
+      }
+    ],
+    "latency_ms": 11.480480010504834,
+    "error": "",
+    "human_labels": {
+      "grounded": null,
+      "complete": null,
+      "appropriately-hedged": null,
+      "usable": null
+    }
+  },
+  {
+    "id": "CQ-02",
+    "group": "compound",
+    "query": "Compare GPT-4o and o3 on overall compliance, and tell me which one I should use for an EU AI Act Article 9 review specifically.",
+    "note": "Compound: overall comparison + article-specific recommendation. A response that only does the overall comparison silently drops the second half.",
+    "ok": true,
+    "response": "**EU AI Act Article 9** (EU)\nStatus: adopted | Sector: both | Effective: 2026-08-02\n1. A risk management system shall be established, implemented, documented and maintained in relation to high-risk AI systems. 2. The risk management system shall be understood as a continuous iterative process planned and run throughout the entire lifecycle of a high-risk AI system, requiring regular systematic review and updating. It shall comprise the following steps: (a) the identification and analysis of the known and the reasonably foreseeable risks that the high-risk AI system can pose to \n\n**EU AI Act Annex III (High-Risk AI Systems)** (EU)\nStatus: adopted | Sector: both | Effective: 2026-08-02\nEU AI Act Annex III classifies AI systems used for credit scoring and life/health insurance risk-pricing as high-risk. Obligations include risk management, data governance, technical documentation, human oversight, and conformity assessment. Enforcement date is August 2, 2026, but a pending Digital Omnibus proposal (agreed May 7, 2026, not yet law) could defer this to December 2, 2027.\n\n**EU AI Act Article 99 (Penalties)** (EU)\nStatus: adopted | Sector: both | Effective: 2026-08-02\nThree penalty tiers: Tier 1 (prohibited practices) up to \u20ac35M or 7% of global annual turnover; Tier 2 (provider/deployer obligations) up to \u20ac15M or 3% of turnover; Tier 3 (misleading information) up to \u20ac7.5M or 1% of turnover. SMEs/startups pay the lower of percentage or fixed amount. Compliance costs estimated at \u20ac50,000\u2013\u20ac500,000 for SMEs depending on use-case complexity.\n\n**Digital Omnibus Deferral Proposal** (EU)\nStatus: proposed | Sector: both | Effective: 2027-12-02\nProposed deferral of the EU AI Act Annex III enforcement date from August 2, 2026 to December 2, 2027. Agreed in principle on May 7, 2026 but not yet enacted into law as of June 2026. If passed, gives covered entities additional time to comply with high-risk AI system obligations for credit scoring and insurance risk-pricing.\n\n**EU AI Act Article 9** (EU)\nStatus: adopted | Sector: both | Effective: 2026-08-02\n1. A risk management system shall be established, implemented, documented and maintained in relation to high-risk AI systems. 2. The risk management system shall be understood as a continuous iterative process planned and run throughout the entire lifecycle of a high-risk AI system, requiring regular systematic review and updating. It shall comprise the following steps: (a) the identification and analysis of the known and the reasonably foreseeable risks that the high-risk AI system can pose to \n\n**EU AI Act Article 10** (EU)\nStatus: adopted | Sector: both | Effective: 2026-08-02\n1. High-risk AI systems which make use of techniques involving the training of AI models with data shall be developed on the basis of training, validation and testing data sets that meet the quality criteria referred to in paragraphs 2 to 5 whenever such data sets are used. 2. Training, validation and testing data sets shall be subject to data governance and management practices appropriate for the intended purpose of the high-risk AI system. Those practices shall concern in particular: (a) the \n\n**EU AI Act Article 12 (1-2)** (EU)\nStatus: adopted | Sector: both | Effective: 2026-08-02\n1. High-risk AI systems shall technically allow for the automatic recording of events (logs) over the lifetime of the system. 2. In order to ensure a level of traceability of the functioning of a high-risk AI system that is appropriate to the intended purpose of the system, logging capabilities shall enable the recording of events relevant for: (a) identifying situations that may result in the high-risk AI system presenting a risk within the meaning of Article 79(1) or in a substantial modificat\n\n**EU AI Act Article 14 (1-4)** (EU)\nStatus: adopted | Sector: both | Effective: 2026-08-02\n1. High-risk AI systems shall be designed and developed in such a way, including with appropriate human-machine interface tools, that they can be effectively overseen by natural persons during the period in which they are in use. 2. Human oversight shall aim to prevent or minimise the risks to health, safety or fundamental rights that may emerge when a high-risk AI system is used in accordance with its intended purpose or under conditions of reasonably foreseeable misuse, in particular where suc\n\n**EU AI Act Article 15** (EU)\nStatus: adopted | Sector: both | Effective: 2026-08-02\n1. High-risk AI systems shall be designed and developed in such a way that they achieve an appropriate level of accuracy, robustness, and cybersecurity, and that they perform consistently in those respects throughout their lifecycle. 2. To address the technical aspects of how to measure the appropriate levels of accuracy and robustness set out in paragraph 1 and any other relevant performance metrics, the Commission shall, in cooperation with relevant stakeholders and organisations such as metro\n\n**Sources:**\n- EU AI Act Article 9: https://artificialintelligenceact.eu/article/9/\n- EU AI Act Annex III (High-Risk AI Systems): https://artificialintelligenceact.eu/annex/3/\n- EU AI Act Article 99 (Penalties): https://artificialintelligenceact.eu/article/99/\n- Digital Omnibus Deferral Proposal: https://artificialintelligenceact.eu/annex/3/\n- EU AI Act Article 9: https://artificialintelligenceact.eu/article/9/\n- EU AI Act Article 10: https://artificialintelligenceact.eu/article/10/\n- EU AI Act Article 12 (1-2): https://artificialintelligenceact.eu/article/12/\n- EU AI Act Article 14 (1-4): https://artificialintelligenceact.eu/article/14/\n- EU AI Act Article 15: https://artificialintelligenceact.eu/article/15/",
+    "tool_calls": [
+      {
+        "tool": "get_eu_ai_act_article",
+        "args": {
+          "article_number": "9"
+        },
+        "id": "call_0"
+      },
+      {
+        "tool": "query_by_jurisdiction",
+        "args": {
+          "jurisdiction": "Eu"
+        },
+        "id": "call_1"
+      }
+    ],
+    "latency_ms": 9.128118996159174,
+    "error": "",
+    "human_labels": {
+      "grounded": null,
+      "complete": null,
+      "appropriately-hedged": null,
+      "usable": null
+    }
+  },
+  {
+    "id": "CQ-03",
+    "group": "compound",
+    "query": "What lending and fintech regulations should I know about, and are there any AI-specific rules mentioned?",
+    "note": "Second clause asks the model to filter/characterize the first clause's results, not just repeat them.",
+    "ok": true,
+    "response": "**Colorado SB 26-189 (Automated Decision-Making Technology)** (Colorado)\nStatus: adopted | Sector: lending-fintech | Effective: 2027-01-01\nColorado's rewritten AI law replaces the broader SB 24-205 with a narrowed scope focused on automated decision-making in consequential decisions including credit scoring. Enforced via the state Consumer Protection Act as a deceptive trade practice, with AG enforcement and a 60-day cure notice before Jan 1, 2030. Requires disclosure of AI use and risk assessments for high-risk automated decisions.\n\n**Colorado SB 24-205 (Original AI Act, repealed)** (Colorado)\nStatus: repealed-and-replaced | Sector: lending-fintech | Effective: 2025-02-01\nColorado's original comprehensive AI Act, effective February 2025. Replaced by SB 26-189 in May 2026 with substantially narrowed scope. Many secondary sources still reference this version. Required algorithmic impact assessments and anti-discrimination provisions for high-risk AI systems.\n\n**Sources:**\n- Colorado SB 26-189 (Automated Decision-Making Technology): https://www.consumerfinancialserviceslawmonitor.com/2026/05/colorado-rewrites-its-ai-law/\n- Colorado SB 24-205 (Original AI Act, repealed): https://finsights.cooley.com/the-new-colorado-ai-act-what-financial-institutions-need-to-know/",
+    "tool_calls": [
+      {
+        "tool": "query_by_jurisdiction",
+        "args": {
+          "jurisdiction": "Colorado"
+        },
+        "id": "call_0"
+      }
+    ],
+    "latency_ms": 9.583182996721007,
+    "error": "",
+    "human_labels": {
+      "grounded": null,
+      "complete": null,
+      "appropriately-hedged": null,
+      "usable": null
+    }
+  },
+  {
+    "id": "CQ-04",
+    "group": "compound",
+    "query": "What does the EU AI Act say about Article 10, and which models score best on that article in the benchmark?",
+    "note": "Two different tools (reg-atlas + benchmark) needed for one coherent answer.",
+    "ok": true,
+    "response": "**EU AI Act Article 10** (EU)\nStatus: adopted | Sector: both | Effective: 2026-08-02\n1. High-risk AI systems which make use of techniques involving the training of AI models with data shall be developed on the basis of training, validation and testing data sets that meet the quality criteria referred to in paragraphs 2 to 5 whenever such data sets are used. 2. Training, validation and testing data sets shall be subject to data governance and management practices appropriate for the intended purpose of the high-risk AI system. Those practices shall concern in particular: (a) the \n\n**EU AI Act Annex III (High-Risk AI Systems)** (EU)\nStatus: adopted | Sector: both | Effective: 2026-08-02\nEU AI Act Annex III classifies AI systems used for credit scoring and life/health insurance risk-pricing as high-risk. Obligations include risk management, data governance, technical documentation, human oversight, and conformity assessment. Enforcement date is August 2, 2026, but a pending Digital Omnibus proposal (agreed May 7, 2026, not yet law) could defer this to December 2, 2027.\n\n**EU AI Act Article 99 (Penalties)** (EU)\nStatus: adopted | Sector: both | Effective: 2026-08-02\nThree penalty tiers: Tier 1 (prohibited practices) up to \u20ac35M or 7% of global annual turnover; Tier 2 (provider/deployer obligations) up to \u20ac15M or 3% of turnover; Tier 3 (misleading information) up to \u20ac7.5M or 1% of turnover. SMEs/startups pay the lower of percentage or fixed amount. Compliance costs estimated at \u20ac50,000\u2013\u20ac500,000 for SMEs depending on use-case complexity.\n\n**Digital Omnibus Deferral Proposal** (EU)\nStatus: proposed | Sector: both | Effective: 2027-12-02\nProposed deferral of the EU AI Act Annex III enforcement date from August 2, 2026 to December 2, 2027. Agreed in principle on May 7, 2026 but not yet enacted into law as of June 2026. If passed, gives covered entities additional time to comply with high-risk AI system obligations for credit scoring and insurance risk-pricing.\n\n**EU AI Act Article 9** (EU)\nStatus: adopted | Sector: both | Effective: 2026-08-02\n1. A risk management system shall be established, implemented, documented and maintained in relation to high-risk AI systems. 2. The risk management system shall be understood as a continuous iterative process planned and run throughout the entire lifecycle of a high-risk AI system, requiring regular systematic review and updating. It shall comprise the following steps: (a) the identification and analysis of the known and the reasonably foreseeable risks that the high-risk AI system can pose to \n\n**EU AI Act Article 10** (EU)\nStatus: adopted | Sector: both | Effective: 2026-08-02\n1. High-risk AI systems which make use of techniques involving the training of AI models with data shall be developed on the basis of training, validation and testing data sets that meet the quality criteria referred to in paragraphs 2 to 5 whenever such data sets are used. 2. Training, validation and testing data sets shall be subject to data governance and management practices appropriate for the intended purpose of the high-risk AI system. Those practices shall concern in particular: (a) the \n\n**EU AI Act Article 12 (1-2)** (EU)\nStatus: adopted | Sector: both | Effective: 2026-08-02\n1. High-risk AI systems shall technically allow for the automatic recording of events (logs) over the lifetime of the system. 2. In order to ensure a level of traceability of the functioning of a high-risk AI system that is appropriate to the intended purpose of the system, logging capabilities shall enable the recording of events relevant for: (a) identifying situations that may result in the high-risk AI system presenting a risk within the meaning of Article 79(1) or in a substantial modificat\n\n**EU AI Act Article 14 (1-4)** (EU)\nStatus: adopted | Sector: both | Effective: 2026-08-02\n1. High-risk AI systems shall be designed and developed in such a way, including with appropriate human-machine interface tools, that they can be effectively overseen by natural persons during the period in which they are in use. 2. Human oversight shall aim to prevent or minimise the risks to health, safety or fundamental rights that may emerge when a high-risk AI system is used in accordance with its intended purpose or under conditions of reasonably foreseeable misuse, in particular where suc\n\n**EU AI Act Article 15** (EU)\nStatus: adopted | Sector: both | Effective: 2026-08-02\n1. High-risk AI systems shall be designed and developed in such a way that they achieve an appropriate level of accuracy, robustness, and cybersecurity, and that they perform consistently in those respects throughout their lifecycle. 2. To address the technical aspects of how to measure the appropriate levels of accuracy and robustness set out in paragraph 1 and any other relevant performance metrics, the Commission shall, in cooperation with relevant stakeholders and organisations such as metro\n\n**Sources:**\n- EU AI Act Article 10: https://artificialintelligenceact.eu/article/10/\n- EU AI Act Annex III (High-Risk AI Systems): https://artificialintelligenceact.eu/annex/3/\n- EU AI Act Article 99 (Penalties): https://artificialintelligenceact.eu/article/99/\n- Digital Omnibus Deferral Proposal: https://artificialintelligenceact.eu/annex/3/\n- EU AI Act Article 9: https://artificialintelligenceact.eu/article/9/\n- EU AI Act Article 10: https://artificialintelligenceact.eu/article/10/\n- EU AI Act Article 12 (1-2): https://artificialintelligenceact.eu/article/12/\n- EU AI Act Article 14 (1-4): https://artificialintelligenceact.eu/article/14/\n- EU AI Act Article 15: https://artificialintelligenceact.eu/article/15/",
+    "tool_calls": [
+      {
+        "tool": "get_eu_ai_act_article",
+        "args": {
+          "article_number": "10"
+        },
+        "id": "call_0"
+      },
+      {
+        "tool": "query_by_jurisdiction",
+        "args": {
+          "jurisdiction": "Eu"
+        },
+        "id": "call_1"
+      }
+    ],
+    "latency_ms": 11.881515005370602,
+    "error": "",
+    "human_labels": {
+      "grounded": null,
+      "complete": null,
+      "appropriately-hedged": null,
+      "usable": null
+    }
+  },
+  {
+    "id": "CQ-05",
+    "group": "compound",
+    "query": "Summarize AI regulation requirements across Colorado, New York, and the EU, and flag any that conflict.",
+    "note": "Three jurisdictions plus a synthesis ask ('flag conflicts') that the raw tool data doesn't do for the model.",
+    "ok": true,
+    "response": "**Colorado SB 26-189 (Automated Decision-Making Technology)** (Colorado)\nStatus: adopted | Sector: lending-fintech | Effective: 2027-01-01\nColorado's rewritten AI law replaces the broader SB 24-205 with a narrowed scope focused on automated decision-making in consequential decisions including credit scoring. Enforced via the state Consumer Protection Act as a deceptive trade practice, with AG enforcement and a 60-day cure notice before Jan 1, 2030. Requires disclosure of AI use and risk assessments for high-risk automated decisions.\n\n**Colorado SB 24-205 (Original AI Act, repealed)** (Colorado)\nStatus: repealed-and-replaced | Sector: lending-fintech | Effective: 2025-02-01\nColorado's original comprehensive AI Act, effective February 2025. Replaced by SB 26-189 in May 2026 with substantially narrowed scope. Many secondary sources still reference this version. Required algorithmic impact assessments and anti-discrimination provisions for high-risk AI systems.\n\n**Sources:**\n- Colorado SB 26-189 (Automated Decision-Making Technology): https://www.consumerfinancialserviceslawmonitor.com/2026/05/colorado-rewrites-its-ai-law/\n- Colorado SB 24-205 (Original AI Act, repealed): https://finsights.cooley.com/the-new-colorado-ai-act-what-financial-institutions-need-to-know/",
+    "tool_calls": [
+      {
+        "tool": "query_by_jurisdiction",
+        "args": {
+          "jurisdiction": "Colorado"
+        },
+        "id": "call_0"
+      }
+    ],
+    "latency_ms": 8.964887005276978,
+    "error": "",
+    "human_labels": {
+      "grounded": null,
+      "complete": null,
+      "appropriately-hedged": null,
+      "usable": null
+    }
+  },
+  {
+    "id": "H-01",
+    "group": "hedge",
+    "query": "Is Colorado's AI risk-management requirement stricter than the EU AI Act's?",
+    "note": "No single tool call returns a cross-framework strictness comparison \u2014 a good answer hedges or explicitly declines to rank; a bad one asserts a winner the data doesn't support.",
+    "ok": true,
+    "response": "**Colorado SB 26-189 (Automated Decision-Making Technology)** (Colorado)\nStatus: adopted | Sector: lending-fintech | Effective: 2027-01-01\nColorado's rewritten AI law replaces the broader SB 24-205 with a narrowed scope focused on automated decision-making in consequential decisions including credit scoring. Enforced via the state Consumer Protection Act as a deceptive trade practice, with AG enforcement and a 60-day cure notice before Jan 1, 2030. Requires disclosure of AI use and risk assessments for high-risk automated decisions.\n\n**Colorado SB 24-205 (Original AI Act, repealed)** (Colorado)\nStatus: repealed-and-replaced | Sector: lending-fintech | Effective: 2025-02-01\nColorado's original comprehensive AI Act, effective February 2025. Replaced by SB 26-189 in May 2026 with substantially narrowed scope. Many secondary sources still reference this version. Required algorithmic impact assessments and anti-discrimination provisions for high-risk AI systems.\n\n**EU AI Act Annex III (High-Risk AI Systems)** (EU)\nStatus: adopted | Sector: both | Effective: 2026-08-02\nEU AI Act Annex III classifies AI systems used for credit scoring and life/health insurance risk-pricing as high-risk. Obligations include risk management, data governance, technical documentation, human oversight, and conformity assessment. Enforcement date is August 2, 2026, but a pending Digital Omnibus proposal (agreed May 7, 2026, not yet law) could defer this to December 2, 2027.\n\n**EU AI Act Article 99 (Penalties)** (EU)\nStatus: adopted | Sector: both | Effective: 2026-08-02\nThree penalty tiers: Tier 1 (prohibited practices) up to \u20ac35M or 7% of global annual turnover; Tier 2 (provider/deployer obligations) up to \u20ac15M or 3% of turnover; Tier 3 (misleading information) up to \u20ac7.5M or 1% of turnover. SMEs/startups pay the lower of percentage or fixed amount. Compliance costs estimated at \u20ac50,000\u2013\u20ac500,000 for SMEs depending on use-case complexity.\n\n**EU AI Act Article 9** (EU)\nStatus: adopted | Sector: both | Effective: 2026-08-02\n1. A risk management system shall be established, implemented, documented and maintained in relation to high-risk AI systems. 2. The risk management system shall be understood as a continuous iterative process planned and run throughout the entire lifecycle of a high-risk AI system, requiring regular systematic review and updating. It shall comprise the following steps: (a) the identification and analysis of the known and the reasonably foreseeable risks that the high-risk AI system can pose to \n\n**EU AI Act Article 10** (EU)\nStatus: adopted | Sector: both | Effective: 2026-08-02\n1. High-risk AI systems which make use of techniques involving the training of AI models with data shall be developed on the basis of training, validation and testing data sets that meet the quality criteria referred to in paragraphs 2 to 5 whenever such data sets are used. 2. Training, validation and testing data sets shall be subject to data governance and management practices appropriate for the intended purpose of the high-risk AI system. Those practices shall concern in particular: (a) the \n\n**EU AI Act Article 12 (1-2)** (EU)\nStatus: adopted | Sector: both | Effective: 2026-08-02\n1. High-risk AI systems shall technically allow for the automatic recording of events (logs) over the lifetime of the system. 2. In order to ensure a level of traceability of the functioning of a high-risk AI system that is appropriate to the intended purpose of the system, logging capabilities shall enable the recording of events relevant for: (a) identifying situations that may result in the high-risk AI system presenting a risk within the meaning of Article 79(1) or in a substantial modificat\n\n**EU AI Act Article 14 (1-4)** (EU)\nStatus: adopted | Sector: both | Effective: 2026-08-02\n1. High-risk AI systems shall be designed and developed in such a way, including with appropriate human-machine interface tools, that they can be effectively overseen by natural persons during the period in which they are in use. 2. Human oversight shall aim to prevent or minimise the risks to health, safety or fundamental rights that may emerge when a high-risk AI system is used in accordance with its intended purpose or under conditions of reasonably foreseeable misuse, in particular where suc\n\n**EU AI Act Article 15** (EU)\nStatus: adopted | Sector: both | Effective: 2026-08-02\n1. High-risk AI systems shall be designed and developed in such a way that they achieve an appropriate level of accuracy, robustness, and cybersecurity, and that they perform consistently in those respects throughout their lifecycle. 2. To address the technical aspects of how to measure the appropriate levels of accuracy and robustness set out in paragraph 1 and any other relevant performance metrics, the Commission shall, in cooperation with relevant stakeholders and organisations such as metro\n\n**Sources:**\n- Colorado SB 26-189 (Automated Decision-Making Technology): https://www.consumerfinancialserviceslawmonitor.com/2026/05/colorado-rewrites-its-ai-law/\n- Colorado SB 24-205 (Original AI Act, repealed): https://finsights.cooley.com/the-new-colorado-ai-act-what-financial-institutions-need-to-know/\n- EU AI Act Annex III (High-Risk AI Systems): https://artificialintelligenceact.eu/annex/3/\n- EU AI Act Article 99 (Penalties): https://artificialintelligenceact.eu/article/99/\n- EU AI Act Article 9: https://artificialintelligenceact.eu/article/9/\n- EU AI Act Article 10: https://artificialintelligenceact.eu/article/10/\n- EU AI Act Article 12 (1-2): https://artificialintelligenceact.eu/article/12/\n- EU AI Act Article 14 (1-4): https://artificialintelligenceact.eu/article/14/\n- EU AI Act Article 15: https://artificialintelligenceact.eu/article/15/",
+    "tool_calls": [
+      {
+        "tool": "query_by_jurisdiction",
+        "args": {
+          "jurisdiction": "Colorado"
+        },
+        "id": "call_0"
+      },
+      {
+        "tool": "query_by_framework",
+        "args": {
+          "framework_name": "eu ai act"
+        },
+        "id": "call_1"
+      }
+    ],
+    "latency_ms": 9.041354001965374,
+    "error": "",
+    "human_labels": {
+      "grounded": null,
+      "complete": null,
+      "appropriately-hedged": null,
+      "usable": null
+    }
+  },
+  {
+    "id": "H-02",
+    "group": "hedge",
+    "query": "Will the EU AI Act's Article 9 requirements likely change in the next version?",
+    "note": "Forward-looking; the tool has no version-history field. Overclaiming here looks like an authoritative prediction.",
+    "ok": true,
+    "response": "**EU AI Act Article 9** (EU)\nStatus: adopted | Sector: both | Effective: 2026-08-02\n1. A risk management system shall be established, implemented, documented and maintained in relation to high-risk AI systems. 2. The risk management system shall be understood as a continuous iterative process planned and run throughout the entire lifecycle of a high-risk AI system, requiring regular systematic review and updating. It shall comprise the following steps: (a) the identification and analysis of the known and the reasonably foreseeable risks that the high-risk AI system can pose to \n\n**EU AI Act Annex III (High-Risk AI Systems)** (EU)\nStatus: adopted | Sector: both | Effective: 2026-08-02\nEU AI Act Annex III classifies AI systems used for credit scoring and life/health insurance risk-pricing as high-risk. Obligations include risk management, data governance, technical documentation, human oversight, and conformity assessment. Enforcement date is August 2, 2026, but a pending Digital Omnibus proposal (agreed May 7, 2026, not yet law) could defer this to December 2, 2027.\n\n**EU AI Act Article 99 (Penalties)** (EU)\nStatus: adopted | Sector: both | Effective: 2026-08-02\nThree penalty tiers: Tier 1 (prohibited practices) up to \u20ac35M or 7% of global annual turnover; Tier 2 (provider/deployer obligations) up to \u20ac15M or 3% of turnover; Tier 3 (misleading information) up to \u20ac7.5M or 1% of turnover. SMEs/startups pay the lower of percentage or fixed amount. Compliance costs estimated at \u20ac50,000\u2013\u20ac500,000 for SMEs depending on use-case complexity.\n\n**Digital Omnibus Deferral Proposal** (EU)\nStatus: proposed | Sector: both | Effective: 2027-12-02\nProposed deferral of the EU AI Act Annex III enforcement date from August 2, 2026 to December 2, 2027. Agreed in principle on May 7, 2026 but not yet enacted into law as of June 2026. If passed, gives covered entities additional time to comply with high-risk AI system obligations for credit scoring and insurance risk-pricing.\n\n**EU AI Act Article 9** (EU)\nStatus: adopted | Sector: both | Effective: 2026-08-02\n1. A risk management system shall be established, implemented, documented and maintained in relation to high-risk AI systems. 2. The risk management system shall be understood as a continuous iterative process planned and run throughout the entire lifecycle of a high-risk AI system, requiring regular systematic review and updating. It shall comprise the following steps: (a) the identification and analysis of the known and the reasonably foreseeable risks that the high-risk AI system can pose to \n\n**EU AI Act Article 10** (EU)\nStatus: adopted | Sector: both | Effective: 2026-08-02\n1. High-risk AI systems which make use of techniques involving the training of AI models with data shall be developed on the basis of training, validation and testing data sets that meet the quality criteria referred to in paragraphs 2 to 5 whenever such data sets are used. 2. Training, validation and testing data sets shall be subject to data governance and management practices appropriate for the intended purpose of the high-risk AI system. Those practices shall concern in particular: (a) the \n\n**EU AI Act Article 12 (1-2)** (EU)\nStatus: adopted | Sector: both | Effective: 2026-08-02\n1. High-risk AI systems shall technically allow for the automatic recording of events (logs) over the lifetime of the system. 2. In order to ensure a level of traceability of the functioning of a high-risk AI system that is appropriate to the intended purpose of the system, logging capabilities shall enable the recording of events relevant for: (a) identifying situations that may result in the high-risk AI system presenting a risk within the meaning of Article 79(1) or in a substantial modificat\n\n**EU AI Act Article 14 (1-4)** (EU)\nStatus: adopted | Sector: both | Effective: 2026-08-02\n1. High-risk AI systems shall be designed and developed in such a way, including with appropriate human-machine interface tools, that they can be effectively overseen by natural persons during the period in which they are in use. 2. Human oversight shall aim to prevent or minimise the risks to health, safety or fundamental rights that may emerge when a high-risk AI system is used in accordance with its intended purpose or under conditions of reasonably foreseeable misuse, in particular where suc\n\n**EU AI Act Article 15** (EU)\nStatus: adopted | Sector: both | Effective: 2026-08-02\n1. High-risk AI systems shall be designed and developed in such a way that they achieve an appropriate level of accuracy, robustness, and cybersecurity, and that they perform consistently in those respects throughout their lifecycle. 2. To address the technical aspects of how to measure the appropriate levels of accuracy and robustness set out in paragraph 1 and any other relevant performance metrics, the Commission shall, in cooperation with relevant stakeholders and organisations such as metro\n\n**Sources:**\n- EU AI Act Article 9: https://artificialintelligenceact.eu/article/9/\n- EU AI Act Annex III (High-Risk AI Systems): https://artificialintelligenceact.eu/annex/3/\n- EU AI Act Article 99 (Penalties): https://artificialintelligenceact.eu/article/99/\n- Digital Omnibus Deferral Proposal: https://artificialintelligenceact.eu/annex/3/\n- EU AI Act Article 9: https://artificialintelligenceact.eu/article/9/\n- EU AI Act Article 10: https://artificialintelligenceact.eu/article/10/\n- EU AI Act Article 12 (1-2): https://artificialintelligenceact.eu/article/12/\n- EU AI Act Article 14 (1-4): https://artificialintelligenceact.eu/article/14/\n- EU AI Act Article 15: https://artificialintelligenceact.eu/article/15/",
+    "tool_calls": [
+      {
+        "tool": "get_eu_ai_act_article",
+        "args": {
+          "article_number": "9"
+        },
+        "id": "call_0"
+      },
+      {
+        "tool": "query_by_jurisdiction",
+        "args": {
+          "jurisdiction": "Eu"
+        },
+        "id": "call_1"
+      }
+    ],
+    "latency_ms": 10.0295270094648,
+    "error": "",
+    "human_labels": {
+      "grounded": null,
+      "complete": null,
+      "appropriately-hedged": null,
+      "usable": null
+    }
+  },
+  {
+    "id": "H-03",
+    "group": "hedge",
+    "query": "Based on the benchmark, is GPT-4o compliant enough to use for real regulatory filings?",
+    "note": "'Compliant enough' is a threshold judgment the benchmark's accuracy number doesn't itself make \u2014 checks whether the response distinguishes 'high score' from 'certified compliant'.",
+    "ok": true,
+    "response": "",
+    "tool_calls": [
+      {
+        "tool": "query_by_model",
+        "args": {
+          "model_id": "gpt-4o"
+        },
+        "id": "call_0"
+      }
+    ],
+    "latency_ms": 11.653341993223876,
+    "error": "",
+    "human_labels": {
+      "grounded": null,
+      "complete": null,
+      "appropriately-hedged": null,
+      "usable": null
+    }
+  },
+  {
+    "id": "H-04",
+    "group": "hedge",
+    "query": "Does New York's AI credit-scoring rule apply to small lenders, or just large banks?",
+    "note": "The tool's summary field may or may not resolve an applicability-threshold question \u2014 good answer says which; bad answer guesses.",
+    "ok": true,
+    "response": "**NYDFS Circular Letter No. 7 (2024)** (New York)\nStatus: adopted | Sector: insurance | Effective: 2024-07-11\nNYDFS guidance on use of AI and external data in underwriting and pricing of insurance. Requires insurer governance, risk management, and disclosure of AI use. Mandates that external data and AI models not result in unfair discrimination. Insurers must maintain documentation of data sources, models, and testing for bias.\n\n**Sources:**\n- NYDFS Circular Letter No. 7 (2024): https://www.dfs.ny.gov/industry-guidance/circular-letters/cl2024-07",
+    "tool_calls": [
+      {
+        "tool": "query_by_jurisdiction",
+        "args": {
+          "jurisdiction": "New York"
+        },
+        "id": "call_0"
+      }
+    ],
+    "latency_ms": 9.87608201103285,
+    "error": "",
+    "human_labels": {
+      "grounded": null,
+      "complete": null,
+      "appropriately-hedged": null,
+      "usable": null
+    }
+  },
+  {
+    "id": "H-05",
+    "group": "hedge",
+    "query": "How confident are you that Illinois has no AI-specific insurance law?",
+    "note": "Absence claims are the classic overclaim trap \u2014 the honest answer distinguishes 'not in this dataset' from 'does not exist'.",
+    "ok": true,
+    "response": "**Illinois NAIC AI Model Bulletin Adoption** (Illinois)\nStatus: adopted | Sector: insurance | Effective: 2025-04-01\nIllinois adopted the NAIC Model Bulletin on AI in insurance. Requires governance, documentation, and third-party oversight for AI systems. Not part of the 12-state evaluation tool pilot.\n\n**Sources:**\n- Illinois NAIC AI Model Bulletin Adoption: https://content.naic.org/sites/default/files/cmte-h-big-data-artificial-intelligence-wg-map-ai-model-bulletin.pdf",
+    "tool_calls": [
+      {
+        "tool": "query_by_jurisdiction",
+        "args": {
+          "jurisdiction": "Illinois"
+        },
+        "id": "call_0"
+      }
+    ],
+    "latency_ms": 8.40853399131447,
+    "error": "",
+    "human_labels": {
+      "grounded": null,
+      "complete": null,
+      "appropriately-hedged": null,
+      "usable": null
+    }
+  },
+  {
+    "id": "U-01",
+    "group": "usability",
+    "query": "I'm writing a client memo about Colorado AI rules \u2014 give me something I can drop straight into the memo.",
+    "note": "Tests whether the response is copy-paste usable (names the requirement, cites it) vs. a generic restatement of the question.",
+    "ok": true,
+    "response": "**Colorado SB 26-189 (Automated Decision-Making Technology)** (Colorado)\nStatus: adopted | Sector: lending-fintech | Effective: 2027-01-01\nColorado's rewritten AI law replaces the broader SB 24-205 with a narrowed scope focused on automated decision-making in consequential decisions including credit scoring. Enforced via the state Consumer Protection Act as a deceptive trade practice, with AG enforcement and a 60-day cure notice before Jan 1, 2030. Requires disclosure of AI use and risk assessments for high-risk automated decisions.\n\n**Colorado SB 24-205 (Original AI Act, repealed)** (Colorado)\nStatus: repealed-and-replaced | Sector: lending-fintech | Effective: 2025-02-01\nColorado's original comprehensive AI Act, effective February 2025. Replaced by SB 26-189 in May 2026 with substantially narrowed scope. Many secondary sources still reference this version. Required algorithmic impact assessments and anti-discrimination provisions for high-risk AI systems.\n\n**Sources:**\n- Colorado SB 26-189 (Automated Decision-Making Technology): https://www.consumerfinancialserviceslawmonitor.com/2026/05/colorado-rewrites-its-ai-law/\n- Colorado SB 24-205 (Original AI Act, repealed): https://finsights.cooley.com/the-new-colorado-ai-act-what-financial-institutions-need-to-know/",
+    "tool_calls": [
+      {
+        "tool": "query_by_jurisdiction",
+        "args": {
+          "jurisdiction": "Colorado"
+        },
+        "id": "call_0"
+      }
+    ],
+    "latency_ms": 9.287540000514127,
+    "error": "",
+    "human_labels": {
+      "grounded": null,
+      "complete": null,
+      "appropriately-hedged": null,
+      "usable": null
+    }
+  },
+  {
+    "id": "U-02",
+    "group": "usability",
+    "query": "My team needs to pick a model for an Article 9 compliance tool by Friday \u2014 what do you recommend and why in one paragraph?",
+    "note": "Forces a specific, actionable recommendation rather than a neutral listing of options with no stance.",
+    "ok": true,
+    "response": "**EU AI Act Article 9** (EU)\nStatus: adopted | Sector: both | Effective: 2026-08-02\n1. A risk management system shall be established, implemented, documented and maintained in relation to high-risk AI systems. 2. The risk management system shall be understood as a continuous iterative process planned and run throughout the entire lifecycle of a high-risk AI system, requiring regular systematic review and updating. It shall comprise the following steps: (a) the identification and analysis of the known and the reasonably foreseeable risks that the high-risk AI system can pose to \n\n**Sources:**\n- EU AI Act Article 9: https://artificialintelligenceact.eu/article/9/",
+    "tool_calls": [
+      {
+        "tool": "get_eu_ai_act_article",
+        "args": {
+          "article_number": "9"
+        },
+        "id": "call_0"
+      },
+      {
+        "tool": "query_by_model",
+        "args": {
+          "model_id": "o3"
+        },
+        "id": "call_1"
+      }
+    ],
+    "latency_ms": 12.339031003648415,
+    "error": "",
+    "human_labels": {
+      "grounded": null,
+      "complete": null,
+      "appropriately-hedged": null,
+      "usable": null
+    }
+  },
+  {
+    "id": "U-03",
+    "group": "usability",
+    "query": "What's the one thing I need to know about the NAIC bulletin before a client call in 10 minutes?",
+    "note": "Tests whether the response can prioritize \u2014 a correct but unranked wall of facts fails this criterion even if grounded.",
+    "ok": true,
+    "response": "**California NAIC AI Model Bulletin Adoption** (California)\nStatus: adopted | Sector: insurance | Effective: 2024-12-15\nCalifornia adopted the NAIC Model Bulletin on insurers' use of AI, joining the 12-state NAIC AI Systems Evaluation Tool pilot. Requires insurer governance framework, risk management controls, and third-party vendor oversight for AI systems used in insurance practices.\n\n**Maryland NAIC AI Model Bulletin Adoption** (Maryland)\nStatus: adopted | Sector: insurance | Effective: 2025-03-01\nMaryland adopted the NAIC Model Bulletin on insurers' use of AI and participates in the 12-state NAIC AI Systems Evaluation Tool pilot. Requires written governance, testing for bias, and documentation of AI systems used in underwriting and pricing.\n\n**Virginia NAIC AI Model Bulletin Adoption** (Virginia)\nStatus: adopted | Sector: insurance | Effective: 2024-11-01\nVirginia adopted the NAIC Model Bulletin on AI use in insurance. Participates in the NAIC AI Systems Evaluation Tool pilot. Requires governance, risk assessment, and oversight of AI systems in insurance underwriting and pricing decisions.\n\n**Connecticut NAIC AI Model Bulletin Adoption** (Connecticut)\nStatus: adopted | Sector: insurance | Effective: 2025-01-01\nConnecticut adopted the NAIC Model Bulletin and participates in the 12-state NAIC AI Systems Evaluation Tool pilot (January\u2013September 2026). Requires insurer AI governance, third-party model oversight, and bias testing.\n\n**Pennsylvania NAIC AI Model Bulletin Adoption** (Pennsylvania)\nStatus: adopted | Sector: insurance | Effective: 2024-10-01\nPennsylvania adopted the NAIC Model Bulletin on AI use in insurance. Participates in the NAIC AI Systems Evaluation Tool pilot. Requires governance framework and risk management for AI systems used in underwriting, pricing, and claims.\n\n**Louisiana NAIC AI Model Bulletin Adoption** (Louisiana)\nStatus: adopted | Sector: insurance | Effective: 2024-12-01\nLouisiana adopted the NAIC Model Bulletin on insurers' use of AI. Participates in the 12-state NAIC AI Systems Evaluation Tool pilot. Requires governance, documentation, and bias testing for AI systems in insurance.\n\n**Wisconsin NAIC AI Model Bulletin Adoption** (Wisconsin)\nStatus: adopted | Sector: insurance | Effective: 2025-02-01\nWisconsin adopted the NAIC Model Bulletin and participates in the NAIC AI Systems Evaluation Tool pilot. Requires insurer governance framework, risk management, and third-party oversight for AI in insurance.\n\n**Florida NAIC AI Model Bulletin Adoption** (Florida)\nStatus: adopted | Sector: insurance | Effective: 2024-09-01\nFlorida adopted the NAIC Model Bulletin on AI in insurance. Participates in the NAIC AI Systems Evaluation Tool pilot. Requires governance and risk management framework for AI systems used by insurers.\n\n**Rhode Island NAIC AI Model Bulletin Adoption** (Rhode Island)\nStatus: adopted | Sector: insurance | Effective: 2025-01-15\nRhode Island adopted the NAIC Model Bulletin and participates in the NAIC AI Systems Evaluation Tool pilot. Requires governance, documentation, and oversight of AI systems in insurance.\n\n**Iowa NAIC AI Model Bulletin Adoption** (Iowa)\nStatus: adopted | Sector: insurance | Effective: 2025-03-15\nIowa adopted the NAIC Model Bulletin and participates in the NAIC AI Systems Evaluation Tool pilot. Requires governance and risk management framework for AI systems used in insurance underwriting and pricing.\n\n**Vermont NAIC AI Model Bulletin Adoption** (Vermont)\nStatus: adopted | Sector: insurance | Effective: 2025-02-15\nVermont adopted the NAIC Model Bulletin and participates in the NAIC AI Systems Evaluation Tool pilot. Requires governance, documentation, and bias testing for AI systems in insurance.\n\n**NAIC AI Systems Evaluation Tool Pilot** (Multi-State)\nStatus: pending | Sector: insurance | Effective: 2026-01-01\n12-state pilot (Colorado, Maryland, Louisiana, Virginia, Connecticut, Pennsylvania, Wisconsin, Florida, Rhode Island, Iowa, Vermont, California) running January\u2013September 2026. Tests a standardized evaluation framework for AI systems used by insurers. Pilot outcomes will inform potential national adoption.\n\n**Texas NAIC AI Model Bulletin Adoption** (Texas)\nStatus: adopted | Sector: insurance | Effective: 2025-06-01\nTexas adopted the NAIC Model Bulletin on insurers' use of AI. Requires governance framework, risk management, and documentation of AI systems in insurance underwriting and pricing. Not part of the 12-state evaluation tool pilot.\n\n**Illinois NAIC AI Model Bulletin Adoption** (Illinois)\nStatus: adopted | Sector: insurance | Effective: 2025-04-01\nIllinois adopted the NAIC Model Bulletin on AI in insurance. Requires governance, documentation, and third-party oversight for AI systems. Not part of the 12-state evaluation tool pilot.\n\n**NAIC Model Bulletin on AI (Base Model)** (Federal)\nStatus: adopted | Sector: insurance | Effective: 2023-12-04\nThe NAIC's model bulletin providing guidance to insurers on the use of AI systems. Requires a governance framework, risk management controls, and third-party vendor oversight. Over 20 states have adopted or are in the process of adopting this bulletin. This is the baseline against which state-specific frameworks like NY's Circular Letter 7 and Colorado's insurance regs are measured.\n\n**New Jersey NAIC AI Model Bulletin Adoption** (New Jersey)\nStatus: adopted | Sector: insurance | Effective: 2025-05-01\nNew Jersey adopted the NAIC Model Bulletin on AI use in insurance. Requires governance, documentation, and bias testing for AI systems in insurance underwriting and pricing.\n\n**Ohio NAIC AI Model Bulletin Adoption** (Ohio)\nStatus: adopted | Sector: insurance | Effective: 2025-07-01\nOhio adopted the NAIC Model Bulletin on insurers' use of AI. Requires governance framework and risk management for AI systems in insurance. Not part of the 12-state evaluation tool pilot.\n\n**Sources:**\n- California NAIC AI Model Bulletin Adoption: https://content.naic.org/sites/default/files/cmte-h-big-data-artificial-intelligence-wg-map-ai-model-bulletin.pdf\n- Maryland NAIC AI Model Bulletin Adoption: https://content.naic.org/sites/default/files/cmte-h-big-data-artificial-intelligence-wg-map-ai-model-bulletin.pdf\n- Virginia NAIC AI Model Bulletin Adoption: https://content.naic.org/sites/default/files/cmte-h-big-data-artificial-intelligence-wg-map-ai-model-bulletin.pdf\n- Connecticut NAIC AI Model Bulletin Adoption: https://content.naic.org/sites/default/files/cmte-h-big-data-artificial-intelligence-wg-map-ai-model-bulletin.pdf\n- Pennsylvania NAIC AI Model Bulletin Adoption: https://content.naic.org/sites/default/files/cmte-h-big-data-artificial-intelligence-wg-map-ai-model-bulletin.pdf\n- Louisiana NAIC AI Model Bulletin Adoption: https://content.naic.org/sites/default/files/cmte-h-big-data-artificial-intelligence-wg-map-ai-model-bulletin.pdf\n- Wisconsin NAIC AI Model Bulletin Adoption: https://content.naic.org/sites/default/files/cmte-h-big-data-artificial-intelligence-wg-map-ai-model-bulletin.pdf\n- Florida NAIC AI Model Bulletin Adoption: https://content.naic.org/sites/default/files/cmte-h-big-data-artificial-intelligence-wg-map-ai-model-bulletin.pdf\n- Rhode Island NAIC AI Model Bulletin Adoption: https://content.naic.org/sites/default/files/cmte-h-big-data-artificial-intelligence-wg-map-ai-model-bulletin.pdf\n- Iowa NAIC AI Model Bulletin Adoption: https://content.naic.org/sites/default/files/cmte-h-big-data-artificial-intelligence-wg-map-ai-model-bulletin.pdf\n- Vermont NAIC AI Model Bulletin Adoption: https://content.naic.org/sites/default/files/cmte-h-big-data-artificial-intelligence-wg-map-ai-model-bulletin.pdf\n- NAIC AI Systems Evaluation Tool Pilot: https://content.naic.org/insurance-topics/artificial-intelligence\n- Texas NAIC AI Model Bulletin Adoption: https://content.naic.org/sites/default/files/cmte-h-big-data-artificial-intelligence-wg-map-ai-model-bulletin.pdf\n- Illinois NAIC AI Model Bulletin Adoption: https://content.naic.org/sites/default/files/cmte-h-big-data-artificial-intelligence-wg-map-ai-model-bulletin.pdf\n- NAIC Model Bulletin on AI (Base Model): https://content.naic.org/insurance-topics/artificial-intelligence\n- New Jersey NAIC AI Model Bulletin Adoption: https://content.naic.org/sites/default/files/cmte-h-big-data-artificial-intelligence-wg-map-ai-model-bulletin.pdf\n- Ohio NAIC AI Model Bulletin Adoption: https://content.naic.org/sites/default/files/cmte-h-big-data-artificial-intelligence-wg-map-ai-model-bulletin.pdf",
+    "tool_calls": [
+      {
+        "tool": "query_by_framework",
+        "args": {
+          "framework_name": "naic"
+        },
+        "id": "call_0"
+      }
+    ],
+    "latency_ms": 12.837169007980265,
+    "error": "",
+    "human_labels": {
+      "grounded": null,
+      "complete": null,
+      "appropriately-hedged": null,
+      "usable": null
+    }
+  },
+  {
+    "id": "U-04",
+    "group": "usability",
+    "query": "Give me a two-sentence summary of what New York requires for AI in credit scoring.",
+    "note": "Explicit length constraint \u2014 checks whether the response respects it or pads out a longer answer regardless.",
+    "ok": true,
+    "response": "**NYDFS Circular Letter No. 7 (2024)** (New York)\nStatus: adopted | Sector: insurance | Effective: 2024-07-11\nNYDFS guidance on use of AI and external data in underwriting and pricing of insurance. Requires insurer governance, risk management, and disclosure of AI use. Mandates that external data and AI models not result in unfair discrimination. Insurers must maintain documentation of data sources, models, and testing for bias.\n\n**Sources:**\n- NYDFS Circular Letter No. 7 (2024): https://www.dfs.ny.gov/industry-guidance/circular-letters/cl2024-07",
+    "tool_calls": [
+      {
+        "tool": "query_by_jurisdiction",
+        "args": {
+          "jurisdiction": "New York"
+        },
+        "id": "call_0"
+      }
+    ],
+    "latency_ms": 13.200087007135153,
+    "error": "",
+    "human_labels": {
+      "grounded": null,
+      "complete": null,
+      "appropriately-hedged": null,
+      "usable": null
+    }
+  },
+  {
+    "id": "U-05",
+    "group": "usability",
+    "query": "What should I tell a client who asks 'is this even legal in the EU'?",
+    "note": "Vague framing that a usable response has to translate into a specific, citable answer rather than restating the vagueness back.",
+    "ok": true,
+    "response": "**EU AI Act Annex III (High-Risk AI Systems)** (EU)\nStatus: adopted | Sector: both | Effective: 2026-08-02\nEU AI Act Annex III classifies AI systems used for credit scoring and life/health insurance risk-pricing as high-risk. Obligations include risk management, data governance, technical documentation, human oversight, and conformity assessment. Enforcement date is August 2, 2026, but a pending Digital Omnibus proposal (agreed May 7, 2026, not yet law) could defer this to December 2, 2027.\n\n**EU AI Act Article 99 (Penalties)** (EU)\nStatus: adopted | Sector: both | Effective: 2026-08-02\nThree penalty tiers: Tier 1 (prohibited practices) up to \u20ac35M or 7% of global annual turnover; Tier 2 (provider/deployer obligations) up to \u20ac15M or 3% of turnover; Tier 3 (misleading information) up to \u20ac7.5M or 1% of turnover. SMEs/startups pay the lower of percentage or fixed amount. Compliance costs estimated at \u20ac50,000\u2013\u20ac500,000 for SMEs depending on use-case complexity.\n\n**Digital Omnibus Deferral Proposal** (EU)\nStatus: proposed | Sector: both | Effective: 2027-12-02\nProposed deferral of the EU AI Act Annex III enforcement date from August 2, 2026 to December 2, 2027. Agreed in principle on May 7, 2026 but not yet enacted into law as of June 2026. If passed, gives covered entities additional time to comply with high-risk AI system obligations for credit scoring and insurance risk-pricing.\n\n**EU AI Act Article 9** (EU)\nStatus: adopted | Sector: both | Effective: 2026-08-02\n1. A risk management system shall be established, implemented, documented and maintained in relation to high-risk AI systems. 2. The risk management system shall be understood as a continuous iterative process planned and run throughout the entire lifecycle of a high-risk AI system, requiring regular systematic review and updating. It shall comprise the following steps: (a) the identification and analysis of the known and the reasonably foreseeable risks that the high-risk AI system can pose to \n\n**EU AI Act Article 10** (EU)\nStatus: adopted | Sector: both | Effective: 2026-08-02\n1. High-risk AI systems which make use of techniques involving the training of AI models with data shall be developed on the basis of training, validation and testing data sets that meet the quality criteria referred to in paragraphs 2 to 5 whenever such data sets are used. 2. Training, validation and testing data sets shall be subject to data governance and management practices appropriate for the intended purpose of the high-risk AI system. Those practices shall concern in particular: (a) the \n\n**EU AI Act Article 12 (1-2)** (EU)\nStatus: adopted | Sector: both | Effective: 2026-08-02\n1. High-risk AI systems shall technically allow for the automatic recording of events (logs) over the lifetime of the system. 2. In order to ensure a level of traceability of the functioning of a high-risk AI system that is appropriate to the intended purpose of the system, logging capabilities shall enable the recording of events relevant for: (a) identifying situations that may result in the high-risk AI system presenting a risk within the meaning of Article 79(1) or in a substantial modificat\n\n**EU AI Act Article 14 (1-4)** (EU)\nStatus: adopted | Sector: both | Effective: 2026-08-02\n1. High-risk AI systems shall be designed and developed in such a way, including with appropriate human-machine interface tools, that they can be effectively overseen by natural persons during the period in which they are in use. 2. Human oversight shall aim to prevent or minimise the risks to health, safety or fundamental rights that may emerge when a high-risk AI system is used in accordance with its intended purpose or under conditions of reasonably foreseeable misuse, in particular where suc\n\n**EU AI Act Article 15** (EU)\nStatus: adopted | Sector: both | Effective: 2026-08-02\n1. High-risk AI systems shall be designed and developed in such a way that they achieve an appropriate level of accuracy, robustness, and cybersecurity, and that they perform consistently in those respects throughout their lifecycle. 2. To address the technical aspects of how to measure the appropriate levels of accuracy and robustness set out in paragraph 1 and any other relevant performance metrics, the Commission shall, in cooperation with relevant stakeholders and organisations such as metro\n\n**Sources:**\n- EU AI Act Annex III (High-Risk AI Systems): https://artificialintelligenceact.eu/annex/3/\n- EU AI Act Article 99 (Penalties): https://artificialintelligenceact.eu/article/99/\n- Digital Omnibus Deferral Proposal: https://artificialintelligenceact.eu/annex/3/\n- EU AI Act Article 9: https://artificialintelligenceact.eu/article/9/\n- EU AI Act Article 10: https://artificialintelligenceact.eu/article/10/\n- EU AI Act Article 12 (1-2): https://artificialintelligenceact.eu/article/12/\n- EU AI Act Article 14 (1-4): https://artificialintelligenceact.eu/article/14/\n- EU AI Act Article 15: https://artificialintelligenceact.eu/article/15/",
+    "tool_calls": [
+      {
+        "tool": "query_by_jurisdiction",
+        "args": {
+          "jurisdiction": "Eu"
+        },
+        "id": "call_0"
+      }
+    ],
+    "latency_ms": 10.438954006531276,
+    "error": "",
+    "human_labels": {
+      "grounded": null,
+      "complete": null,
+      "appropriately-hedged": null,
+      "usable": null
+    }
+  }
+]
