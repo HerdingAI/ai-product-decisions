@@ -2,7 +2,7 @@
 Bias probes — check whether the judge's verdict tracks the rubric, or
 tracks something merely correlated with it (length, a planted authority
 hint, evidence order) instead. A probe "flagging" is itself a finding to
-report (criteria.md / README §"where it breaks"), not a bug to quietly fix
+report (RUBRIC.md / README §"where it breaks"), not a bug to quietly fix
 and hide.
 
 This judge scores one response at a time against a fixed rubric (not a

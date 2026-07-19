@@ -1,6 +1,6 @@
 <!--
 Changelog:
-  v1 (initial) — binary pass/fail on the four criteria in criteria.md,
+  v1 (initial) — binary pass/fail on the four criteria in RUBRIC.md,
     one JSON object per case, reasoning required per criterion so
     disagreements with human labels are diagnosable after the fact.
 -->

@@ -1,9 +1,10 @@
-# Criteria — the judge's rubric, stated before any labeling
+# RUBRIC — the judge's rubric, stated before any labeling
 
 This is the spec `eval_judge/judge.py` implements, written here in prose
 before any calibration response is read — same discipline as Artifact 01's
 `criteria.md`, for the same reason: a rubric written after looking at the
-outputs quietly bends to match them.
+outputs quietly bends to match them. See [SAMPLING.md](SAMPLING.md) for how
+the calibration set was built and how held-out scoring works.
 
 Artifact 01 already answers "did the agent call the right tool and say
 something non-empty" with deterministic pattern-matching — that's a routing
@@ -90,18 +91,3 @@ Artifact 01 (`tool_correct`, `no_wrong_tool`, `idk_when_no_tool`,
 them with an LLM would only add judge noise to a question that doesn't need
 one. The judge is scoped to the four criteria above, on the subset of
 calibration-set cases where a tool actually returned data to reason about.
-
-## Calibration protocol
-
-1. `calibration_set.py` cases are run against `agentic-copilot` once,
-   producing `results/calibration_responses.jsonl` (query + tool trace +
-   response, no labels).
-2. Carlos hand-labels every case against the four criteria above, before
-   the judge is run on any of them — `labels/labels.jsonl`. Carlos is the
-   sole labeler; that's disclosed here, not hidden.
-3. The judge is run on the same cases and its verdicts are compared to the
-   human labels: raw agreement % and Cohen's κ, per criterion, plus a
-   confusion breakdown of *why* they disagree (see `report.py`).
-4. A held-out slice of labels (never shown to the judge-prompt author while
-   iterating the prompt) is scored last, so the reported agreement number
-   isn't inflated by prompt-tuning-to-the-test.

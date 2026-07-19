@@ -7,7 +7,7 @@ correctness with a mechanical pass/fail. Here the interesting question is
 whether the *response text* is a good answer, which is exactly the judgment
 a regex can't make and a human/LLM judge is being validated on.
 
-Groups map to the four criteria in criteria.md:
+Groups map to the four criteria in RUBRIC.md:
   - grounding   : stresses whether every claim traces to a tool result
   - compound    : multi-part asks where partial coverage is the failure mode
   - hedge       : cases where the tool data is thin/partial and a confident
