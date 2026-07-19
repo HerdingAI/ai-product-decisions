@@ -57,13 +57,15 @@ def run_case(client: httpx.Client, base_url: str, case: GoldenCase,
         )
 
 
-def run_all(base_url: str, cases: list[GoldenCase]) -> list[RawResult]:
+def run_all(base_url: str, cases: list[GoldenCase], pace_seconds: float = 0.0) -> list[RawResult]:
     # URL-encode nothing here; base_url is a host. Validate reachability first.
     parsed = urllib.parse.urlparse(base_url)
     if parsed.scheme not in ("http", "https") or not parsed.netloc:
         raise ValueError(f"base_url must be an http(s) URL, got {base_url!r}")
     results: list[RawResult] = []
     with httpx.Client() as client:
-        for case in cases:
+        for i, case in enumerate(cases):
+            if i and pace_seconds:
+                time.sleep(pace_seconds)
             results.append(run_case(client, base_url, case))
     return results
