@@ -1,0 +1,20 @@
+[
+  {"id": "q01", "query": "What testing does Colorado require insurers to do on their predictive models?", "gold_chunk_ids": ["co_sb21169_testing"], "note": "specific-section lookup amid 3 SB 21-169 chunks + NAIC governance overlap"},
+  {"id": "q02", "query": "Who is accountable for algorithmic model governance under Colorado insurance law?", "gold_chunk_ids": ["co_sb21169_governance"], "note": "governance term shared with NAIC governance chunk (confusable)"},
+  {"id": "q03", "query": "What consumer characteristics does Colorado SB 21-169 protect against discrimination?", "gold_chunk_ids": ["co_sb21169_scope"], "note": "prohibited-basis vocabulary also in ECOA chunk"},
+  {"id": "q04", "query": "What does the NAIC model bulletin say about governance of AI systems?", "gold_chunk_ids": ["naic_bulletin_governance"], "note": "governance term collides with Colorado governance chunk"},
+  {"id": "q05", "query": "Are insurers responsible for AI bought from third-party vendors?", "gold_chunk_ids": ["naic_bulletin_thirdparty"], "note": "distinctive vendor vocabulary, should be a clean hit"},
+  {"id": "q06", "query": "Which EU AI Act article requires a risk management system for high-risk AI?", "gold_chunk_ids": ["euaiact_art9_riskmgmt"], "note": "risk-management vocabulary shared with Colorado testing + SR 11-7"},
+  {"id": "q07", "query": "How does the EU AI Act treat creditworthiness assessment?", "gold_chunk_ids": ["euaiact_art6_highrisk"], "note": "credit vocabulary collides with ECOA/CFPB chunks"},
+  {"id": "q08", "query": "What are the data governance requirements for high-risk AI training data?", "gold_chunk_ids": ["euaiact_art10_data"], "note": "governance + data terms confusable across several chunks"},
+  {"id": "q09", "query": "What reasons must a lender give when a model denies credit?", "gold_chunk_ids": ["ecoa_adverse_action", "cfpb_2023_circular"], "note": "two gold chunks; adverse-action reasons split across ECOA + CFPB"},
+  {"id": "q10", "query": "Can a creditor use checklist reasons for a machine-learning credit denial?", "gold_chunk_ids": ["cfpb_2023_circular"], "note": "distinctive checklist vocabulary; should hit"},
+  {"id": "q11", "query": "What does SR 11-7 require for independent model validation?", "gold_chunk_ids": ["sr117_validation"], "note": "validation vs model-risk chunk confusable within SR 11-7"},
+  {"id": "q12", "query": "What rights does California give consumers over automated decision-making?", "gold_chunk_ids": ["ca_cpra_adm"], "note": "clean-ish hit, distinctive California/opt-out vocabulary"},
+  {"id": "q13", "query": "Does Illinois require consent before collecting biometric data?", "gold_chunk_ids": ["il_bipa_biometric"], "note": "distinctive biometric vocabulary; clean hit expected"},
+  {"id": "q14", "query": "What must insurers document about algorithm testing methodology for the Division of Insurance?", "gold_chunk_ids": ["co_sb21169_testing"], "note": "paraphrase of q01 target; robustness of retrieval to phrasing"},
+  {"id": "q15", "query": "What disclosure does Utah require when consumers interact with generative AI?", "gold_chunk_ids": ["utah_ai_policy_act"], "note": "distinctive Utah/generative vocabulary; clean hit"},
+  {"id": "q16", "query": "What is the penalty schedule and fine amount for a first SB 21-169 violation?", "gold_chunk_ids": [], "note": "ANSWER NOT IN CORPUS — should abstain, not surface a confident wrong chunk (no_fallback vs correct_abstain)"},
+  {"id": "q17", "query": "What is the company's remote work stipend policy?", "gold_chunk_ids": [], "note": "ANSWER NOT IN CORPUS (only generic PD/security chunks exist) — abstain test"},
+  {"id": "q18", "query": "How many days of notice must be given before a NAIC AI audit?", "gold_chunk_ids": [], "note": "ANSWER NOT IN CORPUS — plausible-sounding but unanswerable; abstain test"}
+]

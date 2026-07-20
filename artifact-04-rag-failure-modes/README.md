@@ -1,7 +1,9 @@
 # Artifact 04 — RAG failure modes, ranked by fix effort
 
 > Pairs with [Unit 17 — RAG internals](https://www.carlosarivero.com/units/unit-17-rag-internals.html) and a knowledge-assistant build (anonymized).
-> Status: **planned — ships on cadence.**
+> Status: **shipped — measured failure-mode distribution + ranked fix + one applied improvement.** See [RESULTS.md](RESULTS.md).
+>
+> **Numbers (20-chunk corpus, 18 gold-labeled queries, offline TF-IDF):** retrieval is *not* the problem — 14/15 answerable queries hit rank 1. The dominant failure is **no_fallback (3 cases)**: for out-of-corpus queries the retriever returns a confident wrong chunk instead of abstaining, and a score threshold **can't** fix it (an unanswerable query scores 0.362 while a real answer scores 0.258). A distinctive-term **coverage gate** converts all **3 confident-wrong answers → honest abstentions**, at a cost of **1** false abstention (a stem mismatch that names the next fix). Rule: **measure the distribution before funding a fix — the reflexive reranker/reindex would have addressed 1 case out of 18.**
 
 ## The problem
 
@@ -53,6 +55,7 @@ PM brings to the eng conversation that turns "let's improve our RAG" into
 reindex, that addresses none of the ones we measured." Anonymized around the
 source knowledge base; the method, not the corpus, is what's shared.
 
-_Planned: a retrieval-quality harness, a labeled failure-mode set, and the
-ranked fix analysis. No code committed yet — ships when the cadence reaches
-it, ≤2 hrs/wk._
+_Shipped: an offline retrieval-quality harness (`rag/`, 14 tests, TDD), a
+gold-labeled failure-mode set (`data/`), the ranked fix analysis, and one
+applied improvement with its measured cost (`report_rag.py`, `RESULTS.md`). The
+method, not the constructed corpus, is what transfers._
