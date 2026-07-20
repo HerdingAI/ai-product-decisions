@@ -1,0 +1,5 @@
+# Artifact 03 — workflow vs. agent
+# The workflow arm re-implements agentic-copilot's task with deterministic
+# routing (no LLM in the tool-selection loop). It reuses agentic-copilot's MCP
+# tools for the actual data lookups; the agent arm is agentic-copilot itself.
+pytest>=8.0

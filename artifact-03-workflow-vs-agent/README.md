@@ -1,7 +1,7 @@
 # Artifact 03 — Workflow vs. agent: the arithmetic
 
 > Pairs with [Unit 04](https://www.carlosarivero.com/units/unit-04-workflows-vs-agents.html) / [Unit 12](https://www.carlosarivero.com/units/unit-12-cost-and-latency.html) and ["Workflow or agent? Do the arithmetic first"](https://www.carlosarivero.com/thoughts/workflow-or-agent-do-the-arithmetic-first.html).
-> Status: **planned — ships on cadence.**
+> Status: **in progress — workflow arm being built (TDD).** The deterministic router (fixed-rule tool selection, fails closed on uncovered queries) is implemented and unit-tested; executor, response synthesis, and the paired cost/latency/reliability runner are next. Agent arm = `agentic-copilot` as-is.
 > System under test: [`HerdingAI/agentic-copilot`](https://github.com/HerdingAI/agentic-copilot) — the agent side of the comparison.
 
 ## The problem
