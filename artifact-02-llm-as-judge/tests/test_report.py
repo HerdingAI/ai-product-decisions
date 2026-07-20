@@ -3,6 +3,7 @@ from eval_judge.judge import JudgeVerdict
 from eval_judge.report import (
     cohen_kappa,
     cost_latency_summary,
+    disagreements,
     per_criterion_agreement,
     probe_summary,
     results_json,
@@ -107,6 +108,49 @@ def test_probe_summary_counts_flags_per_probe_type():
     assert summary["consistency"]["flagged"] == 1
     assert summary["consistency"]["total"] == 2
     assert summary["verbosity"]["flagged"] == 2
+
+
+def test_disagreements_lists_only_mismatches_with_judge_reason():
+    verdicts = [
+        _verdict("C-01", grounded=True, complete=True),
+        _verdict("C-02", grounded=False, complete=True),
+        _verdict("C-03", grounded=True, complete=False),
+    ]
+    human = {
+        "C-01": {"grounded": True, "complete": True},
+        "C-02": {"grounded": False, "complete": True},
+        "C-03": {"grounded": False, "complete": False},  # disagreement on grounded only
+    }
+    rows = disagreements(verdicts, human)
+    assert len(rows) == 1
+    row = rows[0]
+    assert row["case_id"] == "C-03"
+    assert row["criterion"] == "grounded"
+    assert row["judge"] is True
+    assert row["human"] is False
+    assert row["judge_reason"] == "r"
+
+
+def test_disagreements_skips_unlabeled_criteria():
+    verdicts = [_verdict("C-01", grounded=True, complete=True)]
+    human = {"C-01": {"grounded": False}}  # complete never labeled
+    rows = disagreements(verdicts, human)
+    assert len(rows) == 1
+    assert rows[0]["criterion"] == "grounded"
+
+
+def test_disagreements_empty_when_fully_agreed():
+    verdicts = [_verdict("C-01", grounded=True)]
+    human = {"C-01": {"grounded": True}}
+    assert disagreements(verdicts, human) == []
+
+
+def test_summary_md_includes_disagreements_section_when_present():
+    verdicts = [_verdict("C-01", grounded=True)]
+    human = {"C-01": {"grounded": False}}
+    md = summary_md(verdicts, human, [], target="http://x")
+    assert "disagreement" in md.lower()
+    assert "C-01" in md
 
 
 def test_results_json_shape():

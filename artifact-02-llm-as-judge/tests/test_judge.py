@@ -16,6 +16,21 @@ VALID_JSON = (
 )
 
 
+def test_judge_defaults_to_generous_token_budget_for_reasoning_models():
+    # A reasoning judge spends completion tokens on its reasoning trace before
+    # emitting the JSON verdict; too small a budget truncates the JSON. The
+    # default must leave room so verdicts don't get cut off mid-string.
+    provider = FakeProvider()
+    Judge(provider, prompt_version="v1").judge(CASE, TOOL_CALLS, "resp")
+    assert provider.max_tokens_seen[-1] >= 4096
+
+
+def test_judge_forwards_configured_max_tokens():
+    provider = FakeProvider()
+    Judge(provider, prompt_version="v1", max_tokens=8000).judge(CASE, TOOL_CALLS, "resp")
+    assert provider.max_tokens_seen[-1] == 8000
+
+
 def test_load_prompt_v1_exists_and_mentions_all_criteria():
     text = load_prompt("v1")
     for c in ("grounded", "complete", "appropriately-hedged", "usable"):

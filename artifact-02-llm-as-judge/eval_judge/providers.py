@@ -16,7 +16,7 @@ from __future__ import annotations
 import os
 import time
 from dataclasses import dataclass
-from typing import Protocol
+from typing import Callable, Protocol
 
 import httpx
 
@@ -47,10 +47,17 @@ class Provider(Protocol):
 class OpenRouterProvider:
     """Calls a model via OpenRouter. Requires OPENROUTER_API_KEY in the env."""
 
-    def __init__(self, model: str, api_key: str | None = None, timeout: float = 60.0):
+    def __init__(self, model: str, api_key: str | None = None, timeout: float = 60.0,
+                 max_retries: int = 5, sleep_fn: Callable[[float], None] = time.sleep,
+                 reasoning_effort: str | None = None):
         self.model = model
         self.api_key = api_key or os.environ.get("OPENROUTER_API_KEY")
         self.timeout = timeout
+        self.max_retries = max_retries
+        self._sleep = sleep_fn
+        # OpenRouter's unified reasoning control: "low" | "medium" | "high".
+        # None omits the field entirely (non-reasoning models / default behavior).
+        self.reasoning_effort = reasoning_effort
         if not self.api_key:
             raise ProviderError(
                 "OPENROUTER_API_KEY is not set. Get a key at "
@@ -58,6 +65,25 @@ class OpenRouterProvider:
                 "the judge: export OPENROUTER_API_KEY=... "
                 "(no key is ever committed to this repo)."
             )
+
+    @staticmethod
+    def _retry_delay(response: httpx.Response, attempt: int) -> float:
+        """Prefer the server's own Retry-After signal (header or OpenRouter's
+        JSON `error.metadata.retry_after_seconds`); fall back to exponential
+        backoff only when the server didn't tell us how long to wait."""
+        header = response.headers.get("Retry-After")
+        if header is not None:
+            try:
+                return float(header)
+            except ValueError:
+                pass
+        try:
+            meta = response.json().get("error", {}).get("metadata", {})
+            if "retry_after_seconds" in meta:
+                return float(meta["retry_after_seconds"])
+        except Exception:
+            pass
+        return float(2 ** attempt)
 
     def complete(self, messages: list[dict], *, temperature: float = 0.0,
                  max_tokens: int = 1024) -> CompletionResult:
@@ -72,9 +98,17 @@ class OpenRouterProvider:
             "max_tokens": max_tokens,
             "usage": {"include": True},
         }
+        if self.reasoning_effort is not None:
+            payload["reasoning"] = {"effort": self.reasoning_effort}
         t0 = time.perf_counter()
-        with httpx.Client(timeout=self.timeout) as client:
-            r = client.post(OPENROUTER_URL, headers=headers, json=payload)
+        r = None
+        for attempt in range(self.max_retries + 1):
+            with httpx.Client(timeout=self.timeout) as client:
+                r = client.post(OPENROUTER_URL, headers=headers, json=payload)
+            if r.status_code == 429 and attempt < self.max_retries:
+                self._sleep(self._retry_delay(r, attempt))
+                continue
+            break
         latency_ms = (time.perf_counter() - t0) * 1000
         if r.status_code != 200:
             raise ProviderError(f"OpenRouter {r.status_code}: {r.text[:400]}")
@@ -111,11 +145,13 @@ class FakeProvider:
             '"usable": true, "usable_reason": "stub"}'
         )
         self.calls: list[list[dict]] = []
+        self.max_tokens_seen: list[int] = []
         self.model = model
 
     def complete(self, messages: list[dict], *, temperature: float = 0.0,
                  max_tokens: int = 1024) -> CompletionResult:
         self.calls.append(messages)
+        self.max_tokens_seen.append(max_tokens)
         key = messages[-1]["content"] if messages else ""
         text = self.script.get(key, self.default)
         return CompletionResult(text=text, latency_ms=0.1, cost_usd=0.0, model=self.model)

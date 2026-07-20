@@ -1,7 +1,9 @@
 # Artifact 02 — LLM-as-judge, validated
 
 > Pairs with [Unit 15 — LLM-as-judge](https://www.carlosarivero.com/units/unit-15-llm-as-judge.html) (the Hamel judge method + AIE Ch.3).
-> Status: **built, pending a live judge pass.** Judge, bias probes, and report are implemented and unit-tested; 20 real calibration responses are collected from `agentic-copilot`. What's outstanding: hand-labeling the calibration set (Carlos) and an `OPENROUTER_API_KEY` to run the judge for real (D6: OpenRouter-only) — see "Current status" below.
+> Status: **judge validated against human labels.** Judge, bias probes, and report are implemented and unit-tested; 87 real calibration responses collected from `agentic-copilot` and hand-labeled by Carlos, then judged by `deepseek/deepseek-v4-flash`.
+>
+> **Numbers:** Judge–human agreement, per criterion: `complete` 86% (κ=0.29), `usable` 93% (κ=0.38); `grounded` 95% and `appropriately-hedged` 35% are **unvalidated** — the human labels have zero variance on both, so κ=0.00 by construction (see [`RESULTS.md`](RESULTS.md)). Cost: **$0.039** for the 85-case run (~$0.0005/case), p95 latency 43.4 s/call. The headline result is a *finding about the calibration set*, not a green light — half the rubric can't yet be scored against the labels on hand.
 
 ## The problem
 
@@ -64,31 +66,29 @@ forking.
 
 ## Current status
 
-Built and unit-tested (`pytest -q` → 42 passed): `eval_judge/providers.py`
-(OpenRouter + a fake for tests), `eval_judge/judge.py` (prompt assembly,
-strict-JSON parsing), `eval_judge/bias_probes.py` (consistency, verbosity,
-sycophancy, order probes), `eval_judge/runner.py` (drives `agentic-copilot`),
+Built and unit-tested (`pytest -q` → 60 passed): `eval_judge/providers.py`
+(OpenRouter + a fake for tests, with 429 retry/backoff), `eval_judge/judge.py`
+(prompt assembly, strict-JSON parsing, reasoning-model token budget),
+`eval_judge/bias_probes.py` (consistency, verbosity, sycophancy, order probes),
+`eval_judge/pipeline.py` (fault-tolerant, parallel evaluation — one bad verdict
+can't abort the run), `eval_judge/runner.py` (drives `agentic-copilot`),
 `eval_judge/report.py` (agreement rate, Cohen's κ, probe summary, cost/latency).
 
-`eval_judge/calibration_set.py` has 20 open-ended cases across grounding,
-compound-query, hedge, and usability groups. `collect_responses.py` has
-already been run once against a local `agentic-copilot` instance — real
-responses are in `labels/calibration_responses.json`, with a `human_labels`
-field per case left `null` pending hand-labeling.
+`eval_judge/calibration_set.py` defines 100 open-ended cases across grounding,
+compound-query, hedge, and usability groups. **87 are collected and hand-labeled
+by Carlos**; the judge pass ran over them with `deepseek/deepseek-v4-flash`
+(`--reasoning-effort high --workers 8`), writing `results/results.json` +
+`results/SUMMARY.md`. The failure-pattern analysis and trust verdict are in
+[`RESULTS.md`](RESULTS.md).
 
-**What's outstanding, and whose it is:**
-- **Hand-labeling** `labels/calibration_responses.json` — Carlos's task, not
-  automatable; the judge's validity rests on this being a real human
-  judgment, not a fabricated one.
-- **A live judge pass** — needs `OPENROUTER_API_KEY` (D6: OpenRouter is the
-  sole model-provider standard here too). Once set:
-  `python run.py --judge-model <openrouter-slug>` judges every collected
-  response, runs the bias probes, and writes `results/results.json` +
-  `results/SUMMARY.md`. Without labels, the summary still reports judge
-  verdicts, bias-probe flags, and cost/latency — it just says "not yet
-  hand-labeled" instead of an agreement number, rather than showing a
-  fake 0% or 100%.
+**What's outstanding:**
+- **Collect + label the remaining 13 cases** (C-06–C-18) to reach N=100 —
+  `python collect_new_cases.py --pace-seconds 4` (idempotent), then Carlos labels.
+- **Add genuine negatives to the reference set.** The pass surfaced that Carlos
+  labeled `grounded` and `appropriately-hedged` `True` on *all* 87 cases, which
+  forces κ=0.00 and leaves both criteria unvalidated (RESULTS.md §2). Fixing this
+  needs label *variance* — real `False` cases — not just more cases.
 
-One finding already visible from the raw (unjudged) responses: case C-03
-asks about the NAIC model bulletin and gets back Colorado SB 26-189 content
-instead — a candidate grounding miss worth checking once judged.
+To re-run: `export OPENROUTER_API_KEY=…` then
+`python run.py --judge-model deepseek/deepseek-v4-flash --reasoning-effort high
+--workers 8` (D6: OpenRouter is the sole model-provider standard here too).

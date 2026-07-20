@@ -22,9 +22,8 @@ import json
 import sys
 from pathlib import Path
 
-from eval_judge.bias_probes import run_all_probes
-from eval_judge.calibration_set import OpenCase
 from eval_judge.judge import Judge
+from eval_judge.pipeline import evaluate
 from eval_judge.providers import OpenRouterProvider, ProviderError
 from eval_judge.report import build
 
@@ -40,6 +39,13 @@ def main() -> int:
     ap.add_argument("--out", default=str(Path(__file__).parent / "results"))
     ap.add_argument("--skip-probes", action="store_true",
                     help="skip bias probes (they re-call the judge 2-3x per case)")
+    ap.add_argument("--reasoning-effort", default=None,
+                    choices=["low", "medium", "high"],
+                    help="OpenRouter reasoning effort for the judge model "
+                         "(omit for non-reasoning models / provider default)")
+    ap.add_argument("--workers", type=int, default=1,
+                    help="concurrent judge calls (reasoning models are slow; "
+                         ">1 parallelizes across cases)")
     args = ap.parse_args()
 
     responses_path = Path(args.responses)
@@ -50,7 +56,8 @@ def main() -> int:
     records = json.loads(responses_path.read_text())
 
     try:
-        provider = OpenRouterProvider(model=args.judge_model)
+        provider = OpenRouterProvider(model=args.judge_model,
+                                      reasoning_effort=args.reasoning_effort)
     except ProviderError as e:
         print(f"Provider error: {e}", file=sys.stderr)
         print("Set OPENROUTER_API_KEY to run a real judge pass (D6: OpenRouter-only).",
@@ -59,24 +66,15 @@ def main() -> int:
 
     judge = Judge(provider, prompt_version=args.prompt_version)
 
-    verdicts = []
-    probes = []
-    human_labels: dict[str, dict[str, bool]] = {}
     print(f"Judging {len(records)} cases with {args.judge_model} (prompt {args.prompt_version}) …")
-    for rec in records:
-        if not rec["ok"]:
-            print(f"  skipping {rec['id']}: collection failed ({rec['error']})", file=sys.stderr)
-            continue
-        case = OpenCase(id=rec["id"], group=rec["group"], query=rec["query"], note=rec.get("note", ""))
-        verdict = judge.judge(case, rec["tool_calls"], rec["response"])
-        verdicts.append(verdict)
+    verdicts, probes, human_labels, failures = evaluate(
+        judge, records, run_probes=not args.skip_probes, max_workers=args.workers)
 
-        labeled = {k: v for k, v in rec.get("human_labels", {}).items() if v is not None}
-        if labeled:
-            human_labels[rec["id"]] = labeled
-
-        if not args.skip_probes:
-            probes.extend(run_all_probes(judge, case, rec["tool_calls"], rec["response"]))
+    for cid, err in failures:
+        print(f"  case {cid} failed and was skipped: {err[:200]}", file=sys.stderr)
+    if failures:
+        print(f"{len(failures)} case(s) failed to judge; agreement computed over "
+              f"the {len(verdicts)} that parsed.", file=sys.stderr)
 
     results, summary = build(verdicts, human_labels, probes, target=args.judge_model)
 

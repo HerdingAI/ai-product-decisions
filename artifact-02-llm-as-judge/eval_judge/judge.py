@@ -92,10 +92,18 @@ def parse_verdict(case_id: str, prompt_version: str, result: CompletionResult) -
     )
 
 
+# Reasoning judges spend completion tokens on their reasoning trace before
+# emitting the JSON verdict, so the budget must be generous enough that the
+# verdict itself isn't truncated (a too-small budget yields unterminated JSON).
+DEFAULT_JUDGE_MAX_TOKENS = 8192
+
+
 class Judge:
-    def __init__(self, provider, prompt_version: str = "v1"):
+    def __init__(self, provider, prompt_version: str = "v1",
+                 max_tokens: int = DEFAULT_JUDGE_MAX_TOKENS):
         self.provider = provider
         self.prompt_version = prompt_version
+        self.max_tokens = max_tokens
         self.system_prompt = load_prompt(prompt_version)
 
     def judge(self, case: OpenCase, tool_calls: list[dict], response: str) -> JudgeVerdict:
@@ -103,5 +111,5 @@ class Judge:
             {"role": "system", "content": self.system_prompt},
             {"role": "user", "content": build_user_prompt(case, tool_calls, response)},
         ]
-        result = self.provider.complete(messages, temperature=0.0)
+        result = self.provider.complete(messages, temperature=0.0, max_tokens=self.max_tokens)
         return parse_verdict(case.id, self.prompt_version, result)

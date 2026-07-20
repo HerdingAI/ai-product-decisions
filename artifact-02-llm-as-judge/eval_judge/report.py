@@ -52,6 +52,38 @@ def per_criterion_agreement(verdicts: list[JudgeVerdict],
     return out
 
 
+def disagreements(verdicts: list[JudgeVerdict],
+                  human_labels: dict[str, dict[str, bool]]) -> list[dict]:
+    """Every case/criterion where the judge and Carlos's label disagree.
+
+    This is the raw material for the acceptance-criteria confusion
+    breakdown (spec §4 Artifact #2: "judge-vs-human disagreements coded
+    by why") — the *coding* into named failure patterns (verbosity bias,
+    position bias, criterion misreading, ...) is a qualitative read over
+    these rows, done once real disagreements exist, not fabricated ahead
+    of the data.
+    """
+    rows = []
+    for v in verdicts:
+        labels = human_labels.get(v.case_id)
+        if not labels:
+            continue
+        for c in CRITERIA:
+            human_val = labels.get(c)
+            if human_val is None or c not in v.results:
+                continue
+            judge_val = v.results[c]
+            if judge_val != human_val:
+                rows.append({
+                    "case_id": v.case_id,
+                    "criterion": c,
+                    "judge": judge_val,
+                    "human": human_val,
+                    "judge_reason": v.reasons.get(c, ""),
+                })
+    return rows
+
+
 def _percentile(values: list[float], pct: float) -> float:
     if not values:
         return 0.0
@@ -87,6 +119,7 @@ def results_json(verdicts: list[JudgeVerdict], human_labels: dict[str, dict[str,
         "target": target,
         "run_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "agreement": per_criterion_agreement(verdicts, human_labels),
+        "disagreements": disagreements(verdicts, human_labels),
         "probes": probe_summary(probes),
         "cost_latency": cost_latency_summary(verdicts),
         "cases": [
@@ -132,6 +165,28 @@ def summary_md(verdicts: list[JudgeVerdict], human_labels: dict[str, dict[str, b
                 lines.append(f"| {c} | 0 | N/A | N/A |")
             else:
                 lines.append(f"| {c} | {a['n']} | {a['agreement_rate']:.0%} | {a['kappa']:.2f} |")
+        lines.append("")
+
+    dis = disagreements(verdicts, human_labels)
+    lines.append("## Disagreements (judge vs. human)\n")
+    if not dis:
+        lines.append(
+            "No disagreements — either no human labels yet, or the judge "
+            "matched Carlos on every labeled criterion.\n"
+        )
+    else:
+        lines.append(
+            "Raw rows below; see `RESULTS.md` for the coded failure-pattern "
+            "analysis (verbosity bias, position bias, criterion misreading, "
+            "etc. — spec §4 Artifact #2 acceptance criteria).\n"
+        )
+        lines.append("| Case | Criterion | Judge | Human | Judge's reason |")
+        lines.append("|---|---|---|---|---|")
+        for row in dis:
+            lines.append(
+                f"| {row['case_id']} | {row['criterion']} | {row['judge']} "
+                f"| {row['human']} | {row['judge_reason']} |"
+            )
         lines.append("")
 
     lines.append("## Bias probes\n")
