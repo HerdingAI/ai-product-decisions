@@ -1,8 +1,10 @@
 # Artifact 05 — Model selection under constraints
 
 > Pairs with [Unit 07 — Defining "good"](https://www.carlosarivero.com/units/unit-07-defining-good.html).
-> Status: **planned — ships on cadence.**
+> Status: **shipped — selection workflow + worked example over real benchmark data.** See [RESULTS.md](RESULTS.md).
 > Evidence base: [`HerdingAI/document-ai-bench`](https://github.com/HerdingAI/document-ai-bench) — the benchmark this artifact reasons from.
+>
+> **Numbers (document-ai-bench, 45 tasks × 5 models, live OpenRouter):** the raw-accuracy leaderboard leader is **llama-4-maverick (83.7%)** — but it wins only **1 of 4** realistic budgets. Under a 3 s interactive latency SLA the pick **flips to gpt-4o** (1123 ms vs 7920 ms, −0.8 pt accuracy); a cost-first batch budget flips to **llama-3.3-70b** (25× cheaper/task). Across five models within ~5 accuracy points sit a **25× cost range and a 7× latency range** — the axes a leaderboard hides. Rule: **"best" is undefined until you state the budget; then selection is mechanical, auditable, and re-runs for free.**
 
 ## The problem
 
@@ -51,6 +53,7 @@ choice — with one worked example drawn from `document-ai-bench` as the
 receipts. The artifact is the method; the specific model it picks today is
 obsolete in a quarter. The method isn't.
 
-_Planned: a selection runner over the `document-ai-bench` results, the
-cost/latency/accuracy rubric, and a worked selection under a stated budget.
-No code committed yet — ships when the cadence reaches it, ≤2 hrs/wk._
+_Shipped: a selection runner over the `document-ai-bench` results
+(`selection/core.py`, 7 tests, TDD), the cost/latency/accuracy/hallucination
+rubric, and four worked selections under stated budgets (`report_selection.py`,
+`RESULTS.md`). Method transfers to any task set; the specific 2026 picks don't._
