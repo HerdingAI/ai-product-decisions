@@ -1,7 +1,9 @@
 # Artifact 06 — Error analysis & the improvement flywheel
 
 > Pairs with [Unit 14 — Error analysis](https://www.carlosarivero.com/units/unit-14-error-analysis.html) (the Hamel field guide — the highest-ROI unit in the series).
-> Status: **planned — ships on cadence.** Closes the eval thread opened by Artifacts 01 and 02.
+> Status: **shipped — drift detector + axial coding over real failures.** See [RESULTS.md](RESULTS.md). Closes the eval thread opened by Artifacts 01 and 02.
+>
+> **Numbers (over Artifacts 02 & 03's real, committed failures):** an objective criteria-drift detector re-derives the hand-found result — **`appropriately-hedged` drifts (35% judge–human agreement, 100% one-directional, judge stricter)** while the other three criteria hold (86–95%) — and correctly does *not* flag `complete` (86%, above the floor). Axial coding collapses 83 judged failures into **4 categories** (top: 51 cases co-failing complete+hedged+usable) and 33 agent crashes into **1** root cause. Rule: **fix the drifted criterion before mining the failures it produced; a dashboard would never surface a broken criterion as the top action.**
 
 ## The problem
 
@@ -49,6 +51,7 @@ eval thread pay off: Artifacts 01 and 02 produce the failures, this artifact
 turns them into the next thing to build. Without it, the eval is a verdict;
 with it, the eval is a flywheel.
 
-_Planned: a coded failure set from a real harness run, the axial category
-structure, the drift check, and the ranked action list. No code committed
-yet — ships when the cadence reaches it, ≤2 hrs/wk._
+_Shipped: an objective criteria-drift detector and axial-coding harness
+(`flywheel/`, 8 tests, TDD) run over Artifacts 02 & 03's real committed failures,
+plus the ranked action list (`report_flywheel.py`, `RESULTS.md`). The subjective
+open-coding of trace themes is the human analyst's pass on top of this skeleton._
