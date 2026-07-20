@@ -19,8 +19,9 @@ work the role actually demands:
    of postings), *LLM* (12.2%), *GenAI* (3.4× enriched), *RAG / embeddings*.
    The artifacts live in that vocabulary.
 2. **Skill leverage** — evals are the highest-leverage AI-PM interview skill.
-   The eval thread is the priority spine; **three of six artifacts are eval
-   artifacts** (01, 02, 06).
+   The eval thread is the priority spine; **three of seven artifacts are eval
+   artifacts** (01, 02, 06), and a fourth (07) measures a security defense the
+   same way.
 3. **Case-round topics** — eval design, workflow-vs-agent, model selection,
    metric definition. Every artifact rehearses at least one; together they
    cover all four.
@@ -35,14 +36,16 @@ code + data/results. Code second, judgment first.
 | # | Artifact | Decision it makes | Course unit | Status |
 |---|---|---|---|---|
 | 01 | [Eval harness — "is this agent good enough to ship"](artifact-01-eval-harness/) | Ship / no-ship on a criteria-first golden set, with a failure taxonomy and blast-radius thresholds | [Unit 13](https://www.carlosarivero.com/units/unit-13-capstone.html) · ["How I decide an agent is good enough to ship"](https://www.carlosarivero.com/thoughts/how-i-decide-an-agent-is-good-enough-to-ship.html) | **Shipped** |
-| 02 | [LLM-as-judge, validated](artifact-02-llm-as-judge/) | Whether to trust a judge to gate releases — measured against human labels, binary over Likert, where it breaks | [Unit 15](https://www.carlosarivero.com/units/unit-15-llm-as-judge.html) | **Judged** — 87 cases labeled + validated; see RESULTS.md |
-| 03 | [Workflow vs. agent — the arithmetic](artifact-03-workflow-vs-agent/) | When the agent's flexibility is worth its cost, latency, and compounding-failure penalty | [Units 04](https://www.carlosarivero.com/units/unit-04-workflows-vs-agents.html) / [12](https://www.carlosarivero.com/units/unit-12-cost-and-latency.html) · ["Workflow or agent? Do the arithmetic first"](https://www.carlosarivero.com/thoughts/workflow-or-agent-do-the-arithmetic-first.html) | Planned |
-| 04 | [RAG failure modes, ranked by fix effort](artifact-04-rag-failure-modes/) | Which RAG fix is worth the effort — measured by failure-mode distribution | [Unit 17](https://www.carlosarivero.com/units/unit-17-rag-internals.html) | Planned |
-| 05 | [Model selection under constraints](artifact-05-model-selection/) | A defensible selection workflow with cost/latency as first-class criteria | [Unit 07](https://www.carlosarivero.com/units/unit-07-defining-good.html) | Planned |
-| 06 | [Error analysis & the improvement flywheel](artifact-06-error-analysis/) | Turning a pass rate into a backlog — open/axial coding, criteria drift | [Unit 14](https://www.carlosarivero.com/units/unit-14-error-analysis.html) | Planned |
+| 02 | [LLM-as-judge, validated](artifact-02-llm-as-judge/) | Whether to trust a judge to gate releases — measured against human labels, binary over Likert, where it breaks | [Unit 15](https://www.carlosarivero.com/units/unit-15-llm-as-judge.html) | **Shipped** — 87 cases labeled + validated (label-variance pass pending); see RESULTS.md |
+| 03 | [Workflow vs. agent — the arithmetic](artifact-03-workflow-vs-agent/) | When the agent's flexibility is worth its cost, latency, and compounding-failure penalty | [Units 04](https://www.carlosarivero.com/units/unit-04-workflows-vs-agents.html) / [12](https://www.carlosarivero.com/units/unit-12-cost-and-latency.html) · ["Workflow or agent? Do the arithmetic first"](https://www.carlosarivero.com/thoughts/workflow-or-agent-do-the-arithmetic-first.html) | **Shipped** — live agent arm (81/100) vs workflow (64/100); see RESULTS.md |
+| 04 | [RAG failure modes, ranked by fix effort](artifact-04-rag-failure-modes/) | Which RAG fix is worth the effort — measured by failure-mode distribution | [Unit 17](https://www.carlosarivero.com/units/unit-17-rag-internals.html) | **Shipped** — see RESULTS.md |
+| 05 | [Model selection under constraints](artifact-05-model-selection/) | A defensible selection workflow with cost/latency as first-class criteria | [Unit 07](https://www.carlosarivero.com/units/unit-07-defining-good.html) | **Shipped** — see RESULTS.md |
+| 06 | [Error analysis & the improvement flywheel](artifact-06-error-analysis/) | Turning a pass rate into a backlog — open/axial coding, criteria drift | [Unit 14](https://www.carlosarivero.com/units/unit-14-error-analysis.html) | **Shipped** — objective half; open-coding pass pending; see RESULTS.md |
+| 07 | [Guardrails — measuring a defense](artifact-07-guardrails/) | Whether a guardrail actually protects — attack-success by type *and* the benign cost, pre/post | [Unit 22](https://www.carlosarivero.com/units/unit-22-defensive-prompting.html) | **Shipped** — attack success 96%→14%, benign pass 100%→70%; see RESULTS.md |
 
-Artifact 01 anchors the repo and ships first; 02–06 follow on cadence
-(≤2 hrs/wk; cadence beats volume).
+Artifact 01 anchors the repo; 02–07 are all shipped. The remaining work is the
+human-judgment passes (label variance in 02, open-coding in 06) and Artifact 01's
+outstanding DoD docs — cadence beats volume (≤2 hrs/wk).
 
 ---
 

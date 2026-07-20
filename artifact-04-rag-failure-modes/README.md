@@ -55,6 +55,24 @@ PM brings to the eng conversation that turns "let's improve our RAG" into
 reindex, that addresses none of the ones we measured." Anonymized around the
 source knowledge base; the method, not the corpus, is what's shared.
 
+## On the corpus — why not `document-ai-bench`
+
+This artifact runs on a small, self-authored 20-chunk corpus rather than the
+repo's [`document-ai-bench`](https://github.com/HerdingAI/document-ai-bench)
+spoke, and that is deliberate. A failure-mode taxonomy needs *plantable* edge
+cases: the out-of-corpus queries that trigger the `no_fallback` finding only
+exist because the corpus boundary is known exactly and drawn on purpose. On a
+large open benchmark you can measure aggregate retrieval accuracy, but you
+can't cleanly construct "this query has no answer in the corpus, does the
+retriever admit it" — which is the case that produces this artifact's headline
+result. The controlled corpus is the instrument, not a shortcut.
+
+`document-ai-bench` is still the repo's at-scale substrate — [Artifact
+05](../artifact-05-model-selection/) selects models against it, and [Artifact
+07](../artifact-07-guardrails/) adds an injection slice to it. The division of
+labor is intentional: the benchmark answers "which model, at scale"; this
+artifact answers "which *failure mode*, and which fix earns its cost."
+
 _Shipped: an offline retrieval-quality harness (`rag/`, 14 tests, TDD), a
 gold-labeled failure-mode set (`data/`), the ranked fix analysis, and one
 applied improvement with its measured cost (`report_rag.py`, `RESULTS.md`). The
