@@ -1,0 +1,1770 @@
+{
+  "model": "deepseek/deepseek-v4-flash",
+  "base_url": "http://127.0.0.1:8020",
+  "price_assumptions": {
+    "in_per_1m": 0.1,
+    "out_per_1m": 0.3,
+    "note": "cost is an estimate; latency/tools measured"
+  },
+  "summary": {
+    "n": 100,
+    "served": 57,
+    "refused": 43,
+    "coverage_rate": 0.57,
+    "mean_tool_calls": 1.48,
+    "tool_call_distribution": {
+      "4": 7,
+      "1": 26,
+      "5": 5,
+      "2": 15,
+      "3": 13,
+      "0": 34
+    },
+    "p50_latency_ms": 9778.599755998584,
+    "p95_latency_ms": 29578.53506100946,
+    "total_cost_usd": 0.02778665,
+    "mean_cost_usd": 0.0002778665,
+    "errors": 33
+  },
+  "fallback_recovery": {
+    "workflow_gaps": 36,
+    "agent_recovered": 16,
+    "recovery_rate": 0.4444444444444444
+  },
+  "by_group": {
+    "grounding": {
+      "served": 15,
+      "total": 25
+    },
+    "compound": {
+      "served": 17,
+      "total": 25
+    },
+    "hedge": {
+      "served": 8,
+      "total": 25
+    },
+    "usability": {
+      "served": 17,
+      "total": 25
+    }
+  },
+  "records": [
+    {
+      "case_id": "C-01",
+      "group": "grounding",
+      "served": true,
+      "refused": false,
+      "n_tool_calls": 4,
+      "latency_ms": 23178.458058988326,
+      "est_cost_usd": 0.00037404999999999996,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "case_id": "C-02",
+      "group": "grounding",
+      "served": true,
+      "refused": false,
+      "n_tool_calls": 1,
+      "latency_ms": 15690.784473990789,
+      "est_cost_usd": 0.000256325,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "case_id": "C-03",
+      "group": "grounding",
+      "served": true,
+      "refused": false,
+      "n_tool_calls": 4,
+      "latency_ms": 18484.28937299468,
+      "est_cost_usd": 0.001017525,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "case_id": "C-04",
+      "group": "grounding",
+      "served": true,
+      "refused": false,
+      "n_tool_calls": 5,
+      "latency_ms": 52448.319714007084,
+      "est_cost_usd": 0.000723725,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "case_id": "C-05",
+      "group": "grounding",
+      "served": true,
+      "refused": false,
+      "n_tool_calls": 2,
+      "latency_ms": 15889.59714199882,
+      "est_cost_usd": 0.00032230000000000003,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "case_id": "CQ-01",
+      "group": "compound",
+      "served": true,
+      "refused": false,
+      "n_tool_calls": 4,
+      "latency_ms": 18408.749544993043,
+      "est_cost_usd": 0.000754275,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "case_id": "CQ-02",
+      "group": "compound",
+      "served": true,
+      "refused": false,
+      "n_tool_calls": 3,
+      "latency_ms": 29578.53506100946,
+      "est_cost_usd": 0.00043989999999999996,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "case_id": "CQ-03",
+      "group": "compound",
+      "served": true,
+      "refused": false,
+      "n_tool_calls": 2,
+      "latency_ms": 18432.244276002166,
+      "est_cost_usd": 0.000624375,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "case_id": "CQ-04",
+      "group": "compound",
+      "served": true,
+      "refused": false,
+      "n_tool_calls": 3,
+      "latency_ms": 16803.16223000409,
+      "est_cost_usd": 0.00038239999999999997,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "case_id": "CQ-05",
+      "group": "compound",
+      "served": true,
+      "refused": false,
+      "n_tool_calls": 3,
+      "latency_ms": 30700.84845800011,
+      "est_cost_usd": 0.000694875,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "case_id": "H-01",
+      "group": "hedge",
+      "served": true,
+      "refused": false,
+      "n_tool_calls": 5,
+      "latency_ms": 21555.112964997534,
+      "est_cost_usd": 0.00039470000000000005,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "case_id": "H-02",
+      "group": "hedge",
+      "served": false,
+      "refused": true,
+      "n_tool_calls": 1,
+      "latency_ms": 9778.599755998584,
+      "est_cost_usd": 0.000202875,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "case_id": "H-03",
+      "group": "hedge",
+      "served": false,
+      "refused": true,
+      "n_tool_calls": 0,
+      "latency_ms": 3379.2642680054996,
+      "est_cost_usd": 0.0,
+      "ok": false,
+      "error": "HTTPStatusError: Server error '500 Internal Server Error' for url 'http://127.0.0.1:8020/api/chat'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500"
+    },
+    {
+      "case_id": "H-04",
+      "group": "hedge",
+      "served": false,
+      "refused": true,
+      "n_tool_calls": 3,
+      "latency_ms": 14019.299400999444,
+      "est_cost_usd": 0.00029440000000000005,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "case_id": "H-05",
+      "group": "hedge",
+      "served": false,
+      "refused": true,
+      "n_tool_calls": 2,
+      "latency_ms": 10661.598477992811,
+      "est_cost_usd": 0.000514825,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "case_id": "U-01",
+      "group": "usability",
+      "served": true,
+      "refused": false,
+      "n_tool_calls": 2,
+      "latency_ms": 26922.885947002214,
+      "est_cost_usd": 0.00031120000000000003,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "case_id": "U-02",
+      "group": "usability",
+      "served": true,
+      "refused": false,
+      "n_tool_calls": 2,
+      "latency_ms": 23253.012496992596,
+      "est_cost_usd": 0.000243025,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "case_id": "U-03",
+      "group": "usability",
+      "served": true,
+      "refused": false,
+      "n_tool_calls": 1,
+      "latency_ms": 10837.21022499958,
+      "est_cost_usd": 0.00048614999999999997,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "case_id": "U-04",
+      "group": "usability",
+      "served": true,
+      "refused": false,
+      "n_tool_calls": 2,
+      "latency_ms": 9160.910561011406,
+      "est_cost_usd": 0.00025365,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "case_id": "U-05",
+      "group": "usability",
+      "served": false,
+      "refused": true,
+      "n_tool_calls": 0,
+      "latency_ms": 3772.6815229980275,
+      "est_cost_usd": 0.0,
+      "ok": false,
+      "error": "HTTPStatusError: Server error '500 Internal Server Error' for url 'http://127.0.0.1:8020/api/chat'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500"
+    },
+    {
+      "case_id": "C-06",
+      "group": "grounding",
+      "served": true,
+      "refused": false,
+      "n_tool_calls": 1,
+      "latency_ms": 14484.44305799785,
+      "est_cost_usd": 0.000283675,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "case_id": "C-07",
+      "group": "grounding",
+      "served": false,
+      "refused": true,
+      "n_tool_calls": 0,
+      "latency_ms": 3710.813066994888,
+      "est_cost_usd": 0.0,
+      "ok": false,
+      "error": "HTTPStatusError: Server error '500 Internal Server Error' for url 'http://127.0.0.1:8020/api/chat'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500"
+    },
+    {
+      "case_id": "C-08",
+      "group": "grounding",
+      "served": true,
+      "refused": false,
+      "n_tool_calls": 2,
+      "latency_ms": 20431.40586699883,
+      "est_cost_usd": 0.00028665,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "case_id": "C-09",
+      "group": "grounding",
+      "served": true,
+      "refused": false,
+      "n_tool_calls": 2,
+      "latency_ms": 38883.33415999659,
+      "est_cost_usd": 0.000574975,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "case_id": "C-10",
+      "group": "grounding",
+      "served": false,
+      "refused": true,
+      "n_tool_calls": 0,
+      "latency_ms": 3602.4272449867567,
+      "est_cost_usd": 0.0,
+      "ok": false,
+      "error": "HTTPStatusError: Server error '500 Internal Server Error' for url 'http://127.0.0.1:8020/api/chat'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500"
+    },
+    {
+      "case_id": "C-11",
+      "group": "grounding",
+      "served": true,
+      "refused": false,
+      "n_tool_calls": 1,
+      "latency_ms": 9548.823912002263,
+      "est_cost_usd": 0.00020747500000000002,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "case_id": "C-12",
+      "group": "grounding",
+      "served": true,
+      "refused": false,
+      "n_tool_calls": 1,
+      "latency_ms": 25405.601095000748,
+      "est_cost_usd": 0.0005762,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "case_id": "C-13",
+      "group": "grounding",
+      "served": true,
+      "refused": false,
+      "n_tool_calls": 2,
+      "latency_ms": 9960.259761006455,
+      "est_cost_usd": 0.00026005,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "case_id": "C-14",
+      "group": "grounding",
+      "served": false,
+      "refused": true,
+      "n_tool_calls": 1,
+      "latency_ms": 7273.849763005273,
+      "est_cost_usd": 0.00016205,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "case_id": "C-15",
+      "group": "grounding",
+      "served": true,
+      "refused": false,
+      "n_tool_calls": 2,
+      "latency_ms": 11782.796617990243,
+      "est_cost_usd": 0.000272075,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "case_id": "C-16",
+      "group": "grounding",
+      "served": false,
+      "refused": true,
+      "n_tool_calls": 0,
+      "latency_ms": 5679.450037001516,
+      "est_cost_usd": 0.0,
+      "ok": false,
+      "error": "HTTPStatusError: Server error '500 Internal Server Error' for url 'http://127.0.0.1:8020/api/chat'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500"
+    },
+    {
+      "case_id": "C-17",
+      "group": "grounding",
+      "served": true,
+      "refused": false,
+      "n_tool_calls": 5,
+      "latency_ms": 22050.661208006204,
+      "est_cost_usd": 0.00046970000000000003,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "case_id": "C-18",
+      "group": "grounding",
+      "served": false,
+      "refused": true,
+      "n_tool_calls": 0,
+      "latency_ms": 3861.7005750129465,
+      "est_cost_usd": 0.0,
+      "ok": false,
+      "error": "HTTPStatusError: Server error '500 Internal Server Error' for url 'http://127.0.0.1:8020/api/chat'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500"
+    },
+    {
+      "case_id": "C-19",
+      "group": "grounding",
+      "served": false,
+      "refused": true,
+      "n_tool_calls": 0,
+      "latency_ms": 3905.03439999884,
+      "est_cost_usd": 0.0,
+      "ok": false,
+      "error": "HTTPStatusError: Server error '500 Internal Server Error' for url 'http://127.0.0.1:8020/api/chat'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500"
+    },
+    {
+      "case_id": "C-20",
+      "group": "grounding",
+      "served": true,
+      "refused": false,
+      "n_tool_calls": 1,
+      "latency_ms": 8127.377541997703,
+      "est_cost_usd": 0.00023735000000000002,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "case_id": "C-21",
+      "group": "grounding",
+      "served": false,
+      "refused": true,
+      "n_tool_calls": 1,
+      "latency_ms": 7379.46462999389,
+      "est_cost_usd": 0.000165575,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "case_id": "C-22",
+      "group": "grounding",
+      "served": true,
+      "refused": false,
+      "n_tool_calls": 2,
+      "latency_ms": 28240.771140001016,
+      "est_cost_usd": 0.0006600750000000001,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "case_id": "C-23",
+      "group": "grounding",
+      "served": false,
+      "refused": true,
+      "n_tool_calls": 0,
+      "latency_ms": 6186.631392003619,
+      "est_cost_usd": 0.0,
+      "ok": false,
+      "error": "HTTPStatusError: Server error '500 Internal Server Error' for url 'http://127.0.0.1:8020/api/chat'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500"
+    },
+    {
+      "case_id": "C-24",
+      "group": "grounding",
+      "served": false,
+      "refused": true,
+      "n_tool_calls": 1,
+      "latency_ms": 7678.307245005271,
+      "est_cost_usd": 0.000151525,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "case_id": "C-25",
+      "group": "grounding",
+      "served": false,
+      "refused": true,
+      "n_tool_calls": 0,
+      "latency_ms": 5459.737495999434,
+      "est_cost_usd": 0.0,
+      "ok": false,
+      "error": "HTTPStatusError: Server error '500 Internal Server Error' for url 'http://127.0.0.1:8020/api/chat'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500"
+    },
+    {
+      "case_id": "CQ-06",
+      "group": "compound",
+      "served": true,
+      "refused": false,
+      "n_tool_calls": 3,
+      "latency_ms": 19211.578803995508,
+      "est_cost_usd": 0.000617825,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "case_id": "CQ-07",
+      "group": "compound",
+      "served": true,
+      "refused": false,
+      "n_tool_calls": 3,
+      "latency_ms": 27887.150661001215,
+      "est_cost_usd": 0.000568275,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "case_id": "CQ-08",
+      "group": "compound",
+      "served": true,
+      "refused": false,
+      "n_tool_calls": 4,
+      "latency_ms": 21250.58221400832,
+      "est_cost_usd": 0.000498725,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "case_id": "CQ-09",
+      "group": "compound",
+      "served": true,
+      "refused": false,
+      "n_tool_calls": 3,
+      "latency_ms": 18988.943133008434,
+      "est_cost_usd": 0.00031160000000000004,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "case_id": "CQ-10",
+      "group": "compound",
+      "served": true,
+      "refused": false,
+      "n_tool_calls": 1,
+      "latency_ms": 7389.953288002289,
+      "est_cost_usd": 0.00017067500000000002,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "case_id": "CQ-11",
+      "group": "compound",
+      "served": true,
+      "refused": false,
+      "n_tool_calls": 4,
+      "latency_ms": 21648.965561005753,
+      "est_cost_usd": 0.00040707500000000007,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "case_id": "CQ-12",
+      "group": "compound",
+      "served": true,
+      "refused": false,
+      "n_tool_calls": 3,
+      "latency_ms": 19274.607282000943,
+      "est_cost_usd": 0.000497975,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "case_id": "CQ-13",
+      "group": "compound",
+      "served": true,
+      "refused": false,
+      "n_tool_calls": 2,
+      "latency_ms": 13549.103302997537,
+      "est_cost_usd": 0.000623825,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "case_id": "CQ-14",
+      "group": "compound",
+      "served": false,
+      "refused": true,
+      "n_tool_calls": 0,
+      "latency_ms": 5187.441955000395,
+      "est_cost_usd": 0.0,
+      "ok": false,
+      "error": "HTTPStatusError: Server error '500 Internal Server Error' for url 'http://127.0.0.1:8020/api/chat'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500"
+    },
+    {
+      "case_id": "CQ-15",
+      "group": "compound",
+      "served": true,
+      "refused": false,
+      "n_tool_calls": 3,
+      "latency_ms": 15999.326489007217,
+      "est_cost_usd": 0.000667625,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "case_id": "CQ-16",
+      "group": "compound",
+      "served": false,
+      "refused": true,
+      "n_tool_calls": 0,
+      "latency_ms": 15666.472425000393,
+      "est_cost_usd": 0.0,
+      "ok": false,
+      "error": "HTTPStatusError: Server error '500 Internal Server Error' for url 'http://127.0.0.1:8020/api/chat'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500"
+    },
+    {
+      "case_id": "CQ-17",
+      "group": "compound",
+      "served": false,
+      "refused": true,
+      "n_tool_calls": 0,
+      "latency_ms": 3850.5415359977633,
+      "est_cost_usd": 0.0,
+      "ok": false,
+      "error": "HTTPStatusError: Server error '500 Internal Server Error' for url 'http://127.0.0.1:8020/api/chat'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500"
+    },
+    {
+      "case_id": "CQ-18",
+      "group": "compound",
+      "served": true,
+      "refused": false,
+      "n_tool_calls": 3,
+      "latency_ms": 20723.19067599892,
+      "est_cost_usd": 0.000448325,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "case_id": "CQ-19",
+      "group": "compound",
+      "served": false,
+      "refused": true,
+      "n_tool_calls": 0,
+      "latency_ms": 18131.0035839997,
+      "est_cost_usd": 0.0,
+      "ok": false,
+      "error": "HTTPStatusError: Server error '500 Internal Server Error' for url 'http://127.0.0.1:8020/api/chat'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500"
+    },
+    {
+      "case_id": "CQ-20",
+      "group": "compound",
+      "served": false,
+      "refused": true,
+      "n_tool_calls": 0,
+      "latency_ms": 2563.503366007353,
+      "est_cost_usd": 0.0,
+      "ok": false,
+      "error": "HTTPStatusError: Server error '500 Internal Server Error' for url 'http://127.0.0.1:8020/api/chat'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500"
+    },
+    {
+      "case_id": "CQ-21",
+      "group": "compound",
+      "served": false,
+      "refused": true,
+      "n_tool_calls": 0,
+      "latency_ms": 8969.938192996779,
+      "est_cost_usd": 0.0,
+      "ok": false,
+      "error": "HTTPStatusError: Server error '500 Internal Server Error' for url 'http://127.0.0.1:8020/api/chat'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500"
+    },
+    {
+      "case_id": "CQ-22",
+      "group": "compound",
+      "served": false,
+      "refused": true,
+      "n_tool_calls": 0,
+      "latency_ms": 3937.931103995652,
+      "est_cost_usd": 0.0,
+      "ok": false,
+      "error": "HTTPStatusError: Server error '500 Internal Server Error' for url 'http://127.0.0.1:8020/api/chat'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500"
+    },
+    {
+      "case_id": "CQ-23",
+      "group": "compound",
+      "served": false,
+      "refused": true,
+      "n_tool_calls": 0,
+      "latency_ms": 3114.696017000824,
+      "est_cost_usd": 0.0,
+      "ok": false,
+      "error": "HTTPStatusError: Server error '500 Internal Server Error' for url 'http://127.0.0.1:8020/api/chat'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500"
+    },
+    {
+      "case_id": "CQ-24",
+      "group": "compound",
+      "served": true,
+      "refused": false,
+      "n_tool_calls": 4,
+      "latency_ms": 38987.22309299046,
+      "est_cost_usd": 0.000988575,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "case_id": "CQ-25",
+      "group": "compound",
+      "served": true,
+      "refused": false,
+      "n_tool_calls": 4,
+      "latency_ms": 22036.787645003642,
+      "est_cost_usd": 0.000748425,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "case_id": "H-06",
+      "group": "hedge",
+      "served": false,
+      "refused": true,
+      "n_tool_calls": 3,
+      "latency_ms": 16941.398449009284,
+      "est_cost_usd": 0.00046964999999999995,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "case_id": "H-07",
+      "group": "hedge",
+      "served": false,
+      "refused": true,
+      "n_tool_calls": 1,
+      "latency_ms": 11419.645143992966,
+      "est_cost_usd": 0.000288425,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "case_id": "H-08",
+      "group": "hedge",
+      "served": false,
+      "refused": true,
+      "n_tool_calls": 0,
+      "latency_ms": 3259.684994001873,
+      "est_cost_usd": 0.0,
+      "ok": false,
+      "error": "HTTPStatusError: Server error '500 Internal Server Error' for url 'http://127.0.0.1:8020/api/chat'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500"
+    },
+    {
+      "case_id": "H-09",
+      "group": "hedge",
+      "served": true,
+      "refused": false,
+      "n_tool_calls": 1,
+      "latency_ms": 6735.001580993412,
+      "est_cost_usd": 0.000214625,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "case_id": "H-10",
+      "group": "hedge",
+      "served": true,
+      "refused": false,
+      "n_tool_calls": 1,
+      "latency_ms": 12039.878745999886,
+      "est_cost_usd": 0.0005399,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "case_id": "H-11",
+      "group": "hedge",
+      "served": false,
+      "refused": true,
+      "n_tool_calls": 0,
+      "latency_ms": 2725.2857540006517,
+      "est_cost_usd": 0.0,
+      "ok": false,
+      "error": "HTTPStatusError: Server error '500 Internal Server Error' for url 'http://127.0.0.1:8020/api/chat'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500"
+    },
+    {
+      "case_id": "H-12",
+      "group": "hedge",
+      "served": false,
+      "refused": true,
+      "n_tool_calls": 0,
+      "latency_ms": 3321.626223012572,
+      "est_cost_usd": 0.0,
+      "ok": false,
+      "error": "HTTPStatusError: Server error '500 Internal Server Error' for url 'http://127.0.0.1:8020/api/chat'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500"
+    },
+    {
+      "case_id": "H-13",
+      "group": "hedge",
+      "served": false,
+      "refused": true,
+      "n_tool_calls": 0,
+      "latency_ms": 6325.4945399967255,
+      "est_cost_usd": 0.0,
+      "ok": false,
+      "error": "HTTPStatusError: Server error '500 Internal Server Error' for url 'http://127.0.0.1:8020/api/chat'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500"
+    },
+    {
+      "case_id": "H-14",
+      "group": "hedge",
+      "served": true,
+      "refused": false,
+      "n_tool_calls": 5,
+      "latency_ms": 54272.83891099796,
+      "est_cost_usd": 0.0006109500000000001,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "case_id": "H-15",
+      "group": "hedge",
+      "served": true,
+      "refused": false,
+      "n_tool_calls": 3,
+      "latency_ms": 18264.759383004275,
+      "est_cost_usd": 0.000435675,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "case_id": "H-16",
+      "group": "hedge",
+      "served": true,
+      "refused": false,
+      "n_tool_calls": 1,
+      "latency_ms": 12704.595906994655,
+      "est_cost_usd": 0.0003073,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "case_id": "H-17",
+      "group": "hedge",
+      "served": false,
+      "refused": true,
+      "n_tool_calls": 0,
+      "latency_ms": 3300.6033779965946,
+      "est_cost_usd": 0.0,
+      "ok": false,
+      "error": "HTTPStatusError: Server error '500 Internal Server Error' for url 'http://127.0.0.1:8020/api/chat'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500"
+    },
+    {
+      "case_id": "H-18",
+      "group": "hedge",
+      "served": false,
+      "refused": true,
+      "n_tool_calls": 0,
+      "latency_ms": 3683.2300499954727,
+      "est_cost_usd": 0.0,
+      "ok": false,
+      "error": "HTTPStatusError: Server error '500 Internal Server Error' for url 'http://127.0.0.1:8020/api/chat'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500"
+    },
+    {
+      "case_id": "H-19",
+      "group": "hedge",
+      "served": true,
+      "refused": false,
+      "n_tool_calls": 1,
+      "latency_ms": 9113.812436000444,
+      "est_cost_usd": 0.000273375,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "case_id": "H-20",
+      "group": "hedge",
+      "served": false,
+      "refused": true,
+      "n_tool_calls": 0,
+      "latency_ms": 3932.733747002203,
+      "est_cost_usd": 0.0,
+      "ok": false,
+      "error": "HTTPStatusError: Server error '500 Internal Server Error' for url 'http://127.0.0.1:8020/api/chat'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500"
+    },
+    {
+      "case_id": "H-21",
+      "group": "hedge",
+      "served": true,
+      "refused": false,
+      "n_tool_calls": 5,
+      "latency_ms": 22799.459158995887,
+      "est_cost_usd": 0.000361,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "case_id": "H-22",
+      "group": "hedge",
+      "served": false,
+      "refused": true,
+      "n_tool_calls": 0,
+      "latency_ms": 6106.335909003974,
+      "est_cost_usd": 0.0,
+      "ok": false,
+      "error": "HTTPStatusError: Server error '500 Internal Server Error' for url 'http://127.0.0.1:8020/api/chat'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500"
+    },
+    {
+      "case_id": "H-23",
+      "group": "hedge",
+      "served": false,
+      "refused": true,
+      "n_tool_calls": 0,
+      "latency_ms": 3214.603257991257,
+      "est_cost_usd": 0.0,
+      "ok": false,
+      "error": "HTTPStatusError: Server error '500 Internal Server Error' for url 'http://127.0.0.1:8020/api/chat'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500"
+    },
+    {
+      "case_id": "H-24",
+      "group": "hedge",
+      "served": false,
+      "refused": true,
+      "n_tool_calls": 0,
+      "latency_ms": 7388.139931004844,
+      "est_cost_usd": 0.0,
+      "ok": false,
+      "error": "HTTPStatusError: Server error '500 Internal Server Error' for url 'http://127.0.0.1:8020/api/chat'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500"
+    },
+    {
+      "case_id": "H-25",
+      "group": "hedge",
+      "served": false,
+      "refused": true,
+      "n_tool_calls": 0,
+      "latency_ms": 4947.916637000162,
+      "est_cost_usd": 0.00018790000000000001,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "case_id": "U-06",
+      "group": "usability",
+      "served": true,
+      "refused": false,
+      "n_tool_calls": 1,
+      "latency_ms": 5949.635775003117,
+      "est_cost_usd": 0.0001725,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "case_id": "U-07",
+      "group": "usability",
+      "served": true,
+      "refused": false,
+      "n_tool_calls": 1,
+      "latency_ms": 9351.783848993364,
+      "est_cost_usd": 0.00027085,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "case_id": "U-08",
+      "group": "usability",
+      "served": true,
+      "refused": false,
+      "n_tool_calls": 1,
+      "latency_ms": 6475.55116500007,
+      "est_cost_usd": 0.00018832499999999998,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "case_id": "U-09",
+      "group": "usability",
+      "served": true,
+      "refused": false,
+      "n_tool_calls": 1,
+      "latency_ms": 4844.99636599503,
+      "est_cost_usd": 0.000162175,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "case_id": "U-10",
+      "group": "usability",
+      "served": true,
+      "refused": false,
+      "n_tool_calls": 1,
+      "latency_ms": 29358.163073004107,
+      "est_cost_usd": 0.00067325,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "case_id": "U-11",
+      "group": "usability",
+      "served": false,
+      "refused": true,
+      "n_tool_calls": 1,
+      "latency_ms": 5983.4218909963965,
+      "est_cost_usd": 0.00015984999999999998,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "case_id": "U-12",
+      "group": "usability",
+      "served": true,
+      "refused": false,
+      "n_tool_calls": 3,
+      "latency_ms": 13483.813648010255,
+      "est_cost_usd": 0.000367525,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "case_id": "U-13",
+      "group": "usability",
+      "served": true,
+      "refused": false,
+      "n_tool_calls": 2,
+      "latency_ms": 17287.280307005858,
+      "est_cost_usd": 0.00081515,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "case_id": "U-14",
+      "group": "usability",
+      "served": true,
+      "refused": false,
+      "n_tool_calls": 2,
+      "latency_ms": 10039.34022600879,
+      "est_cost_usd": 0.00027272500000000003,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "case_id": "U-15",
+      "group": "usability",
+      "served": false,
+      "refused": true,
+      "n_tool_calls": 0,
+      "latency_ms": 4026.9606219953857,
+      "est_cost_usd": 0.0,
+      "ok": false,
+      "error": "HTTPStatusError: Server error '500 Internal Server Error' for url 'http://127.0.0.1:8020/api/chat'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500"
+    },
+    {
+      "case_id": "U-16",
+      "group": "usability",
+      "served": false,
+      "refused": true,
+      "n_tool_calls": 0,
+      "latency_ms": 2174.055037990911,
+      "est_cost_usd": 0.0,
+      "ok": false,
+      "error": "HTTPStatusError: Server error '500 Internal Server Error' for url 'http://127.0.0.1:8020/api/chat'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500"
+    },
+    {
+      "case_id": "U-17",
+      "group": "usability",
+      "served": true,
+      "refused": false,
+      "n_tool_calls": 1,
+      "latency_ms": 8232.532966998406,
+      "est_cost_usd": 0.000245975,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "case_id": "U-18",
+      "group": "usability",
+      "served": false,
+      "refused": true,
+      "n_tool_calls": 0,
+      "latency_ms": 5207.045992996427,
+      "est_cost_usd": 0.0,
+      "ok": false,
+      "error": "HTTPStatusError: Server error '500 Internal Server Error' for url 'http://127.0.0.1:8020/api/chat'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500"
+    },
+    {
+      "case_id": "U-19",
+      "group": "usability",
+      "served": true,
+      "refused": false,
+      "n_tool_calls": 2,
+      "latency_ms": 8278.533039003378,
+      "est_cost_usd": 0.000228575,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "case_id": "U-20",
+      "group": "usability",
+      "served": false,
+      "refused": true,
+      "n_tool_calls": 0,
+      "latency_ms": 5613.781675987411,
+      "est_cost_usd": 0.0,
+      "ok": false,
+      "error": "HTTPStatusError: Server error '500 Internal Server Error' for url 'http://127.0.0.1:8020/api/chat'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500"
+    },
+    {
+      "case_id": "U-21",
+      "group": "usability",
+      "served": false,
+      "refused": true,
+      "n_tool_calls": 0,
+      "latency_ms": 2942.7921979950042,
+      "est_cost_usd": 0.0,
+      "ok": false,
+      "error": "HTTPStatusError: Server error '500 Internal Server Error' for url 'http://127.0.0.1:8020/api/chat'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500"
+    },
+    {
+      "case_id": "U-22",
+      "group": "usability",
+      "served": true,
+      "refused": false,
+      "n_tool_calls": 1,
+      "latency_ms": 6219.401979004033,
+      "est_cost_usd": 0.00017627500000000002,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "case_id": "U-23",
+      "group": "usability",
+      "served": false,
+      "refused": true,
+      "n_tool_calls": 0,
+      "latency_ms": 2714.374836999923,
+      "est_cost_usd": 0.0,
+      "ok": false,
+      "error": "HTTPStatusError: Server error '500 Internal Server Error' for url 'http://127.0.0.1:8020/api/chat'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500"
+    },
+    {
+      "case_id": "U-24",
+      "group": "usability",
+      "served": true,
+      "refused": false,
+      "n_tool_calls": 1,
+      "latency_ms": 17588.22088300076,
+      "est_cost_usd": 0.00073985,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "case_id": "U-25",
+      "group": "usability",
+      "served": true,
+      "refused": false,
+      "n_tool_calls": 1,
+      "latency_ms": 11339.040920007392,
+      "est_cost_usd": 0.00047795,
+      "ok": true,
+      "error": ""
+    }
+  ],
+  "details": {
+    "C-01": {
+      "tool_calls": [
+        "query_by_jurisdiction",
+        "query_by_framework",
+        "query_by_framework",
+        "get_regulation_by_id"
+      ],
+      "response_preview": "## Colorado's AI Requirements for Risk Management\n\nColorado's current law on this topic is **SB 26-189 (Automated Decision-Making Technology)**, adopted and effective **January 1, 2027**. Here's what "
+    },
+    "C-02": {
+      "tool_calls": [
+        "get_eu_ai_act_article"
+      ],
+      "response_preview": "## EU AI Act \u2014 Article 9: Risk Management System\n\n**Status:** Adopted | **Effective:** August 2, 2026 | **Applies to:** High-risk AI systems (all sectors)\n\nArticle 9 requires that a **risk management "
+    },
+    "C-03": {
+      "tool_calls": [
+        "query_by_framework",
+        "query_by_sector",
+        "query_by_jurisdiction",
+        "query_by_jurisdiction"
+      ],
+      "response_preview": "## The NAIC Model Bulletin on AI \u2014 Overview and State-Level Comparison\n\n### What Is the NAIC Model Bulletin?\n\nThe **NAIC Model Bulletin on AI** (adopted December 4, 2023) is a **baseline framework** i"
+    },
+    "C-04": {
+      "tool_calls": [
+        "query_by_sector",
+        "query_by_jurisdiction",
+        "query_by_framework",
+        "query_by_framework",
+        "query_by_framework"
+      ],
+      "response_preview": "Here's a comprehensive overview of **insurance-sector AI regulations** in the U.S.:\n\n---\n\n## \ud83d\udccb All Insurance AI Regulations\n\n### 1. NAIC Model Bulletin on AI (Base Model) \u2014 *Federal-level guidance*\n- "
+    },
+    "C-05": {
+      "tool_calls": [
+        "get_best_model_for_article",
+        "get_eu_ai_act_article"
+      ],
+      "response_preview": "## \ud83c\udfc6 Top Performers on Article 9 (Risk Management)\n\n**Two models tie for first place** on Article 9 compliance assessment: **GPT-4o (OpenAI)** and **Gemma (Google)**, both achieving a perfect **accura"
+    },
+    "CQ-01": {
+      "tool_calls": [
+        "query_by_jurisdiction",
+        "query_by_jurisdiction",
+        "query_by_sector",
+        "query_by_sector"
+      ],
+      "response_preview": "Here's a breakdown of what each state requires regarding AI in credit scoring:\n\n---\n\n## \ud83d\uddfd New York\n\nNew York's **NYDFS Circular Letter No. 7 (2024)** is an **adopted** regulation (effective July 11, 2"
+    },
+    "CQ-02": {
+      "tool_calls": [
+        "compare_models",
+        "get_best_model_for_article",
+        "get_eu_ai_act_article"
+      ],
+      "response_preview": "Here's the head-to-head comparison between **GPT-4o** and **o3** on the AIReg-Bench benchmark.\n\n---\n\n## Overall Compliance Assessment\n\n| Metric | GPT-4o | o3 |\n|---|---|---|\n| **Accuracy** (higher = b"
+    },
+    "CQ-03": {
+      "tool_calls": [
+        "query_by_sector",
+        "query_by_sector"
+      ],
+      "response_preview": "Here are the key lending and fintech regulations, along with the AI-specific rules:\n\n---\n\n## \ud83c\uddfa\ud83c\uddf8 US Federal Regulations\n\n**1. Interagency Model Risk Management Guidance (SR 11-7 Replacement) \u2014 *Adopted"
+    },
+    "CQ-04": {
+      "tool_calls": [
+        "get_eu_ai_act_article",
+        "get_best_model_for_article",
+        "get_regulation_by_id"
+      ],
+      "response_preview": "## EU AI Act \u2014 Article 10: Data Governance\n\n**Status:** Adopted | **Effective:** August 2, 2026 | **Sector:** All (both insurance and lending/fintech)\n\nArticle 10 sets **data quality and governance re"
+    },
+    "CQ-05": {
+      "tool_calls": [
+        "query_by_jurisdiction",
+        "query_by_jurisdiction",
+        "query_by_jurisdiction"
+      ],
+      "response_preview": "Here's a summary of AI regulation requirements across **Colorado**, **New York**, and the **EU**, along with areas of potential conflict.\n\n---\n\n## \ud83c\uddfa\ud83c\uddf8 Colorado\n\n**Adopted:** Colorado SB 26-189 (Automat"
+    },
+    "H-01": {
+      "tool_calls": [
+        "query_by_jurisdiction",
+        "get_eu_ai_act_article",
+        "get_regulation_by_id",
+        "get_eu_ai_act_article",
+        "query_by_framework"
+      ],
+      "response_preview": "Here's a comparison of Colorado's and the EU's risk-management requirements:\n\n---\n\n## Colorado SB 26-189 (Automated Decision-Making Technology)\n- **Status:** Adopted, effective **January 1, 2027**\n- *"
+    },
+    "H-02": {
+      "tool_calls": [
+        "get_eu_ai_act_article"
+      ],
+      "response_preview": "I don't have information on whether Article 9's requirements will change in a future version of the EU AI Act. My data sources only contain the **current adopted version** of Article 9, which is alrea"
+    },
+    "H-03": {
+      "tool_calls": [],
+      "response_preview": ""
+    },
+    "H-04": {
+      "tool_calls": [
+        "query_by_jurisdiction",
+        "query_by_sector",
+        "query_by_framework"
+      ],
+      "response_preview": "I don't have information on a specific New York AI credit-scoring rule in my dataset. Here's what I *do* have for New York:\n\n**New York's only AI regulation in the dataset** is **NYDFS Circular Letter"
+    },
+    "H-05": {
+      "tool_calls": [
+        "query_by_jurisdiction",
+        "query_by_sector"
+      ],
+      "response_preview": "Actually, I can't be confident about that at all \u2014 because **Illinois does have an AI-specific insurance regulation on the books.** Here's what the data shows:\n\n**Illinois NAIC AI Model Bulletin Adopt"
+    },
+    "U-01": {
+      "tool_calls": [
+        "query_by_jurisdiction",
+        "get_regulation_by_id"
+      ],
+      "response_preview": "Here's a ready-to-use summary for your client memo:\n\n---\n\n### Colorado AI Regulation \u2014 SB 26-189 (Automated Decision-Making Technology)\n\n**Status:** Adopted | **Effective Date:** January 1, 2027\n\n**Ke"
+    },
+    "U-02": {
+      "tool_calls": [
+        "get_best_model_for_article",
+        "get_eu_ai_act_article"
+      ],
+      "response_preview": "I'd recommend **GPT-4o** (OpenAI) for your Article 9 compliance tool. Here's why: **Article 9** of the EU AI Act (adopted, effective August 2026) requires high-risk AI systems to have a continuous, do"
+    },
+    "U-03": {
+      "tool_calls": [
+        "query_by_framework"
+      ],
+      "response_preview": "Here's the one thing you need to know:\n\n**The NAIC Model Bulletin on AI is the dominant regulatory framework for AI in U.S. insurance \u2014 over 20 states have already adopted it, and it's the baseline ag"
+    },
+    "U-04": {
+      "tool_calls": [
+        "query_by_jurisdiction",
+        "query_by_sector"
+      ],
+      "response_preview": "Based on my data, New York does not currently have a specific regulation addressing AI in **credit scoring** (lending/fintech). The only New York AI regulation in the dataset is **NYDFS Circular Lette"
+    },
+    "U-05": {
+      "tool_calls": [],
+      "response_preview": ""
+    },
+    "C-06": {
+      "tool_calls": [
+        "query_by_jurisdiction"
+      ],
+      "response_preview": "## Colorado SB 24-205 \u2014 Repealed and Replaced\n\nColorado SB 24-205 was the state's original comprehensive AI Act, but it has been **repealed and replaced** by **SB 26-189** (signed into law in May 2026"
+    },
+    "C-07": {
+      "tool_calls": [],
+      "response_preview": ""
+    },
+    "C-08": {
+      "tool_calls": [
+        "get_eu_ai_act_article",
+        "get_regulation_by_id"
+      ],
+      "response_preview": "## EU AI Act Article 14 \u2014 Human Oversight\n\n**Status:** Adopted | **Effective:** August 2, 2026 | **Sector:** All (both insurance and lending/fintech)\n\nArticle 14 imposes the following **human oversigh"
+    },
+    "C-09": {
+      "tool_calls": [
+        "query_by_framework",
+        "get_regulation_by_id"
+      ],
+      "response_preview": "## What the NAIC Model Bulletin Says About Third-Party AI Vendors\n\nThe **NAIC Model Bulletin on AI (Base Model)**, adopted December 4, 2023, requires insurers to establish **third-party vendor oversig"
+    },
+    "C-10": {
+      "tool_calls": [],
+      "response_preview": ""
+    },
+    "C-11": {
+      "tool_calls": [
+        "get_best_model_for_article"
+      ],
+      "response_preview": "The top spot on **Article 9 (Risk Management)** is a **tie** between two models, both achieving a perfect accuracy score:\n\n- **GPT-4o (OpenAI)** \u2014 **Accuracy: 1.0**\n- **Gemma (Google)** \u2014 **Accuracy: "
+    },
+    "C-12": {
+      "tool_calls": [
+        "query_by_sector"
+      ],
+      "response_preview": "Here are the AI frameworks in my data that apply to the **insurance sector**:\n\n---\n\n### \ud83c\udfdb\ufe0f Federal / Multi-State Frameworks\n\n| Framework | Status | Effective |\n|---|---|---|\n| **NAIC Model Bulletin on"
+    },
+    "C-13": {
+      "tool_calls": [
+        "query_by_jurisdiction",
+        "query_by_framework"
+      ],
+      "response_preview": "## NYDFS Circular Letter No. 7 (2024) \u2014 AI in Insurance Underwriting\n\nThis is an **adopted** guidance (effective **July 11, 2024**) from the New York Department of Financial Services (NYDFS) covering "
+    },
+    "C-14": {
+      "tool_calls": [
+        "get_eu_ai_act_article"
+      ],
+      "response_preview": "I don't have information on EU AI Act **Article 6** in my dataset. The articles I have access to are **Articles 9, 10, 12, 14, and 15** \u2014 which cover risk management, data governance, record-keeping, "
+    },
+    "C-15": {
+      "tool_calls": [
+        "get_eu_ai_act_article",
+        "get_regulation_by_id"
+      ],
+      "response_preview": "## EU AI Act Article 12 \u2014 Record-Keeping Duties\n\n**Status:** Adopted | **Effective:** August 2, 2026 | **Applies to:** High-risk AI systems (both insurance and lending/fintech sectors)\n\nArticle 12 imp"
+    },
+    "C-16": {
+      "tool_calls": [],
+      "response_preview": ""
+    },
+    "C-17": {
+      "tool_calls": [
+        "query_by_jurisdiction",
+        "get_regulation_by_id",
+        "query_by_framework",
+        "query_by_framework",
+        "query_by_sector"
+      ],
+      "response_preview": "## Colorado's Requirements on Algorithmic Discrimination\n\nColorado's current law on this topic is **SB 26-189 (Automated Decision-Making Technology)**, which was **adopted** in May 2026 and takes effe"
+    },
+    "C-18": {
+      "tool_calls": [],
+      "response_preview": ""
+    },
+    "C-19": {
+      "tool_calls": [],
+      "response_preview": ""
+    },
+    "C-20": {
+      "tool_calls": [
+        "query_by_jurisdiction"
+      ],
+      "response_preview": "Colorado has had two AI-related laws, so let me clarify:\n\n### Current Law: Colorado SB 26-189 (Automated Decision-Making Technology)\n- **Status:** Adopted\n- **Effective Date:** **January 1, 2027**\n- T"
+    },
+    "C-21": {
+      "tool_calls": [
+        "get_eu_ai_act_article"
+      ],
+      "response_preview": "I don't have information on EU AI Act Article 43 in my dataset. The articles I can retrieve are **Articles 9, 10, 12, 14, and 15** \u2014 which cover risk management, data governance, record-keeping, human"
+    },
+    "C-22": {
+      "tool_calls": [
+        "query_by_framework",
+        "get_regulation_by_id"
+      ],
+      "response_preview": "## What the NAIC Model Bulletin Says About Governance and Board Accountability\n\nThe **NAIC Model Bulletin on AI (Base Model)** was **adopted** on December 4, 2023, and serves as the baseline guidance "
+    },
+    "C-23": {
+      "tool_calls": [],
+      "response_preview": ""
+    },
+    "C-24": {
+      "tool_calls": [
+        "get_eu_ai_act_article"
+      ],
+      "response_preview": "I don't have information on EU AI Act **Article 72**. My dataset covers Articles 9, 10, 12, 14, and 15 of the EU AI Act \u2014 the ones evaluated in the AIReg-Bench benchmark. Article 72 is not among them."
+    },
+    "C-25": {
+      "tool_calls": [],
+      "response_preview": ""
+    },
+    "CQ-06": {
+      "tool_calls": [
+        "query_by_jurisdiction",
+        "query_by_jurisdiction",
+        "query_by_sector"
+      ],
+      "response_preview": "## Colorado vs. Illinois: AI Insurance Rules\n\n### Illinois \u2014 Direct Insurance Obligations\n\n**Adopted** \u2014 Illinois NAIC AI Model Bulletin Adoption (effective April 1, 2025)\n\nIllinois has adopted the NA"
+    },
+    "CQ-07": {
+      "tool_calls": [
+        "get_eu_ai_act_article",
+        "get_best_model_for_article",
+        "query_by_model"
+      ],
+      "response_preview": "## EU AI Act Article 9 \u2014 Risk Management\n\n**Article 9** (adopted, effective August 2, 2026) requires that **a risk management system be established, implemented, documented, and maintained** for all h"
+    },
+    "CQ-08": {
+      "tool_calls": [
+        "query_by_jurisdiction",
+        "query_by_sector",
+        "query_by_framework",
+        "query_by_framework"
+      ],
+      "response_preview": "Here's what I found in the dataset for **New York's AI credit-scoring obligations**:\n\n---\n\n## New York-Specific Regulations\n\nThe dataset contains **one** New York regulation, but it is **insurance-spe"
+    },
+    "CQ-09": {
+      "tool_calls": [
+        "get_eu_ai_act_article",
+        "get_regulation_by_id",
+        "query_by_framework"
+      ],
+      "response_preview": "## EU AI Act \u2014 Article 10: Data Governance\n\n**Status:** Adopted | **Effective:** August 2, 2026 | **Sector:** Both (insurance & lending-fintech)\n\n**Key rules:**\n\n1. **Quality datasets required** \u2014 Hig"
+    },
+    "CQ-10": {
+      "tool_calls": [
+        "get_best_model_for_article"
+      ],
+      "response_preview": "The top two models for **overall compliance** are:\n\n1. **Gemini Pro (Google)** \u2014 accuracy **0.917**\n2. **OpenAI o3** \u2014 accuracy **0.900**\n\nThey are **0.017 apart** (accuracy difference), meaning Gemin"
+    },
+    "CQ-11": {
+      "tool_calls": [
+        "get_eu_ai_act_article",
+        "get_eu_ai_act_article",
+        "get_regulation_by_id",
+        "get_regulation_by_id"
+      ],
+      "response_preview": "Here's a comparison of **EU AI Act Article 9** (Risk Management) and **Article 15** (Accuracy, Robustness, and Cybersecurity), both **adopted** and effective **August 2, 2026**:\n\n---\n\n## Article 9 \u2014 R"
+    },
+    "CQ-12": {
+      "tool_calls": [
+        "query_by_jurisdiction",
+        "get_regulation_by_id",
+        "query_by_framework"
+      ],
+      "response_preview": "## AI Rules in Colorado\n\nColorado has **two** AI-related regulations in the dataset, but only one is currently active:\n\n### Active Regulation\n\n| Framework | Status | Effective | Sector |\n|-----------|"
+    },
+    "CQ-13": {
+      "tool_calls": [
+        "query_by_framework",
+        "query_by_framework"
+      ],
+      "response_preview": "Here's a summary of the NAIC Model Bulletin and how it compares to NYDFS Circular Letter No. 7.\n\n---\n\n## NAIC Model Bulletin on AI (Base Model)\n\n**Status:** Adopted (December 4, 2023) | **Sector:** In"
+    },
+    "CQ-14": {
+      "tool_calls": [],
+      "response_preview": ""
+    },
+    "CQ-15": {
+      "tool_calls": [
+        "query_by_jurisdiction",
+        "query_by_sector",
+        "query_by_framework"
+      ],
+      "response_preview": "Here's what I found:\n\n---\n\n## Illinois AI Requirements\n\nIllinois has **one adopted AI regulation** in this dataset, and it's specific to the **insurance sector**:\n\n**Illinois NAIC AI Model Bulletin Ad"
+    },
+    "CQ-16": {
+      "tool_calls": [],
+      "response_preview": ""
+    },
+    "CQ-17": {
+      "tool_calls": [],
+      "response_preview": ""
+    },
+    "CQ-18": {
+      "tool_calls": [
+        "query_by_jurisdiction",
+        "query_by_jurisdiction",
+        "query_by_jurisdiction"
+      ],
+      "response_preview": "## Colorado, New York, and Illinois: AI Regulation Comparison\n\nHere's a breakdown of each state's AI enforcement framework, ranked by how far along they are:\n\n---\n\n### \ud83e\udd47 1. New York \u2014 Most Advanced\n- "
+    },
+    "CQ-19": {
+      "tool_calls": [],
+      "response_preview": ""
+    },
+    "CQ-20": {
+      "tool_calls": [],
+      "response_preview": ""
+    },
+    "CQ-21": {
+      "tool_calls": [],
+      "response_preview": ""
+    },
+    "CQ-22": {
+      "tool_calls": [],
+      "response_preview": ""
+    },
+    "CQ-23": {
+      "tool_calls": [],
+      "response_preview": ""
+    },
+    "CQ-24": {
+      "tool_calls": [
+        "get_best_model_for_article",
+        "get_best_model_for_article",
+        "query_by_article",
+        "query_by_article"
+      ],
+      "response_preview": "## Overall Best Model\n\nBased on the AIReg-Bench evaluation (across all 5 EU AI Act articles \u2014 Articles 9, 10, 12, 14, and 15), the top model is:\n\n\ud83c\udfc6 **Google Gemini Pro** \u2014 with an **accuracy of 0.917*"
+    },
+    "CQ-25": {
+      "tool_calls": [
+        "query_by_jurisdiction",
+        "query_by_jurisdiction",
+        "query_by_sector",
+        "query_by_sector"
+      ],
+      "response_preview": "## New York vs. EU: AI Requirements for Financial Services\n\n### \ud83c\uddfa\ud83c\uddf8 New York\n\n**Framework:** NYDFS Circular Letter No. 7 (2024) \u2014 **Adopted**, effective July 11, 2024\n**Scope:** Insurance only (underwr"
+    },
+    "H-06": {
+      "tool_calls": [
+        "query_by_framework",
+        "query_by_framework",
+        "query_by_framework"
+      ],
+      "response_preview": "I can't give you a definitive yes/no answer on whether your specific chatbot is exempt \u2014 that depends on the details of your use case, which I don't have. However, I can tell you what the EU AI Act sa"
+    },
+    "H-07": {
+      "tool_calls": [
+        "query_by_jurisdiction"
+      ],
+      "response_preview": "I can tell you what's in the data about Colorado's AI regulation, but I can't predict whether it would survive a court challenge \u2014 that's a forward-looking legal question that my data sources don't co"
+    },
+    "H-08": {
+      "tool_calls": [],
+      "response_preview": ""
+    },
+    "H-09": {
+      "tool_calls": [
+        "query_by_jurisdiction"
+      ],
+      "response_preview": "Yes, there is one AI-related regulation in Texas that you should be aware of:\n\n### Texas NAIC AI Model Bulletin Adoption\n- **Status:** \u2705 **Adopted** (effective June 1, 2025)\n- **Sector:** **Insurance*"
+    },
+    "H-10": {
+      "tool_calls": [
+        "query_by_framework"
+      ],
+      "response_preview": "Great question. The short answer is **no \u2014 the NAIC Model Bulletin itself is not directly legally binding on insurers.** Here's the distinction:\n\n## What the NAIC Is\n\nThe **National Association of Ins"
+    },
+    "H-11": {
+      "tool_calls": [],
+      "response_preview": ""
+    },
+    "H-12": {
+      "tool_calls": [],
+      "response_preview": ""
+    },
+    "H-13": {
+      "tool_calls": [],
+      "response_preview": ""
+    },
+    "H-14": {
+      "tool_calls": [
+        "query_by_jurisdiction",
+        "query_by_jurisdiction",
+        "query_by_sector",
+        "query_by_framework",
+        "query_by_framework"
+      ],
+      "response_preview": "## Illinois vs. New York: AI in Insurance\n\n**New York is stricter.** Here's the breakdown:\n\n### New York \u2014 NYDFS Circular Letter No. 7 (2024)\n- **Status:** Adopted (effective July 11, 2024)\n- **What i"
+    },
+    "H-15": {
+      "tool_calls": [
+        "query_by_framework",
+        "list_all_articles",
+        "get_eu_ai_act_article"
+      ],
+      "response_preview": "I can share what the **EU AI Act Article 99 (Penalties)** says about small vendors, but I want to be upfront: I can tell you what the regulation *says*, not whether it *will actually be enforced* in p"
+    },
+    "H-16": {
+      "tool_calls": [
+        "query_by_jurisdiction"
+      ],
+      "response_preview": "Great question. Based on my data, here's the picture:\n\n**There is no comprehensive federal AI law** (like an \"EU AI Act\" equivalent) enacted at the US federal level. However, there **are** several ado"
+    },
+    "H-17": {
+      "tool_calls": [],
+      "response_preview": ""
+    },
+    "H-18": {
+      "tool_calls": [],
+      "response_preview": ""
+    },
+    "H-19": {
+      "tool_calls": [
+        "query_by_jurisdiction"
+      ],
+      "response_preview": "Colorado's current AI law does **not** specifically address generative AI. Here's what the data shows:\n\n**Current law (adopted): Colorado SB 26-189 (Automated Decision-Making Technology)**\n- **Status:"
+    },
+    "H-20": {
+      "tool_calls": [],
+      "response_preview": ""
+    },
+    "H-21": {
+      "tool_calls": [
+        "get_eu_ai_act_article",
+        "query_by_framework",
+        "get_eu_ai_act_article",
+        "get_best_model_for_article",
+        "get_best_model_for_article"
+      ],
+      "response_preview": "## No \u2014 the EU AI Act does not allow skipping human oversight based on model scores.\n\nHere's why:\n\n### What the law says\n\n**EU AI Act Article 14** (adopted, effective **August 2, 2026**) requires that"
+    },
+    "H-22": {
+      "tool_calls": [],
+      "response_preview": ""
+    },
+    "H-23": {
+      "tool_calls": [],
+      "response_preview": ""
+    },
+    "H-24": {
+      "tool_calls": [],
+      "response_preview": ""
+    },
+    "H-25": {
+      "tool_calls": [],
+      "response_preview": "No, you absolutely cannot rely on my answers as legal advice. I'm a **demonstration of agent architecture** \u2014 not a legal compliance tool, not a licensed attorney, and not a substitute for professiona"
+    },
+    "U-06": {
+      "tool_calls": [
+        "get_eu_ai_act_article"
+      ],
+      "response_preview": "Here's a sentence you can use:\n\n> \"Under **Article 9** of the **EU AI Act** (adopted, effective **August 2, 2026**), we are required to establish, implement, document, and maintain a **continuous risk"
+    },
+    "U-07": {
+      "tool_calls": [
+        "query_by_jurisdiction"
+      ],
+      "response_preview": "Here's a three-bullet compliance checklist based on **Colorado SB 26-189 (Automated Decision-Making Technology)** \u2014 the state's current adopted AI law, effective **January 1, 2027**.\n\n---\n\n### \u2705 Color"
+    },
+    "U-08": {
+      "tool_calls": [
+        "query_by_jurisdiction"
+      ],
+      "response_preview": "Here's the one-liner for your GC:\n\n**NYDFS Circular Letter No. 7 (2024)** \u2014 adopted, effective July 11, 2024 \u2014 requires that AI and external data used in **insurance underwriting and pricing** must no"
+    },
+    "U-09": {
+      "tool_calls": [
+        "get_best_model_for_article"
+      ],
+      "response_preview": "**Gemini Pro (Google)** \u2014 it achieved the highest accuracy (0.969) on Article 10 data governance assessments, meaning its compliance scores were closest to human expert annotations.\n\n**Sources:**\n- Ge"
+    },
+    "U-10": {
+      "tool_calls": [
+        "query_by_framework"
+      ],
+      "response_preview": "Here's a plain-English summary of the **NAIC Model Bulletin on AI Use in Insurance** \u2014 what it is, what it requires, and what you (as a PM) need to do about it.\n\n---\n\n## What is the NAIC Model Bulleti"
+    },
+    "U-11": {
+      "tool_calls": [
+        "get_eu_ai_act_article"
+      ],
+      "response_preview": "I don't have information on EU AI Act **Article 13** in my dataset. The articles available in the AIReg-Bench data are **Articles 9, 10, 12, 14, and 15** \u2014 Article 13 is not included.\n\nI can help you "
+    },
+    "U-12": {
+      "tool_calls": [
+        "query_by_jurisdiction",
+        "query_by_sector",
+        "query_by_jurisdiction"
+      ],
+      "response_preview": "The fastest compliant path to ship an AI credit tool in New York is to comply with the **adopted federal frameworks**, since New York has no state-specific AI credit/lending law on the books (its only"
+    },
+    "U-13": {
+      "tool_calls": [
+        "query_by_article",
+        "get_best_model_for_article"
+      ],
+      "response_preview": "**Yes \u2014 but with one caveat.**\n\nGPT-4o is actually **tied for the best-performing model** on Article 9 (Risk Management System) in the AIReg-Bench benchmark. In **Scenario C**, it achieved a perfect *"
+    },
+    "U-14": {
+      "tool_calls": [
+        "query_by_jurisdiction",
+        "query_by_jurisdiction"
+      ],
+      "response_preview": "Here's a clean comparison table for your screenshot:\n\n---\n\n### Colorado vs. New York \u2014 AI Rules at a Glance\n\n| Aspect | **Colorado** | **New York** |\n|---|---|---|\n| **Framework** | SB 26-189 (Automat"
+    },
+    "U-15": {
+      "tool_calls": [],
+      "response_preview": ""
+    },
+    "U-16": {
+      "tool_calls": [],
+      "response_preview": ""
+    },
+    "U-17": {
+      "tool_calls": [
+        "query_by_sector"
+      ],
+      "response_preview": "**The Interagency Model Risk Management Guidance (SR 11-7 Replacement)** \u2014 it's already in effect (April 2026), applies across all federal banking regulators (OCC, Fed, FDIC), and sets the foundationa"
+    },
+    "U-18": {
+      "tool_calls": [],
+      "response_preview": ""
+    },
+    "U-19": {
+      "tool_calls": [
+        "query_by_jurisdiction",
+        "query_by_jurisdiction"
+      ],
+      "response_preview": "Illinois requires **insurance-specific AI governance, documentation, and third-party oversight** under its adoption of the NAIC Model Bulletin (effective April 2025), whereas Colorado's AI regulations"
+    },
+    "U-20": {
+      "tool_calls": [],
+      "response_preview": ""
+    },
+    "U-21": {
+      "tool_calls": [],
+      "response_preview": ""
+    },
+    "U-22": {
+      "tool_calls": [
+        "query_by_jurisdiction"
+      ],
+      "response_preview": "Colorado AI compliance: **SB 26-189 adopted** (replaced repealed SB 24-205). Effective Jan 2027. Requires risk assessments for automated decisions. **Sources:** [Colorado SB 26-189](https://www.consum"
+    },
+    "U-23": {
+      "tool_calls": [],
+      "response_preview": ""
+    },
+    "U-24": {
+      "tool_calls": [
+        "query_by_article"
+      ],
+      "response_preview": "**HIGH RISK.** The lowest-scoring model on Article 9 (Risk Management System) is **OpenAI o3-mini**, which achieved the worst accuracy of any model across scenarios \u2014 just **0.531** on Scenario A and "
+    },
+    "U-25": {
+      "tool_calls": [
+        "query_by_framework"
+      ],
+      "response_preview": "Great, I have the full picture of the NAIC bulletin. Here's a concise answer:\n\n---\n\nBased on the NAIC Model Bulletin on AI (adopted December 2023), here's the single best follow-up question to ask leg"
+    }
+  }
+}
