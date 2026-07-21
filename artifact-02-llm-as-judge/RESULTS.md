@@ -1,166 +1,162 @@
 # RESULTS — is this judge trustworthy enough to gate releases?
 
 **Judge:** `deepseek/deepseek-v4-flash` (OpenRouter, `reasoning_effort=high`), prompt `judge_v1`.
-**Reference:** Carlos's hand labels (sole labeler). **Cases:** 85 judged of 100 labeled
-(15 collected + labeled *after* this judge run — see §6).
-**Run:** binary per-criterion verdicts + four bias probes, 8-way parallel.
-**Provenance:** the judge verdicts are the frozen committed run; the gold standard was
-refreshed 2026-07-20 and the agreement below **re-scored against the new labels without
-re-invoking the judge** (`regenerate_report.py`) — the judge never sees the labels, so its
-verdicts are a fixed artifact and holding them constant is the correct, reproducible thing to
-do. §7.
+**Reference:** Carlos's hand labels (sole labeler). **Cases:** 95 judged of 100 labeled
+(5 unjudged — H-03, H-08, H-12, U-18, U-21 — are empty/parse-failure responses the
+fault-tolerant pipeline recorded rather than aborting the run). **Run:** full live pass over
+all 100, binary per-criterion verdicts + four bias probes, 8-way parallel, $0.044.
 
 The question this artifact answers is **not** "can an LLM grade responses." It is "do I trust
-*this* judge enough to let it gate releases," and the honest answer is **on three of four
-criteria yes as a screen, and on the fourth — `appropriately-hedged` — no, because the judge
-is measurably over-strict against a human standard.** That split is the finding.
+*this* judge enough to let it gate releases," and the honest answer is **as a cautious review
+screen on three of four criteria yes; as an autonomous gate no; and on the fourth criterion —
+`appropriately-hedged` — not at all, because it is measurably broken against a human standard.**
+That split is the finding.
 
 ## 1. Headline agreement
 
-| Criterion | n | Agreement | Cohen's κ | Human spread | Verdict |
+| Criterion | n | Agreement | Cohen's κ | Disagreements | Verdict |
 |---|---|---|---|---|---|
-| grounded | 85 | **100%** | **1.00** | 81 T / 4 F | **Validated** — §2 |
-| complete | 85 | 86% | 0.29 | 21 T / 64 F¹ | Usable as a screen — §4 |
-| appropriately-hedged | 85 | 40% | **0.05** | 81 T / 4 F | **Broken — do not gate** — §3 |
-| usable | 85 | 93% | 0.38 | 12 T / 73 F¹ | Usable as a screen — §4 |
+| grounded | 95 | 95% | 0.26 | 5 | Screen, run-sensitive — §2 |
+| complete | 95 | 86% | **0.49** | 13 | Usable as a screen — §4 |
+| appropriately-hedged | 95 | 39% | **0.04** | 58 | **Broken — do not gate** — §3 |
+| usable | 95 | 93% | **0.56** | 7 | Usable as a screen — §4 |
 
-¹ spreads over the 85 judged rows; over all 100 labeled cases the split is complete 21/79,
-usable 12/88.
+Read the κ column, not the agreement column — high agreement with low κ is the kappa paradox
+(a criterion where almost everything is one class scores high agreement by luck). `complete`
+(0.49) and `usable` (0.56) are the two criteria with real label variance and they land at
+moderate, honest κ. `grounded` shows 95% agreement but κ=0.26 — §2. `appropriately-hedged` is
+near-chance (0.04).
 
-Read the κ column. The story is no longer "degenerate all-True labels" (the prior pass) —
-Carlos added genuine `False` variance, so every criterion now has a real reference
-distribution. What the variance reveals is a judge that is **uniformly stricter than the
-human**: of 69 judge-vs-human disagreements, **all 69 are judge=`False` / human=`True`.** The
-judge never once passed something the human failed. That single directional fact drives every
-verdict below.
+**One near-uniform direction.** Of 83 total disagreements, **81 are judge=`False` /
+human=`True`** — the judge fails things the human passes far more than the reverse. The **2
+exceptions** are both `grounded` on empty responses (§2). So the judge is characterically a
+**conservative over-flagger**: high recall for problems, lower precision. For a review *screen*
+(surface candidates for a human, err toward caution) that is the right error direction; for an
+autonomous *gate* it is not, without a precision fix.
 
-## 2. grounded — validated (κ=1.00)
+## 2. grounded — a screen, but run-sensitive, and the empty-response convention is undefined
 
-Carlos marked exactly four cases `grounded=False`: **C-23, CQ-10, H-03, U-19** — the four
-empty / structurally-broken responses (no claims, or claims with no tool support). The judge,
-independently, marked those **same four and only those four** `grounded=False`. 81 True + 4
-False, agreed on all 85 → **100% agreement, κ=1.00.**
+95% raw agreement, κ=0.26. The 5 disagreements are almost entirely one underspecified case:
+**what does `grounded` mean for an empty / no-claims response?** Carlos rules an empty answer
+`grounded=False` (it failed to answer). The judge is *inconsistent with itself* on the same
+run: it marked **CQ-10** (empty) "no specific claims, so nothing to be ungrounded" →
+`grounded=True`, but **H-21** (also empty) "no claims, therefore cannot be grounded" →
+`grounded=False`. Same situation, opposite verdict — a live instance of the 34% consistency
+problem (§6). The remaining grounded splits (C-12 sector-mislabel, C-25 ignored-benchmark) are
+the judge being *stricter*, and arguably correct.
 
-This is the criterion you most want a grader to get right, and on this set it is now
-*validated against real negatives* rather than sitting on a constant column (the prior pass
-had 0 human negatives and a structurally-meaningless κ=0). The caveat is honest: 4 negatives
-is a thin positive-class test, and all four are the "empty response" shape — the judge has
-proven it catches *that* negative perfectly, not that it catches subtle mid-answer
-fabrication. But within what the set can show, grounded is the one criterion I would trust.
+This is the honest correction to an earlier frozen-verdict pass that showed grounded κ=1.00:
+that number rode on one particular run's verdicts happening to match Carlos's four negatives.
+A *fresh* run splits on the empty-response convention, and κ falls to 0.26. The finding is not
+"the judge got worse" — it's that **grounded agreement is run-sensitive precisely where the
+rubric is silent (empty responses)**, and the fix is a rubric line defining that case, after
+which grounded should be re-measured over ≥3 samples. Until then, trust grounded as a screen
+for the *substantive* negatives (fabrication, sector-mislabel), not as a settled verdict on
+empty answers.
 
-## 3. appropriately-hedged — broken, and the failure is diagnosable (κ=0.05)
+## 3. appropriately-hedged — broken, and the failure is diagnosable (κ=0.04)
 
-40% agreement, κ=0.05 — near chance. **51 of 85 rows disagree, every one judge=`False` /
-human=`True`.** The judge marks the answer "not appropriately hedged"; Carlos says it hedges
-fine. This is not noise and not a labeling gap — it is a **criterion-definition failure**, and
-Artifact 06's open-coding says exactly what kind.
+39% agreement, κ=0.04 — near chance. **58 of the 83 disagreements are here, every one
+judge=`False` / human=`True`.** The judge marks the answer "not appropriately hedged"; Carlos
+says it hedges fine. This is not noise and not a labeling gap — it is a **criterion-definition
+failure**, and Artifact 06's open-coding says exactly what kind.
 
-Carlos labeled `hedged=False` on only the same 4 broken cases as grounded. The other 51 the
-judge flagged, he ruled `True`. Why the human is right and the judge is wrong here: those 51
-cases *do* fail — but they fail on a **different axis**. Open-coding them (Artifact 06,
-`opencoding_worksheet_coded.md`) names seven failure themes, and none of them is "overclaimed
-with false confidence" (the actual definition of a hedging failure):
+Carlos labeled `hedged=False` on only the 4 genuinely-broken cases. The dozens the judge flagged,
+he ruled `True`. Why the human is right and the judge is wrong: those cases *do* fail — but on a
+**different axis**. Open-coding the dominant failure cluster (Artifact 06,
+`opencoding_worksheet_coded.md`) names seven themes, and none of them is "overclaimed with false
+confidence" (the actual definition of a hedging failure):
 
 - **T1 raw dump, synthesis never performed** · **T2 second half of a compound query silently
   dropped** · **T3 missing comparandum, comparison impossible** · **T4 wrong-scope retrieval
   presented as the answer** · **T5 judgment question answered with facts only** · **T6
-  unavailable item, error surfaced raw** · **T7** (residual).
+  unavailable item, error surfaced raw** · **T7 empty response**.
 
-Every one of those is a **completeness / synthesis / scope** defect — which Carlos *does*
-penalize, under `complete` (64 F) and `usable` (73 F). The judge, seeing the same broken
-answers, fired the **hedging** criterion on them instead. It has conflated *"this answer is
-incomplete / off-scope"* with *"this answer is unhedged."* The two co-occur (an answer that
-dumps the wrong jurisdiction is both incomplete and, arguably, silently overconfident), so the
-judge's mistake is understandable — but it means the hedging verdict carries no independent
-signal: it is mostly a noisy echo of completeness.
+Every one is a **completeness / synthesis / scope** defect — which Carlos *does* penalize, under
+`complete` and `usable`. The judge, seeing the same broken answers, fired the **hedging**
+criterion on them instead. It has conflated *"this answer is incomplete / off-scope"* with
+*"this answer is unhedged."* So the hedging verdict carries no independent signal — it is a noisy
+echo of completeness.
 
-**The fix is a human decision Carlos has now effectively made:** his labels are the ruling
-that the strict "flag every unacknowledged gap" reading is *not* his bar — those gaps belong
-to completeness. So the correction is **not** "iterate the judge until it agrees" (that would
-just re-derive completeness under a second name). It is to **amend the hedging criterion** —
-bump `RUBRIC.md` to `v1.1` with a changelog line narrowing `appropriately-hedged` to genuine
+**The fix is a human decision Carlos has now made:** his labels are the ruling that the strict
+"flag every unacknowledged gap" reading is *not* his bar. So the correction is **not** "iterate
+the judge until it agrees" (that just re-derives completeness under a second name). It is to
+**amend the criterion** — bump `RUBRIC.md` to `v1.1`, narrow `appropriately-hedged` to genuine
 *overconfidence* (unqualified claims the tool data contradicts or only weakly supports),
-explicitly excluding "answer is incomplete" (that's `complete`) — then re-run the judge under
-`judge_v1.1`. Until then, **do not gate on this criterion**, and read its current `False`
-verdicts as "the answer is probably incomplete," cross-checked against `complete`.
+explicitly excluding "answer is incomplete" — then re-run under `judge_v1.1`. Until then, **do
+not gate on this criterion**, and read its current `False` verdicts as "probably incomplete,"
+cross-checked against `complete`.
 
-## 4. complete & usable — usable as screens (κ 0.29 / 0.38)
+## 4. complete & usable — usable as screens (κ 0.49 / 0.56)
 
-These are the two criteria with the most human variance (21T/64F and 12T/73F over the judged
-set), and they land at moderate-but-real κ. All disagreements are again one-directional —
-12 on `complete`, 6 on `usable`, every one judge=`False` / human=`True`. The judge's extra
-strictness clusters on **format-specific asks**: the query wanted "one sentence," "a
-three-bullet checklist," "a 15-word Slack update," "the one thing to know," and the answer
-delivered the right facts in the wrong shape. The judge fails it; Carlos, seeing the facts
-present, sometimes passes it.
+These are the two criteria with the most human variance, and they land at the highest κ of the
+four — 0.49 and 0.56, moderate agreement beyond chance. All disagreements are one-directional
+(13 on `complete`, 7 on `usable`, judge stricter), clustering on **format-specific asks**: the
+query wanted "one sentence," "a 15-word Slack update," "two articles in priority order," and the
+answer delivered the right facts in the wrong shape. The judge fails it; Carlos, seeing the facts
+present, sometimes passes it. That is mild criterion bleed (format → completeness), but the
+direction is defensible — on a "give me one sentence" ask, an answer that ignores the format
+arguably *is* incomplete for the user's purpose. On the axes with genuine variance, the judge
+tracks the human closely enough to **triage**.
 
-That's mild criterion bleed (format → completeness), but the direction is defensible: on a
-"give me one sentence" ask, an answer that ignores the format arguably *is* incomplete for the
-user's purpose. This is why `complete`/`usable` screen usefully — on the axis with genuine
-label variance the judge tracks the human closely enough to **triage**, over-flagging rather
-than under-flagging.
+## 5. The one useful property: a conservative over-flagger
 
-## 5. The one useful property: the judge is a conservative over-flagger
+81 of 83 disagreements in one direction is a characterization: **high recall for problems, lower
+precision** — the judge rarely waves through a bad answer, but fails some acceptable ones. Right
+error direction for a *screen*, wrong for an autonomous *gate* without a precision fix. The 2
+counter-examples are both the empty-response "vacuously grounded" call (§2), i.e. an
+underspecified-rubric artifact, not the judge being lax on substance.
 
-69/69 disagreements in one direction is not a coincidence, it's a characterization: **this
-judge has high recall for problems and lower precision** — it will rarely wave through a bad
-answer, but it will fail some acceptable ones. For a *release screen* (surface candidates for
-human review, fail-safe toward caution) that is the error direction you want. For an
-*autonomous gate* it is not, without a precision fix. That is the difference between "screen"
-and "gate" in the verdicts above, and it falls straight out of the directional data.
+## 6. Stability, edge cases, and coverage
 
-## 6. Stability, edge cases, and coverage honesty
-
-- **Consistency probe flagged 27 of 79 (34%).** Re-asking the same case at temperature 0
-  flips ≥1 criterion a third of the time. Any gating use needs majority-vote over ≥3 samples,
-  not a single call. (Order probe 13/47 ≈ 28%; verbosity 10/79; sycophancy 6/79.)
-- **Empty-response edge case — now resolved.** The prior pass flagged empty answers (H-03,
-  CQ-10, and the broken C-23/U-19) as an undefined rubric case. Carlos's labels rule them
-  `grounded=False` + `hedged=False`, and the judge agrees — the case is now specified by
-  example and both raters concur.
-- **85 judged, 100 labeled.** 13 cases (C-06–C-18) were collected and hand-labeled *after*
-  this judge run; 2 more (H-08, H-21) never produced a parseable verdict (provider/parse
-  failures the fault-tolerant pipeline recorded rather than aborting the ~$0.04 run). Agreement
-  is therefore over the 85 with verdicts. Closing the gap is one command —
-  `python run.py --judge-model deepseek/deepseek-v4-flash --reasoning-effort high --workers 8`
-  with `OPENROUTER_API_KEY` set — and the labels for all 100 are already in place waiting for it.
+- **Consistency probe flagged 21 of 92 (23%).** Re-asking the same case flips ≥1 criterion
+  roughly a quarter of the time — and §2's CQ-10-vs-H-21 split is a concrete instance. Any gating
+  use needs majority-vote over ≥3 samples, not a single call. (Order probe 21/57; verbosity
+  13/92; sycophancy 9/92.)
+- **Empty-response convention is the open rubric gap.** Both the 2 reverse disagreements and the
+  judge's self-inconsistency trace to it. One rubric line ("an empty or no-claims response is
+  `grounded=False` and `usable=False`") closes it; the labels already encode that ruling.
+- **95 judged of 100.** The 5 unjudged (H-03, H-08, H-12, U-18, U-21) are empty / parse-failure
+  responses; the pipeline recorded them as per-case failures rather than aborting the ~$0.044 run.
 
 ## 7. Cost and latency
 
 | Metric | Value |
 |---|---|
-| Judged cases | 85 (+ bias probes) |
-| Total run cost | **$0.039** (≈ $0.0005 / case, all-in) |
-| p50 latency | 16.6 s / call |
-| p95 latency | 43.4 s / call |
+| Judged cases | 95 (+ bias probes) |
+| Total run cost | **$0.044** (≈ $0.0005 / case, all-in) |
+| p50 latency | 22.9 s / call |
+| p95 latency | 39.8 s / call |
 
 Cheap enough to run every release; the latency is a reasoning-model artifact, hence the 8-way
-parallelism. A human labeling 85 open-ended cases at ~2 min each is ~3 hours; the judge is
-~$0.04 and minutes wall-clock. Worth taking on the three criteria the set validates.
+parallelism. A human labeling 95 open-ended cases at ~2 min each is ~3 hours; the judge is ~$0.04
+and minutes wall-clock. Worth taking on the three criteria the set can screen — averaged over ≥3
+samples to absorb the consistency noise.
 
 ## 8. When I would and wouldn't trust this judge
 
-- **Trust as a screen:** `grounded` (κ=1.00, validated on real negatives), `complete`
-  (κ=0.29), `usable` (κ=0.38) — averaged over ≥3 samples to absorb the 34% consistency noise,
-  used to triage answers for human review, not as a sole autonomous gate.
-- **Do not trust / do not gate:** `appropriately-hedged` (κ=0.05). The judge is over-strict by
-  a measured human standard and the criterion is conflated with completeness (§3). Fix by
-  amending the rubric to `v1.1` (narrow it to genuine overconfidence) and re-running, then
-  re-measure.
+- **Trust as a screen (≥3-sample majority vote):** `complete` (κ=0.49) and `usable` (κ=0.56) to
+  triage answers for human review; `grounded` (κ=0.26) for *substantive* groundedness
+  (fabrication, sector-mislabel), once the empty-response rubric gap is closed.
+- **Do not gate autonomously on anything** — the 23% single-run flip rate and the over-flagging
+  precision gap both argue for human-in-the-loop.
+- **Do not trust at all:** `appropriately-hedged` (κ=0.04). Over-strict by a measured human
+  standard and conflated with completeness (§3). Fix by amending the rubric to `v1.1` and
+  re-running, then re-measure.
 
-**Net:** evaluating the evaluator turned a plausible-looking four-criterion judge into a
-precise map — one criterion validated, two usable as cautious screens, one broken and *why* it
-is broken (traced to the open-coding themes in Artifact 06). A judge you've measured, with its
-one broken criterion named and its fix specified, beats a judge you trusted because it sounded
+**Net:** evaluating the evaluator turned a plausible-looking four-criterion judge into a precise
+map — two criteria usable as cautious screens, one run-sensitive with a namable rubric gap, one
+broken with its cause traced to the open-coding themes in Artifact 06. A judge you've measured,
+with its weak spots named and their fixes specified, beats a judge you trusted because it sounded
 reasonable.
 
 ## 9. Method disclosure
 
 Carlos is the sole human labeler — disclosed, not hidden; a single-labeler reference has no
 inter-rater ceiling, itself a limitation. The judge prompt is versioned in
-`judge_prompts/judge_v1.md`. Agreement is **re-scored from the frozen judge verdicts against
-the current labels** by `regenerate_report.py` — re-running the LLM was deliberately avoided so
-the judge side stays constant while the labels evolve; a full fresh pass over all 100 (`run.py`)
-is a one-command refresh when a key is available. Raw verdicts, per-case reasons, probe
-outcomes, and cost are in `results/results.json`; the agreement/disagreement tables in
-`results/SUMMARY.md`.
+`judge_prompts/judge_v1.md`. This RESULTS reflects a **full live judge pass** over all 100 cases
+(`run.py --judge-model deepseek/deepseek-v4-flash --reasoning-effort high --workers 8`); raw
+verdicts, per-case reasons, probe outcomes, and cost are in `results/results.json`, the agreement
+and disagreement tables in `results/SUMMARY.md`. `regenerate_report.py` re-scores agreement from
+frozen verdicts against changed labels *without* re-judging — the tool used before a key was
+available, and the way to re-measure after a `RUBRIC.md` edit without paying for a new pass.

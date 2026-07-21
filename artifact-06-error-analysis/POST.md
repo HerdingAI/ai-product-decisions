@@ -15,10 +15,10 @@ the failures, what categories fall out — and is the criterion itself one of
 them?**
 
 I built the flywheel and ran it over failures my earlier artifacts already
-produced. It did three things automatically: clustered 83 judged failures into
-**4 categories**, collapsed 33 agent crashes into **1** root cause, and — the
-one that matters — flagged a **drifted criterion**: "appropriately hedged" had
-just **35% agreement** between the judge and the human, and 100% of the
+produced. It did three things automatically: clustered the judged failures into
+a handful of categories, collapsed 33 agent crashes into **1** root cause, and —
+the one that matters — flagged a **drifted criterion**: "appropriately hedged"
+had just **39% agreement** between the judge and the human, and 100% of the
 disagreement ran one direction. The other three criteria were fine (86–95%).
 
 Here's the surprising part: a dashboard would have shown "hedging pass rate:

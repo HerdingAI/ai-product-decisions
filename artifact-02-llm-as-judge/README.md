@@ -1,9 +1,9 @@
 # Artifact 02 — LLM-as-judge, validated
 
 > Pairs with [Unit 15 — LLM-as-judge](https://www.carlosarivero.com/units/unit-15-llm-as-judge.html) (the Hamel judge method + AIE Ch.3).
-> Status: **judge measured against human labels — one criterion validated, two usable as screens, one broken.** Judge, bias probes, and report are implemented and unit-tested; 100 real calibration responses collected from `agentic-copilot` and hand-labeled by Carlos (with genuine `False` variance on every criterion), judged by `deepseek/deepseek-v4-flash`.
+> Status: **judge measured against human labels — two criteria usable as screens, one run-sensitive, one broken.** Judge, bias probes, and report are implemented and unit-tested; 100 real calibration responses collected from `agentic-copilot` and hand-labeled by Carlos (genuine `False` variance on every criterion), judged in a full live pass by `deepseek/deepseek-v4-flash`.
 >
-> **Numbers (85 judged of 100 labeled):** Judge–human agreement, per criterion: `grounded` **100% (κ=1.00, validated)**, `usable` 93% (κ=0.38), `complete` 86% (κ=0.29), `appropriately-hedged` **40% (κ=0.05, broken)**. All 69 disagreements run one direction — judge=`False` / human=`True` — so the judge is a **conservative over-flagger** (high recall for problems, lower precision): fine as a review *screen*, not an autonomous *gate*. The hedging criterion is over-strict because it fires on incomplete/off-scope answers (a completeness defect — see Artifact 06's open-coding themes), so it carries no independent signal; fix is a rubric `v1.1` narrowing it to genuine overconfidence. Cost: **$0.039** for the 85-case run (~$0.0005/case), p95 43.4 s/call. See [`RESULTS.md`](RESULTS.md).
+> **Numbers (95 judged of 100 labeled):** Judge–human agreement per criterion: `usable` 93% (κ=**0.56**), `complete` 86% (κ=**0.49**), `grounded` 95% (κ=0.26, run-sensitive on the empty-response edge case), `appropriately-hedged` **39% (κ=0.04, broken)**. 81 of 83 disagreements run one direction — judge=`False` / human=`True` — so the judge is a **conservative over-flagger** (high recall, lower precision): a review *screen*, not an autonomous *gate*, and needs ≥3-sample majority vote (23% single-run flip rate). The hedging criterion fires on incomplete/off-scope answers (a completeness defect — see Artifact 06's open-coding), carrying no independent signal; fix is a rubric `v1.1` narrowing it to genuine overconfidence. Cost: **$0.044** for the 95-case run (~$0.0005/case), p95 39.8 s/call. See [`RESULTS.md`](RESULTS.md).
 
 ## The problem
 
@@ -77,20 +77,19 @@ can't abort the run), `eval_judge/runner.py` (drives `agentic-copilot`),
 `eval_judge/calibration_set.py` defines 100 open-ended cases across grounding,
 compound-query, hedge, and usability groups. **All 100 are collected and
 hand-labeled by Carlos, with genuine `False` variance on every criterion**
-(grounded 4 F, complete 79 F, appropriately-hedged 4 F, usable 88 F). The judge
-pass ran with `deepseek/deepseek-v4-flash` (`--reasoning-effort high --workers 8`)
-over the 85 cases that had responses at run time; agreement is re-scored against
-the current labels by `regenerate_report.py` (the judge verdicts are frozen — see
-RESULTS.md §7), writing `results/results.json` + `results/SUMMARY.md`. The
+(grounded 4 F, complete 79 F, appropriately-hedged 4 F, usable 88 F). A **full
+live judge pass** ran with `deepseek/deepseek-v4-flash` (`--reasoning-effort high
+--workers 8`) over all 100; 95 produced verdicts (5 are empty/parse-failure
+responses), writing `results/results.json` + `results/SUMMARY.md`. The
 failure-pattern analysis and trust verdict are in [`RESULTS.md`](RESULTS.md).
 
 **What's outstanding (all optional — the artifact is at Definition of Done):**
-- **Judge the remaining 15 cases.** 13 (C-06–C-18) were collected + labeled after
-  the judge run, and 2 (H-08, H-21) never produced a parseable verdict. Labels for
-  all 100 are in place; one `run.py` pass closes the gap (needs a key).
 - **Amend the hedging criterion to `v1.1`.** RESULTS.md §3: the judge over-fires
-  `appropriately-hedged` on incomplete/off-scope answers (κ=0.05). Narrow the
+  `appropriately-hedged` on incomplete/off-scope answers (κ=0.04). Narrow the
   rubric to genuine overconfidence, then re-run under `judge_v1.1` and re-measure.
+- **Define the empty-response case in the rubric.** RESULTS.md §2: `grounded` is
+  run-sensitive only because the rubric is silent on no-claims responses; one line
+  closes it (the labels already encode the ruling).
 
 To re-run the full judge pass: `export OPENROUTER_API_KEY=…` then
 `python run.py --judge-model deepseek/deepseek-v4-flash --reasoning-effort high

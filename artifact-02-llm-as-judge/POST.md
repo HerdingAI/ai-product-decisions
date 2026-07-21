@@ -12,23 +12,29 @@ evaluate a thousand open-ended answers a week without a room full of humans.
 But here's the question nobody wants to sit with: **how do you know the judge is right?**
 
 So I measured mine. I hand-labeled a 100-case set, ran an LLM judge over it, and checked
-agreement per criterion. On the two criteria where my labels had real variance, the judge
-tracked me reasonably: `usable` 93% agreement (κ=0.38), `complete` 86% (κ=0.29) — good
-enough to *screen* answers for review, not good enough to *gate* releases alone. Cost:
+agreement per criterion. On the two criteria where my labels had the most variance, the
+judge tracked me reasonably: `usable` 93% agreement (κ=0.56), `complete` 86% (κ=0.49) — good
+enough to *screen* answers for human review, not good enough to *gate* releases alone. Cost:
 $0.04 for the whole run, ~$0.0005 a case.
 
-The surprising part wasn't a number — it was what the disagreement exposed. On
-"appropriately hedged," the judge disagreed with me on 65% of cases. My first instinct was
-"the judge is too strict." Then I checked its calls against my own written rubric — and the
-judge was following the rubric. **My labels weren't.** I'd been quietly more lenient than
-the standard I wrote down before labeling started.
+The surprising part wasn't a number — it was what one disagreement exposed. On "appropriately
+hedged," the judge disagreed with me **61% of the time**, almost always calling an answer
+"not hedged" where I'd passed it. So I read the failing answers. None of them was
+*overconfident* — the actual meaning of a hedging failure. They were **incomplete**: raw data
+dumps, dropped halves of a two-part question, the wrong jurisdiction returned. The judge had
+quietly attached its "hedging" label to what were really *completeness* failures. The
+criterion wasn't measuring what it claimed to.
 
-The eval didn't just validate the model. It caught *me*. That's the whole point of
-measuring the evaluator instead of trusting it: the judge you've measured — blind spots
-published — beats the judge you trusted because it sounded reasonable.
+That's a broken metric — and I'd never have seen it from the agreement score alone (86% and
+93% on the other criteria look fine). It only showed up because I coded *why* the answers
+failed, not just *that* they did. The fix isn't to chase agreement by tuning the judge; it's
+to re-scope the criterion so "incomplete" and "unhedged" stop bleeding into each other.
 
-Full write-up, code, and the failure-pattern analysis (including the κ=0 trap that hides
-in any criterion where your labels don't vary): [link to artifact]
+Measuring the evaluator didn't just grade the model. It caught a criterion that was lying to
+me. The judge you've measured — blind spots named — beats the judge you trusted because it
+sounded reasonable.
+
+Full write-up, code, and the failure-pattern analysis: [link to artifact]
 
 Practices Units 06 (the evals game) and 15 (LLM-as-judge) from the Signal / Noise
 curriculum: [link]
@@ -36,7 +42,7 @@ curriculum: [link]
 ---
 
 **Reviewer notes for Carlos:**
-- "65% disagreement" = 35% agreement on `appropriately-hedged` (RESULTS.md §1/§3).
-- The rubric-vs-labels finding is the honest headline; it reflects well (you built the
-  discipline that caught it) but double-check you're comfortable stating it publicly.
+- "61% disagreement" = 39% agreement on `appropriately-hedged` (RESULTS.md §1/§3); κ=0.04.
+- Headline is now the *mis-scoped criterion* (hedging conflated with completeness), confirmed
+  by the Artifact 06 open-coding — a cleaner, more defensible finding than "my labels drifted."
 - Insert the two links before posting. Keep A4 discipline — no regulated-domain headline.

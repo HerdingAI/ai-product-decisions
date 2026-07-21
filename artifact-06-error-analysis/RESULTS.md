@@ -7,7 +7,7 @@ where the **criterion itself** has drifted from what anyone actually wants. This
 turns the failures the other artifacts already produced into a ranked backlog.
 
 It runs on **real, committed failures** — no new data, no labels invented here:
-- Artifact 02's 85 judged cases (judge verdict vs. Carlos's human label per
+- Artifact 02's 95 judged cases (judge verdict vs. Carlos's human label per
   criterion).
 - Artifact 03's 33 baseline agent crashes.
 
@@ -20,24 +20,24 @@ disagreement is **one-directional** (systematic = drift) or mixed (noise):
 
 | Criterion | Agreement | Disagreements | Direction | Skew | Verdict |
 |---|---:|---:|---|---:|---|
-| appropriately-hedged | 40% | 51 | judge stricter | 100% | **DRIFT** |
-| complete | 86% | 12 | judge stricter | 100% | ok |
-| usable | 93% | 6 | judge stricter | 100% | ok |
-| grounded | 100% | 0 | — | — | ok |
+| appropriately-hedged | 39% | 58 | judge stricter | 100% | **DRIFT** |
+| complete | 86% | 13 | judge stricter | 100% | ok |
+| usable | 93% | 7 | judge stricter | 100% | ok |
+| grounded | 95% | 5 | judge stricter | 60% | ok (floor) |
 
-The detector flags **`appropriately-hedged`** and nothing else. That is the same
-finding Artifact 02 reached by hand — the judge marks answers un-hedged wherever
-they're confident, faithfully applying the rubric, while Carlos's labels reserve
-`hedged=False` for genuine overconfidence — but here it falls out *mechanically*
-from the verdicts. The direction matters: because the disagreement is 100% one-way
-(judge stricter), this is not a coin-flip-hard criterion; it's a criterion whose
-**written standard and human standard have diverged**. Note `grounded` now sits at
-100%/κ=1.00: once Carlos added real negatives, judge and human agree perfectly, so
-the detector correctly stops flagging it — the drift signal is specific, not a
-blanket "everything disagrees." The fix for hedging is to revise the **rubric**
-(the labels are now the authoritative human bar) — **not** to tune the judge to
-agree, which would only game the metric. (This is the discipline Artifact 02
-documents; the flywheel is what surfaces it as an action.)
+(Full live judge pass over all 100 cases; 95 produced verdicts.) The detector flags
+**`appropriately-hedged`** and nothing else. That is the same finding Artifact 02
+reached by hand — the judge marks answers un-hedged wherever they're confident,
+faithfully applying the rubric, while Carlos's labels reserve `hedged=False` for
+genuine overconfidence — but here it falls out *mechanically*. The direction
+matters: the hedging disagreement is 100% one-way (judge stricter), so this is not
+a coin-flip-hard criterion; it's a criterion whose **written standard and human
+standard have diverged**. Note `grounded` sits at 95% (above the 80% floor, not
+flagged) with a mixed direction — its 5 disagreements are mostly the *empty-response
+convention* where the judge is even inconsistent with itself (Artifact 02 §2), not a
+systematic drift. The signal is specific, not a blanket "everything disagrees." The
+fix for hedging is to revise the **rubric** (the labels are the authoritative human
+bar) — **not** to tune the judge to agree, which would only game the metric.
 
 Note the detector's own guardrail: `complete` also disagrees 100% one-way but at
 86% agreement, above the 80% floor, so it is *not* flagged. Drift requires both
@@ -45,27 +45,27 @@ frequency and direction — otherwise every hard criterion would look like drift
 
 ## 2. Axial coding — which criteria fail together
 
-Collapsing the 83 judged-failing cases by *which criteria they fail* turns a
-scroll of individual failures into four categories:
+Collapsing the judged-failing cases by *which criteria they fail* turns a scroll
+of individual failures into a few categories (fresh full pass):
 
 | Count | Failure signature | Reading |
 |---:|---|---|
-| 51 | complete + appropriately-hedged + usable | the bulk: verbose, over-confident, and off-target together |
-| 27 | complete + usable | on-target-ish but incomplete/unusable |
-| 4 | all four (incl. grounded) | the genuinely broken answers (empty/ungrounded) |
-| 1 | usable only | a lone edge case |
+| 56 | complete + appropriately-hedged + usable | the bulk: incomplete, "un-hedged," and off-target together |
+| 28 | complete + usable | on-target-ish but incomplete/unusable |
+| 3 | all four (incl. grounded) | the genuinely broken answers (empty/ungrounded) |
+| 3 | other single/pair signatures | lone edge cases |
 
-The 51-case cluster is the backlog's top item. Mechanical signature says these
+The dominant cluster is the backlog's top item. Mechanical signature says these
 answers are "incomplete + un-hedged + unusable" together — but that's *what* they
 fail, not *why*. For that you have to read the traces, which is §2.5.
 
-## 2.5 Open-coding the 51-case cluster — the *why*
+## 2.5 Open-coding the dominant cluster — the *why*
 
-Mechanical clustering gets you a 51-case pile that all trip the same three
-criteria; it cannot tell you they fail for **seven different reasons**. Carlos
-read all 51 traces (`opencoding_worksheet_coded.md`) and named the failure mode
-of each. The distribution is the payoff — a single "quality" number would have
-hidden it:
+Mechanical clustering gets you a pile of cases that all trip the same three
+criteria; it cannot tell you they fail for **seven different reasons**. Carlos read
+all 51 traces of the dominant cluster (`opencoding_worksheet_coded.md`) and named
+the failure mode of each. The distribution is the payoff — a single "quality"
+number would have hidden it:
 
 | Theme | Count | The failure |
 |---|---:|---|
@@ -100,6 +100,18 @@ drift, and Artifact 02 §3): the judge attached a hedging label to what are real
 completeness failures. The open-coding is the independent confirmation that the
 drift is real and that the fix is to re-scope the criterion, not the labels.
 
+**Anchor remediation on the themes, not on this run's cluster membership.** Carlos
+open-coded the 51 traces the *frozen* judge run put in the dominant cluster. A
+*fresh* live pass puts **56** cases there, overlapping the coded set on only 37 —
+14 rotated out, 19 in — because judge verdicts are nondeterministic (the 23%
+consistency flip, Artifact 02 §6). That churn is not a defect in the coding; it is
+the point: **the seven themes are properties of the *responses*** (a raw-dump answer
+is a raw dump however the judge scores it that run), so they are stable, while the
+mechanical cluster boundary rides on noisy verdicts and is not. This is precisely
+the re-run caveat `build_opencoding_worksheet.py` prints, now demonstrated — and the
+reason the ranked backlog below is keyed to theme root-causes, not to "the N cases
+the judge flagged this pass."
+
 ## 3. Root-cause clustering — the agent crashes
 
 The 33 Artifact 03 baseline crashes collapse to **one** signature (a 500 from a
@@ -113,7 +125,7 @@ Two tracks fall out — fix the *evaluator*, then work the *product* backlog the
 (now-trusted) evaluator surfaced:
 
 **Evaluator:**
-1. **Fix the eval:** `appropriately-hedged` has drifted (40% agreement, judge
+1. **Fix the eval:** `appropriately-hedged` has drifted (39% agreement, judge
    stricter). Re-scope the **rubric** to genuine overconfidence (Carlos's labels
    are now the authoritative bar); do not touch the judge to force agreement.
 
