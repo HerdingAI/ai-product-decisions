@@ -403,9 +403,9 @@
     "latency_ms": 8.933037010137923,
     "error": "",
     "human_labels": {
-      "grounded": true,
+      "grounded": false,
       "complete": false,
-      "appropriately-hedged": true,
+      "appropriately-hedged": false,
       "usable": false
     }
   },
@@ -626,7 +626,12 @@
     ],
     "latency_ms": 9.63603999116458,
     "error": "",
-    "human_labels": null
+    "human_labels": {
+      "grounded": true,
+      "complete": true,
+      "appropriately-hedged": true,
+      "usable": true
+    }
   },
   {
     "id": "C-07",
@@ -655,7 +660,12 @@
     ],
     "latency_ms": 11.351706009008922,
     "error": "",
-    "human_labels": null
+    "human_labels": {
+      "grounded": true,
+      "complete": false,
+      "appropriately-hedged": true,
+      "usable": false
+    }
   },
   {
     "id": "C-08",
@@ -684,7 +694,12 @@
     ],
     "latency_ms": 10.314675004337914,
     "error": "",
-    "human_labels": null
+    "human_labels": {
+      "grounded": true,
+      "complete": true,
+      "appropriately-hedged": true,
+      "usable": true
+    }
   },
   {
     "id": "C-09",
@@ -713,7 +728,12 @@
     ],
     "latency_ms": 24.037675990257412,
     "error": "",
-    "human_labels": null
+    "human_labels": {
+      "grounded": true,
+      "complete": false,
+      "appropriately-hedged": true,
+      "usable": false
+    }
   },
   {
     "id": "C-10",
@@ -734,7 +754,12 @@
     ],
     "latency_ms": 13.094152003759518,
     "error": "",
-    "human_labels": null
+    "human_labels": {
+      "grounded": true,
+      "complete": false,
+      "appropriately-hedged": true,
+      "usable": false
+    }
   },
   {
     "id": "C-11",
@@ -763,7 +788,12 @@
     ],
     "latency_ms": 17.51151800272055,
     "error": "",
-    "human_labels": null
+    "human_labels": {
+      "grounded": true,
+      "complete": false,
+      "appropriately-hedged": true,
+      "usable": false
+    }
   },
   {
     "id": "C-12",
@@ -792,7 +822,12 @@
     ],
     "latency_ms": 11.61855401005596,
     "error": "",
-    "human_labels": null
+    "human_labels": {
+      "grounded": true,
+      "complete": true,
+      "appropriately-hedged": true,
+      "usable": false
+    }
   },
   {
     "id": "C-13",
@@ -813,7 +848,12 @@
     ],
     "latency_ms": 11.561517996597104,
     "error": "",
-    "human_labels": null
+    "human_labels": {
+      "grounded": true,
+      "complete": true,
+      "appropriately-hedged": true,
+      "usable": true
+    }
   },
   {
     "id": "C-14",
@@ -842,7 +882,12 @@
     ],
     "latency_ms": 24.122684000758454,
     "error": "",
-    "human_labels": null
+    "human_labels": {
+      "grounded": true,
+      "complete": false,
+      "appropriately-hedged": true,
+      "usable": false
+    }
   },
   {
     "id": "C-15",
@@ -871,7 +916,12 @@
     ],
     "latency_ms": 17.801822003093548,
     "error": "",
-    "human_labels": null
+    "human_labels": {
+      "grounded": true,
+      "complete": true,
+      "appropriately-hedged": true,
+      "usable": false
+    }
   },
   {
     "id": "C-16",
@@ -900,7 +950,12 @@
     ],
     "latency_ms": 26.170577999437228,
     "error": "",
-    "human_labels": null
+    "human_labels": {
+      "grounded": true,
+      "complete": true,
+      "appropriately-hedged": true,
+      "usable": true
+    }
   },
   {
     "id": "C-17",
@@ -921,7 +976,12 @@
     ],
     "latency_ms": 15.559585997834802,
     "error": "",
-    "human_labels": null
+    "human_labels": {
+      "grounded": true,
+      "complete": false,
+      "appropriately-hedged": true,
+      "usable": false
+    }
   },
   {
     "id": "C-18",
@@ -950,7 +1010,12 @@
     ],
     "latency_ms": 19.74639699619729,
     "error": "",
-    "human_labels": null
+    "human_labels": {
+      "grounded": true,
+      "complete": false,
+      "appropriately-hedged": true,
+      "usable": false
+    }
   },
   {
     "id": "C-19",
@@ -1100,9 +1165,9 @@
     "latency_ms": 20.97398399200756,
     "error": "",
     "human_labels": {
-      "grounded": true,
+      "grounded": false,
       "complete": false,
-      "appropriately-hedged": true,
+      "appropriately-hedged": false,
       "usable": false
     }
   },
@@ -1322,9 +1387,9 @@
     "latency_ms": 23.116786003811285,
     "error": "",
     "human_labels": {
-      "grounded": true,
+      "grounded": false,
       "complete": false,
-      "appropriately-hedged": true,
+      "appropriately-hedged": false,
       "usable": false
     }
   },
@@ -2775,9 +2840,9 @@
     "latency_ms": 16.53516900842078,
     "error": "",
     "human_labels": {
-      "grounded": true,
+      "grounded": false,
       "complete": false,
-      "appropriately-hedged": true,
+      "appropriately-hedged": false,
       "usable": false
     }
   },

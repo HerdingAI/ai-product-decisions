@@ -20,20 +20,24 @@ disagreement is **one-directional** (systematic = drift) or mixed (noise):
 
 | Criterion | Agreement | Disagreements | Direction | Skew | Verdict |
 |---|---:|---:|---|---:|---|
-| appropriately-hedged | 35% | 55 | judge stricter | 100% | **DRIFT** |
+| appropriately-hedged | 40% | 51 | judge stricter | 100% | **DRIFT** |
 | complete | 86% | 12 | judge stricter | 100% | ok |
 | usable | 93% | 6 | judge stricter | 100% | ok |
-| grounded | 95% | 4 | judge stricter | 100% | ok |
+| grounded | 100% | 0 | — | — | ok |
 
 The detector flags **`appropriately-hedged`** and nothing else. That is the same
 finding Artifact 02 reached by hand — the judge marks answers un-hedged wherever
-they're confident, faithfully applying the rubric, while the labels were more
-lenient — but here it falls out *mechanically* from the verdicts. The direction
-matters: because the disagreement is 100% one-way (judge stricter), this is not
-a coin-flip-hard criterion; it's a criterion whose **written standard and whose
-labels have diverged**. The fix is to revise the rubric/labels — **not** to tune
-the judge to agree, which would only game the metric. (This is the discipline
-Artifact 02 documents; the flywheel is what surfaces it as an action.)
+they're confident, faithfully applying the rubric, while Carlos's labels reserve
+`hedged=False` for genuine overconfidence — but here it falls out *mechanically*
+from the verdicts. The direction matters: because the disagreement is 100% one-way
+(judge stricter), this is not a coin-flip-hard criterion; it's a criterion whose
+**written standard and human standard have diverged**. Note `grounded` now sits at
+100%/κ=1.00: once Carlos added real negatives, judge and human agree perfectly, so
+the detector correctly stops flagging it — the drift signal is specific, not a
+blanket "everything disagrees." The fix for hedging is to revise the **rubric**
+(the labels are now the authoritative human bar) — **not** to tune the judge to
+agree, which would only game the metric. (This is the discipline Artifact 02
+documents; the flywheel is what surfaces it as an action.)
 
 Note the detector's own guardrail: `complete` also disagrees 100% one-way but at
 86% agreement, above the 80% floor, so it is *not* flagged. Drift requires both
@@ -51,11 +55,50 @@ scroll of individual failures into four categories:
 | 4 | all four (incl. grounded) | the genuinely broken answers (empty/ungrounded) |
 | 1 | usable only | a lone edge case |
 
-The 51-case cluster is the backlog's top item — and because it always includes
-`appropriately-hedged`, it's entangled with the drift above: fix the hedging
-criterion first, and the size and meaning of this cluster change. That ordering
-(fix the eval before mining the failures it produces) is the whole point of a
-flywheel over a dashboard.
+The 51-case cluster is the backlog's top item. Mechanical signature says these
+answers are "incomplete + un-hedged + unusable" together — but that's *what* they
+fail, not *why*. For that you have to read the traces, which is §2.5.
+
+## 2.5 Open-coding the 51-case cluster — the *why*
+
+Mechanical clustering gets you a 51-case pile that all trip the same three
+criteria; it cannot tell you they fail for **seven different reasons**. Carlos
+read all 51 traces (`opencoding_worksheet_coded.md`) and named the failure mode
+of each. The distribution is the payoff — a single "quality" number would have
+hidden it:
+
+| Theme | Count | The failure |
+|---|---:|---|
+| **T5** Judgment question answered with facts only | **13** | asked to predict/rate/assess → recites statute, takes no stance, bounds no uncertainty |
+| **T2** Second half of a compound query silently dropped | **11** | "what does X say **and** which model scores best" → answers half, never flags the omission |
+| **T4** Wrong-scope retrieval presented as the answer | **8** | insurance record returned for a credit-scoring ask; Colorado dump for a banking ask |
+| **T3** Missing comparandum — comparison impossible | **7** | "compare NY to CO" with NY never retrieved → no comparison, gap unflagged |
+| **T6** Unavailable item — error surfaced raw or buried | **5** | "Article 72" not in data → raw error, or buried under an adjacent-article dump |
+| **T1** Raw dump, requested synthesis never performed | **4** | right records retrieved, but the one-line/board-deck synthesis never done |
+| **T7** Empty response — silent failure | **3** | nothing returned at all, often to a trap question |
+
+**What the themes say that the cluster couldn't.** The 51 "quality failures" are
+really **three root causes**, and ranking by them changes the backlog:
+
+- **No synthesis/answer layer over retrieval (T1+T4+T5+T6 = 30 cases, 59%).** The
+  data was retrieved (or a gap existed) and the system stopped there — it never
+  filtered to scope, took a stance, or wrote the requested form. This is one fix
+  (a synthesis step that consumes tool output and answers the *question asked*)
+  and it addresses the majority of the cluster. **Highest leverage.**
+- **Incomplete retrieval / no query decomposition (T2+T3 = 18 cases, 35%).** The
+  system answered from what one lookup returned and never fetched the second
+  jurisdiction / benchmark / query-half. Fix is multi-hop: decompose the ask,
+  retrieve each part, and *flag* any part still missing.
+- **No graceful-gap handling (T6+T7 = 8 cases).** Unavailable items and empty
+  results should degrade to an explicit "not in the data," not a raw error or
+  silence.
+
+Crucially, **none of the seven themes is "overconfident / poorly hedged."** The
+51 cases fail on *synthesis, completeness, and scope* — which is exactly why the
+judge's `appropriately-hedged=False` verdict on all of them is a mislabel (§1
+drift, and Artifact 02 §3): the judge attached a hedging label to what are really
+completeness failures. The open-coding is the independent confirmation that the
+drift is real and that the fix is to re-scope the criterion, not the labels.
 
 ## 3. Root-cause clustering — the agent crashes
 
@@ -66,23 +109,39 @@ you count, or you'd triage 33 tickets for one bug.
 
 ## Ranked action list (the deliverable)
 
-1. **Fix the eval:** `appropriately-hedged` has drifted (35% agreement, judge
-   stricter). Revise the rubric/labels to the real bar; do not touch the judge.
-2. **Open-code the dominant failure cluster** (51 cases,
-   complete+hedged+usable) — *after* the hedging fix re-scores them.
-3. **Agent reliability:** one root cause drove all 33 baseline crashes; fixed,
+Two tracks fall out — fix the *evaluator*, then work the *product* backlog the
+(now-trusted) evaluator surfaced:
+
+**Evaluator:**
+1. **Fix the eval:** `appropriately-hedged` has drifted (40% agreement, judge
+   stricter). Re-scope the **rubric** to genuine overconfidence (Carlos's labels
+   are now the authoritative bar); do not touch the judge to force agreement.
+
+**Product (the 51-case cluster, open-coded — §2.5):**
+2. **Add a synthesis/answer layer over retrieval** — the single highest-leverage
+   fix, addressing **30 of 51 cases** (themes T1+T4+T5+T6): filter retrieved
+   records to the query's scope, take a stance on judgment questions, and emit the
+   requested form instead of a raw dump.
+3. **Decompose compound queries and do multi-hop retrieval** — **18 cases**
+   (T2+T3): answer every part of the ask, fetch each comparandum, and flag any
+   part still missing rather than silently dropping it.
+4. **Graceful gap handling** — **8 cases** (T6+T7): unavailable items and empty
+   results degrade to an explicit "not in the data," never a raw error or silence.
+5. **Agent reliability:** one root cause drove all 33 baseline crashes; fixed,
    keep the regression test.
 
-That is a pass rate turned into a prioritized backlog with the highest-leverage
-item — a broken criterion — at the top, where a dashboard would never surface it.
+That is a pass rate turned into a prioritized backlog: a broken criterion at the
+top (where a dashboard would never surface it), then three product fixes ranked by
+how many real traces each one closes — the flywheel's whole reason to exist.
 
 ## Scope & honest limits
 
-- **Mechanical coding only.** Clustering here is by objective signature (which
-  criteria failed, which exception fired). Subjective *open-coding* of trace
-  themes — the qualitative read of *why* the 51 cases fail — is the human
-  analyst's pass; this artifact builds the reproducible skeleton and the counts
-  that rank it, not the qualitative labels.
+- **Two coding layers, clearly split.** Clustering is by objective signature
+  (which criteria failed, which exception fired) — reproducible, in code. The
+  *open-coding* of the 51-case cluster into seven themes (§2.5) is Carlos's
+  qualitative read, the sole-human-analyst pass on top of the mechanical
+  skeleton; the counts that rank the backlog come from his labels, not from a
+  heuristic pretending to understand *why*.
 - **Drift thresholds are explicit** (agreement < 80%, direction skew ≥ 80%) and
   live in `flywheel/drift.py`; they're a defensible default, not a law. Tune
   them to your tolerance — the point is that drift needs *both* frequency and
@@ -93,4 +152,7 @@ item — a broken criterion — at the top, where a dashboard would never surfac
 `flywheel/drift.py` (4 tests) — objective criteria-drift detection.
 `flywheel/clustering.py` (4 tests) — axial coding by mechanical signature.
 `report_flywheel.py` — the flywheel over Artifacts 02 & 03's real failures.
+`build_opencoding_worksheet.py` — assembles the 51-case cluster's full traces
+into one file for the human analyst. `opencoding_worksheet_coded.md` — Carlos's
+completed open-coding (51 traces → 7 themes; §2.5).
 **8 tests, TDD.** Closes the eval thread opened by Artifacts 01 and 02.

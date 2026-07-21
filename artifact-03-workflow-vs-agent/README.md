@@ -1,7 +1,7 @@
 # Artifact 03 — Workflow vs. agent: the arithmetic
 
 > Pairs with [Unit 04](https://www.carlosarivero.com/units/unit-04-workflows-vs-agents.html) / [Unit 12](https://www.carlosarivero.com/units/unit-12-cost-and-latency.html) and ["Workflow or agent? Do the arithmetic first"](https://www.carlosarivero.com/thoughts/workflow-or-agent-do-the-arithmetic-first.html).
-> Status: **both arms measured — coverage/cost/latency/reliability done; quality-judging gated on human labels.** See [RESULTS.md](RESULTS.md).
+> Status: **complete — both arms measured on coverage/cost/latency/reliability AND answer quality.** See [RESULTS.md](RESULTS.md).
 > System under test: [`HerdingAI/agentic-copilot`](https://github.com/HerdingAI/agentic-copilot) — the agent side of the comparison.
 >
 > **Numbers (100 shared queries; agent = `deepseek/deepseek-v4-flash` live via OpenRouter):** coverage — workflow **64/100**, agent **81/100** (agent recovers **30/36** of the workflow's fail-closed queries, almost all open-ended `usability` asks). Cost/latency — workflow **$0 at <1 ms**; agent **~$0.00055/query (est.), p50 17.6 s / p95 44.9 s**, mean 3.82 tool calls with a tail to 20. Reliability — the agent hard-500'd on **33/100** queries until a one-line adapter fix (spurious `input` kwarg on zero-arg tools); the workflow's fail-closed design has zero crash surface. Rule: **workflow for tool-shaped lookups, agent for open-ended synthesis, workflow-first-with-agent-fallback for the hybrid path.**
@@ -57,8 +57,10 @@ distribution is wide and the recovery is worth the spend.* The rule is the
 artifact; the numbers are the receipts.
 
 _Shipped: the fixed-workflow implementation of the agentic-copilot task set, a
-live agent-arm runner on a real model, and the comparison table + decision memo
-in [RESULTS.md](RESULTS.md). The shared-served-set answer pairs for
-quality-judging are assembled (62/100 pairs, full response text both arms,
-blind order) — Carlos's labeling pass against Artifact 02's rubric is the one
-remaining step (sole-labeler discipline)._
+live agent-arm runner on a real model, the coverage/cost/latency/reliability
+comparison, and the **answer-quality** comparison on the 62 shared-served pairs
+(Carlos judged blind against Artifact 02's rubric). The headline: coverage favors
+the agent (81 vs 64), but on the answers both arms produce the **workflow wins
+2:1 (28 vs 13), and 15–2 on grounding** — the agent buys breadth at the cost of
+burying answers in raw dumps. Full write-up + decision memo in
+[RESULTS.md](RESULTS.md)._

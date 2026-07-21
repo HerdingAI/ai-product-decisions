@@ -112,31 +112,62 @@ depth (the 18–20-call runs are almost all wasted) and keep the workflow's
 fail-closed behavior as the default so a malformed generation degrades to "I
 don't know," not a 500.
 
-## Still open — the quality half (needs Carlos's labels)
+## The quality half — and it flips the easy reading of the coverage numbers
 
-Coverage counts *whether* an arm answered, not whether the answer is *good*. A
-workflow that answers confidently and wrongly would look fine on coverage alone.
-The remaining step is to judge answer **quality** on the queries **both** arms
-serve, using Artifact 02's validated judge — which needs Carlos's human labels
-on the shared set (sole-labeler discipline; not automatable). Until then, the
-coverage/cost/latency/reliability comparison stands on its own; the quality
-column is the one number still gated on the human-labeling pass.
+Coverage counts *whether* an arm answered, not whether the answer is *good*. So
+on the **62 queries both arms serve**, Carlos judged the two answers blind (left/
+right order randomized per pair, same discipline as Artifact 02's order probe;
+`assemble_quality_pairs.py` captured full response text from the workflow run
+offline against the real `reg_atlas`/`regfin_bench` tools and the agent live
+against `agentic-copilot`). Unblinding his verdicts (`analyze_quality_pairs.py`):
 
-**Prep done, labeling still open.** `assemble_quality_pairs.py` runs the
-workflow arm for real (offline, against the actual `reg_atlas` /
-`regfin_bench` tool functions — not a fake registry) and the agent arm live
-against `agentic-copilot`, capturing **full response text** on both sides (the
-committed `agent_arm.json` only stored a 200-char preview, not enough to
-judge). It intersects the shared-served set and randomizes left/right order
-per pair so quality judging isn't order-biased — same discipline as Artifact
-02's order-bias probe. Output: **62/100 cases served by both arms**,
-`results/quality_pairs.json`. Per-group: grounding 19, compound 19, hedge 12,
-usability 12 — every group has enough pairs to judge, though `hedge` and
-`usability` are thinner, worth flagging if the quality split needs to be read
-per-group. Raw per-arm output (including the 38 not-shared-served cases) is in
-`results/quality_pairs_raw_arms.json` for audit. Carlos judges `left_response`
-vs. `right_response` blind, using Artifact 02's rubric/judge on the same
-criteria; `left_arm`/`right_arm` reveal which is which after judging.
+| Quality winner (shared-served, n=62) | Count |
+|---|---|
+| **Workflow better** | **28** |
+| Tie | 21 |
+| **Agent better** | **13** |
+
+Per group:
+
+| Group | Workflow | Agent | Tie |
+|---|---|---|---|
+| grounding | **15** | 2 | 2 |
+| compound | 7 | 4 | 8 |
+| hedge | 2 | 3 | 7 |
+| usability | 4 | 4 | 4 |
+
+**This inverts the naïve coverage takeaway.** Coverage alone (81 vs 64) reads
+"the agent is better." But where both arms actually answer, the **workflow wins
+more than 2:1 (28 vs 13)** — and on `grounding`, the purely tool-shaped group, it
+is a rout (**15 vs 2**). The two findings are consistent, not contradictory: the
+agent answers *more* questions, but its answers on the overlap are *worse*.
+
+**Why the workflow wins the overlap** (from Carlos's reasons): on a tool-shaped
+lookup the workflow returns the **single on-target record, or a clean gap-flag**
+("Article 43 unavailable; available: 9, 10, 12, 14, 15"). The agent, on the same
+query, **buries the right record under an 8-record dump** or leads with irrelevant
+Colorado rows — the exact "raw dump, no synthesis" / "wrong-scope retrieval" /
+"unavailable-item buried" behaviors Carlos independently open-coded as themes
+**T1 / T4 / T6** in Artifact 06. The agent's extra tool calls (mean 3.82, tail to
+20) don't just cost latency and dollars — on the overlap they frequently *degrade*
+the answer by adding noise around it.
+
+**Why the agent wins the 13 it wins:** almost never on grounding. It wins when the
+workflow's fixed route **missed a comparandum** (returned one jurisdiction of a
+requested two) or answered the **wrong sector**, and when a `usability` ask wanted
+prose the agent's synthesis produced drop-in memo text where the workflow emitted
+raw JSON. Those are the open-ended shapes a rule set structurally can't express —
+the same place the coverage numbers already said the agent earns its cost.
+
+**What this does to the decision.** It *strengthens* the workflow-first-with-agent-
+fallback rule. The workflow isn't merely cheaper and faster on tool-shaped
+lookups — on the answers both arms produce, **its answers are also better**. So
+route deterministically wherever the workflow serves (better *and* free *and*
+instant), and reach for the agent only on the open-ended tail it structurally
+owns — where, notably, the shared-served quality is a wash (usability 4/4/4), so
+the agent's real value there is coverage, not superior quality. Raw per-arm output
+for all 100 cases (including the 38 not shared-served) is in
+`results/quality_pairs_raw_arms.json`.
 
 **Side finding while building this:** the router sent `query_by_article` the
 wrong keyword argument (`article_category` vs. the real tool's

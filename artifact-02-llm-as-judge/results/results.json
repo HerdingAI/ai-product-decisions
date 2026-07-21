@@ -4,8 +4,8 @@
   "agreement": {
     "grounded": {
       "n": 85,
-      "agreement_rate": 0.9529411764705882,
-      "kappa": 0.0
+      "agreement_rate": 1.0,
+      "kappa": 1.0
     },
     "complete": {
       "n": 85,
@@ -14,8 +14,8 @@
     },
     "appropriately-hedged": {
       "n": 85,
-      "agreement_rate": 0.35294117647058826,
-      "kappa": 0.0
+      "agreement_rate": 0.4,
+      "kappa": 0.052459016393442644
     },
     "usable": {
       "n": 85,
@@ -109,20 +109,6 @@
       "judge_reason": "The response does not acknowledge that the tool results contain no information about likely changes to Article 9, leaving the user without any indication of uncertainty or lack of data."
     },
     {
-      "case_id": "H-03",
-      "criterion": "grounded",
-      "judge": false,
-      "human": true,
-      "judge_reason": "The response is empty, so it contains no claims that can be grounded in the tool results."
-    },
-    {
-      "case_id": "H-03",
-      "criterion": "appropriately-hedged",
-      "judge": false,
-      "human": true,
-      "judge_reason": "The response is empty and does not hedge or acknowledge any uncertainty in the tool output."
-    },
-    {
       "case_id": "H-04",
       "criterion": "appropriately-hedged",
       "judge": false,
@@ -186,20 +172,6 @@
       "judge_reason": "A professional asking for 'the stated effective date of Colorado's AI act' would need to infer which act is current; the response lacks a clear synthesis or direct answer, requiring a follow-up to clarify."
     },
     {
-      "case_id": "C-23",
-      "criterion": "grounded",
-      "judge": false,
-      "human": true,
-      "judge_reason": "The tool call results for Colorado frameworks contain no mention of 'foundation models' or 'general-purpose AI', yet the assistant lists them as if they answer the query, providing no evidence that they meet the condition."
-    },
-    {
-      "case_id": "C-23",
-      "criterion": "appropriately-hedged",
-      "judge": false,
-      "human": true,
-      "judge_reason": "The assistant asserts the frameworks as the answer without any hedge or acknowledgment that the tool data does not support the condition, despite the absence of the requested terms."
-    },
-    {
       "case_id": "C-24",
       "criterion": "appropriately-hedged",
       "judge": false,
@@ -233,20 +205,6 @@
       "judge": false,
       "human": true,
       "judge_reason": "The Article 10 summary from the tool is truncated (ends with '(a) the '), but the assistant presents it as a complete statement without flagging the truncation, and the response does not note that the tool output is partial for that article."
-    },
-    {
-      "case_id": "CQ-10",
-      "criterion": "grounded",
-      "judge": false,
-      "human": true,
-      "judge_reason": "The response is empty and contains no claims, so it cannot be grounded in the tool results."
-    },
-    {
-      "case_id": "CQ-10",
-      "criterion": "appropriately-hedged",
-      "judge": false,
-      "human": true,
-      "judge_reason": "The response is empty and does not hedge or acknowledge any partiality in the tool output."
     },
     {
       "case_id": "CQ-12",
@@ -513,20 +471,6 @@
       "judge": false,
       "human": true,
       "judge_reason": "The user asked for a compliance line for a product page, but the response is a raw dump of all regulation data without any synthesis or a concise compliance statement."
-    },
-    {
-      "case_id": "U-19",
-      "criterion": "grounded",
-      "judge": false,
-      "human": true,
-      "judge_reason": "The response only lists Colorado regulations from the tool call but makes no mention of Illinois, so any claim about what Illinois requires is absent and unsupported."
-    },
-    {
-      "case_id": "U-19",
-      "criterion": "appropriately-hedged",
-      "judge": false,
-      "human": true,
-      "judge_reason": "The response does not acknowledge that it lacks data on Illinois or that the question cannot be answered with the available tool results."
     },
     {
       "case_id": "U-21",
@@ -882,9 +826,9 @@
         "usable": "An empty response provides no actionable information for a professional."
       },
       "human_labels": {
-        "grounded": true,
+        "grounded": false,
         "complete": false,
-        "appropriately-hedged": true,
+        "appropriately-hedged": false,
         "usable": false
       }
     },
@@ -1158,9 +1102,9 @@
         "usable": "A professional cannot act on this response because it fails to identify any frameworks that mention the specified terms, requiring a follow-up to get the correct information."
       },
       "human_labels": {
-        "grounded": true,
+        "grounded": false,
         "complete": false,
-        "appropriately-hedged": true,
+        "appropriately-hedged": false,
         "usable": false
       }
     },
@@ -1319,9 +1263,9 @@
         "usable": "An empty response provides no actionable information, so a professional would need to ask a follow-up question."
       },
       "human_labels": {
-        "grounded": true,
+        "grounded": false,
         "complete": false,
-        "appropriately-hedged": true,
+        "appropriately-hedged": false,
         "usable": false
       }
     },
@@ -2400,9 +2344,9 @@
         "usable": "A professional cannot act on this response because it fails to address the core comparative question, leaving the user without the requested information."
       },
       "human_labels": {
-        "grounded": true,
+        "grounded": false,
         "complete": false,
-        "appropriately-hedged": true,
+        "appropriately-hedged": false,
         "usable": false
       }
     },
@@ -2544,5 +2488,6 @@
         "usable": false
       }
     }
-  ]
+  ],
+  "relabeled_at": "2026-07-20"
 }

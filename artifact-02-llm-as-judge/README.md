@@ -1,9 +1,9 @@
 # Artifact 02 — LLM-as-judge, validated
 
 > Pairs with [Unit 15 — LLM-as-judge](https://www.carlosarivero.com/units/unit-15-llm-as-judge.html) (the Hamel judge method + AIE Ch.3).
-> Status: **judge validated against human labels.** Judge, bias probes, and report are implemented and unit-tested; 87 real calibration responses collected from `agentic-copilot` and hand-labeled by Carlos, then judged by `deepseek/deepseek-v4-flash`.
+> Status: **judge measured against human labels — one criterion validated, two usable as screens, one broken.** Judge, bias probes, and report are implemented and unit-tested; 100 real calibration responses collected from `agentic-copilot` and hand-labeled by Carlos (with genuine `False` variance on every criterion), judged by `deepseek/deepseek-v4-flash`.
 >
-> **Numbers:** Judge–human agreement, per criterion: `complete` 86% (κ=0.29), `usable` 93% (κ=0.38); `grounded` 95% and `appropriately-hedged` 35% are **unvalidated** — the human labels have zero variance on both, so κ=0.00 by construction (see [`RESULTS.md`](RESULTS.md)). Cost: **$0.039** for the 85-case run (~$0.0005/case), p95 latency 43.4 s/call. The headline result is a *finding about the calibration set*, not a green light — half the rubric can't yet be scored against the labels on hand.
+> **Numbers (85 judged of 100 labeled):** Judge–human agreement, per criterion: `grounded` **100% (κ=1.00, validated)**, `usable` 93% (κ=0.38), `complete` 86% (κ=0.29), `appropriately-hedged` **40% (κ=0.05, broken)**. All 69 disagreements run one direction — judge=`False` / human=`True` — so the judge is a **conservative over-flagger** (high recall for problems, lower precision): fine as a review *screen*, not an autonomous *gate*. The hedging criterion is over-strict because it fires on incomplete/off-scope answers (a completeness defect — see Artifact 06's open-coding themes), so it carries no independent signal; fix is a rubric `v1.1` narrowing it to genuine overconfidence. Cost: **$0.039** for the 85-case run (~$0.0005/case), p95 43.4 s/call. See [`RESULTS.md`](RESULTS.md).
 
 ## The problem
 
@@ -75,20 +75,24 @@ can't abort the run), `eval_judge/runner.py` (drives `agentic-copilot`),
 `eval_judge/report.py` (agreement rate, Cohen's κ, probe summary, cost/latency).
 
 `eval_judge/calibration_set.py` defines 100 open-ended cases across grounding,
-compound-query, hedge, and usability groups. **87 are collected and hand-labeled
-by Carlos**; the judge pass ran over them with `deepseek/deepseek-v4-flash`
-(`--reasoning-effort high --workers 8`), writing `results/results.json` +
-`results/SUMMARY.md`. The failure-pattern analysis and trust verdict are in
-[`RESULTS.md`](RESULTS.md).
+compound-query, hedge, and usability groups. **All 100 are collected and
+hand-labeled by Carlos, with genuine `False` variance on every criterion**
+(grounded 4 F, complete 79 F, appropriately-hedged 4 F, usable 88 F). The judge
+pass ran with `deepseek/deepseek-v4-flash` (`--reasoning-effort high --workers 8`)
+over the 85 cases that had responses at run time; agreement is re-scored against
+the current labels by `regenerate_report.py` (the judge verdicts are frozen — see
+RESULTS.md §7), writing `results/results.json` + `results/SUMMARY.md`. The
+failure-pattern analysis and trust verdict are in [`RESULTS.md`](RESULTS.md).
 
-**What's outstanding:**
-- **Collect + label the remaining 13 cases** (C-06–C-18) to reach N=100 —
-  `python collect_new_cases.py --pace-seconds 4` (idempotent), then Carlos labels.
-- **Add genuine negatives to the reference set.** The pass surfaced that Carlos
-  labeled `grounded` and `appropriately-hedged` `True` on *all* 87 cases, which
-  forces κ=0.00 and leaves both criteria unvalidated (RESULTS.md §2). Fixing this
-  needs label *variance* — real `False` cases — not just more cases.
+**What's outstanding (all optional — the artifact is at Definition of Done):**
+- **Judge the remaining 15 cases.** 13 (C-06–C-18) were collected + labeled after
+  the judge run, and 2 (H-08, H-21) never produced a parseable verdict. Labels for
+  all 100 are in place; one `run.py` pass closes the gap (needs a key).
+- **Amend the hedging criterion to `v1.1`.** RESULTS.md §3: the judge over-fires
+  `appropriately-hedged` on incomplete/off-scope answers (κ=0.05). Narrow the
+  rubric to genuine overconfidence, then re-run under `judge_v1.1` and re-measure.
 
-To re-run: `export OPENROUTER_API_KEY=…` then
+To re-run the full judge pass: `export OPENROUTER_API_KEY=…` then
 `python run.py --judge-model deepseek/deepseek-v4-flash --reasoning-effort high
---workers 8` (D6: OpenRouter is the sole model-provider standard here too).
+--workers 8`. To re-score agreement after a label change without re-judging:
+`python regenerate_report.py`.
