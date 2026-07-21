@@ -1,4 +1,4 @@
-# ai-product-decisions
+# AI Product Decisions
 
 **Seven product decisions an AI PM actually faces — each one as runnable code, a
 real eval, and the trade-off math behind the call.**
