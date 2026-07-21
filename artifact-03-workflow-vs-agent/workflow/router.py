@@ -82,7 +82,7 @@ def route(query: str) -> list[ToolCall]:
 
     # 5 — benchmark task-category lookup.
     if any(t in q for t in _TASK_CATEGORY_TERMS):
-        return [ToolCall("query_by_article", {"article_category": _first_hit(q, _TASK_CATEGORY_TERMS)})]
+        return [ToolCall("query_by_article", {"article_category_id": _first_hit(q, _TASK_CATEGORY_TERMS)})]
 
     # 6 — named regulatory framework (beats model/jurisdiction: shares keywords).
     if any(t in q for t in _FRAMEWORK_TERMS):

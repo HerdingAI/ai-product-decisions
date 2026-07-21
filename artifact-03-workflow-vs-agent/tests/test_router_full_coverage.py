@@ -37,3 +37,11 @@ def test_task_category_lookup():
 
 def test_still_fails_closed_on_uncovered():
     assert route("Tell me a joke.") == []
+
+
+def test_task_category_lookup_uses_real_tool_arg_name():
+    # regfin_bench.query_by_article(article_category_id: str) — the router
+    # must emit the same kwarg name, or a real registry raises TypeError.
+    plan = route("Which model is best at hallucination resistance?")
+    if plan[0].tool == "query_by_article":
+        assert "article_category_id" in plan[0].args

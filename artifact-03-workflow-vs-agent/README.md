@@ -58,5 +58,7 @@ artifact; the numbers are the receipts.
 
 _Shipped: the fixed-workflow implementation of the agentic-copilot task set, a
 live agent-arm runner on a real model, and the comparison table + decision memo
-in [RESULTS.md](RESULTS.md). Quality-judging on the shared served set is the one
-remaining step, gated on the human-labeling pass (sole-labeler discipline)._
+in [RESULTS.md](RESULTS.md). The shared-served-set answer pairs for
+quality-judging are assembled (62/100 pairs, full response text both arms,
+blind order) — Carlos's labeling pass against Artifact 02's rubric is the one
+remaining step (sole-labeler discipline)._

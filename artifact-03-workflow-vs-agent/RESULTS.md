@@ -122,10 +122,40 @@ on the shared set (sole-labeler discipline; not automatable). Until then, the
 coverage/cost/latency/reliability comparison stands on its own; the quality
 column is the one number still gated on the human-labeling pass.
 
+**Prep done, labeling still open.** `assemble_quality_pairs.py` runs the
+workflow arm for real (offline, against the actual `reg_atlas` /
+`regfin_bench` tool functions — not a fake registry) and the agent arm live
+against `agentic-copilot`, capturing **full response text** on both sides (the
+committed `agent_arm.json` only stored a 200-char preview, not enough to
+judge). It intersects the shared-served set and randomizes left/right order
+per pair so quality judging isn't order-biased — same discipline as Artifact
+02's order-bias probe. Output: **62/100 cases served by both arms**,
+`results/quality_pairs.json`. Per-group: grounding 19, compound 19, hedge 12,
+usability 12 — every group has enough pairs to judge, though `hedge` and
+`usability` are thinner, worth flagging if the quality split needs to be read
+per-group. Raw per-arm output (including the 38 not-shared-served cases) is in
+`results/quality_pairs_raw_arms.json` for audit. Carlos judges `left_response`
+vs. `right_response` blind, using Artifact 02's rubric/judge on the same
+criteria; `left_arm`/`right_arm` reveal which is which after judging.
+
+**Side finding while building this:** the router sent `query_by_article` the
+wrong keyword argument (`article_category` vs. the real tool's
+`article_category_id`) — would have raised `TypeError` had that branch ever
+executed against a real registry. Caught via TDD
+(`test_task_category_lookup_uses_real_tool_arg_name`) while wiring the real
+tools for the workflow arm above; fixed. It never affected the shipped
+coverage numbers (`query_by_article` never fires on this 100-query set — see
+the routing distribution: `query_by_jurisdiction` 26, `get_eu_ai_act_article`
+19, `query_by_framework` 10, `query_by_sector` 4, `query_by_model` 3,
+`compare_models` 1, `list_all_models` 1, uncovered 36), but it's a latent bug
+now closed.
+
 ## What's built
 
-`workflow/` (16 tests) — `router.py`, `executor.py`, `harness.py` (deterministic
-arm). `agent_arm/analysis.py` (7 tests) — served/refused, cost estimate, latency
-percentiles, fallback-recovery. `run_agent_arm.py` / `retry_failed.py` — live
-HTTP drivers. Agent-arm robustness fix + test live in the `agentic-copilot`
-spoke (`_filter_kwargs_for_fn`). 23 tests green in this artifact.
+`workflow/` (16 tests, +1 for the arg-name fix = 17) — `router.py`,
+`executor.py`, `harness.py` (deterministic arm). `agent_arm/analysis.py` (7
+tests) — served/refused, cost estimate, latency percentiles,
+fallback-recovery. `run_agent_arm.py` / `retry_failed.py` — live HTTP drivers.
+`assemble_quality_pairs.py` — Task-2 prep: shared-served-set answer pairs for
+quality judging. Agent-arm robustness fix + test live in the `agentic-copilot`
+spoke (`_filter_kwargs_for_fn`). 24 tests green in this artifact.
