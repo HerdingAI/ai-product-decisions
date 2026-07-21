@@ -32,7 +32,7 @@ yours, and the public-leaderboard result used only as a prior, not a verdict.
   easy to do badly (a handful of queries, no held-out set, no cost accounting).
 - **Structured selection workflow (this artifact)** — the bake-off, but with
   the criteria and the decision rule stated up front, so the selection is
-  auditable rather than vibes-with-a-table.
+  auditable rather than a bake-off with unstated criteria.
 
 ## What I'll measure
 
@@ -49,8 +49,7 @@ yours, and the public-leaderboard result used only as a prior, not a verdict.
 ## What I'd ship, and why
 
 The selection workflow and the rubric — reusable across every future model
-choice — with one worked example drawn from `document-ai-bench` as the
-receipts. The artifact is the method; the specific model it picks today is
+choice — with one worked example drawn from `document-ai-bench`. The artifact is the method; the specific model it picks today is
 obsolete in a quarter. The method isn't.
 
 _Shipped: a selection runner over the `document-ai-bench` results

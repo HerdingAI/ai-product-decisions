@@ -9,7 +9,7 @@
 ## The problem
 
 "Should we build this with an agent or a workflow?" is asked in every AI
-product review, and usually answered with a vibe. Agents are flexible and
+product review, and usually answered by instinct. Agents are flexible and
 demo beautifully; workflows are predictable and boring. The decision is
 rarely "agent" or "workflow" on aesthetics — it is arithmetic: for a specific
 task, what does the agent's flexibility cost in latency, spend, and
@@ -54,12 +54,12 @@ A one-page decision table — task class, cost, latency, reliability, coverage
 — and the rule it implies: *use a workflow when the task is bounded and the
 step-reliability arithmetic compounds badly; use an agent when the query
 distribution is wide and the recovery is worth the spend.* The rule is the
-artifact; the numbers are the receipts.
+artifact; the numbers are what make it defensible.
 
 _Shipped: the fixed-workflow implementation of the agentic-copilot task set, a
 live agent-arm runner on a real model, the coverage/cost/latency/reliability
 comparison, and the **answer-quality** comparison on the 62 shared-served pairs
-(Carlos judged blind against Artifact 02's rubric). The headline: coverage favors
+(judged blind against Artifact 02's rubric). The headline: coverage favors
 the agent (81 vs 64), but on the answers both arms produce the **workflow wins
 2:1 (28 vs 13), and 15–2 on grounding** — the agent buys breadth at the cost of
 burying answers in raw dumps. Full write-up + decision memo in

@@ -112,7 +112,7 @@ still fails. The failures map cleanly to the taxonomy:
   and the single-word query "regulations." At 10 cases this looked like an
   edge case (one SEC-2031 miss); at 32 cases it's a pattern — the fallback
   path itself hallucinates by design, not by accident. For a compliance
-  agent, one invented requirement is the whole ballgame — hence the 100%
+  agent, one invented requirement is disqualifying on its own — hence the 100%
   threshold on the tier where nobody reviews the output.
 
 The larger set didn't just confirm the original finding — it found a worse

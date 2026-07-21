@@ -1,7 +1,7 @@
 # Artifact 02 — LLM-as-judge, validated
 
 > Pairs with [Unit 15 — LLM-as-judge](https://www.carlosarivero.com/units/unit-15-llm-as-judge.html) (the Hamel judge method + AIE Ch.3).
-> Status: **judge measured against human labels — two criteria usable as screens, one run-sensitive, one broken.** Judge, bias probes, and report are implemented and unit-tested; 100 real calibration responses collected from `agentic-copilot` and hand-labeled by Carlos (genuine `False` variance on every criterion), judged in a full live pass by `deepseek/deepseek-v4-flash`.
+> Status: **judge measured against human labels — two criteria usable as screens, one run-sensitive, one broken.** Judge, bias probes, and report are implemented and unit-tested; 100 real calibration responses collected from `agentic-copilot` and hand-labeled by me (genuine `False` variance on every criterion), judged in a full live pass by `deepseek/deepseek-v4-flash`.
 >
 > **Numbers (95 judged of 100 labeled):** Judge–human agreement per criterion: `usable` 93% (κ=**0.56**), `complete` 86% (κ=**0.49**), `grounded` 95% (κ=0.26, run-sensitive on the empty-response edge case), `appropriately-hedged` **39% (κ=0.04, broken)**. 81 of 83 disagreements run one direction — judge=`False` / human=`True` — so the judge is a **conservative over-flagger** (high recall, lower precision): a review *screen*, not an autonomous *gate*, and needs ≥3-sample majority vote (23% single-run flip rate). The hedging criterion fires on incomplete/off-scope answers (a completeness defect — see Artifact 06's open-coding), carrying no independent signal; fix is a rubric `v1.1` narrowing it to genuine overconfidence. Cost: **$0.044** for the 95-case run (~$0.0005/case), p95 39.8 s/call. See [`RESULTS.md`](RESULTS.md).
 
@@ -17,7 +17,7 @@ human can't score a thousand responses a week.
 ## The decision
 
 Use an LLM as the judge — but **validated against human labels first**, so
-the judge's score is a calibrated proxy for a human's, not a vibe. The
+the judge's score is a calibrated proxy for a human's judgment, not an impression. The
 decision is not "can an LLM grade responses" (yes, sometimes). It is "do I
 trust this judge enough to let it gate releases," and that is an empirical
 question with a measurable answer: agreement rate with humans, on the cases
@@ -76,7 +76,7 @@ can't abort the run), `eval_judge/runner.py` (drives `agentic-copilot`),
 
 `eval_judge/calibration_set.py` defines 100 open-ended cases across grounding,
 compound-query, hedge, and usability groups. **All 100 are collected and
-hand-labeled by Carlos, with genuine `False` variance on every criterion**
+hand-labeled by me, with genuine `False` variance on every criterion**
 (grounded 4 F, complete 79 F, appropriately-hedged 4 F, usable 88 F). A **full
 live judge pass** ran with `deepseek/deepseek-v4-flash` (`--reasoning-effort high
 --workers 8`) over all 100; 95 produced verdicts (5 are empty/parse-failure
